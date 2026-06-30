@@ -1,0 +1,164 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].methodology;
+
+const rowOne = t.spheres.slice(0, 4);
+const rowTwo = t.spheres.slice(4);
+---
+
+<section class="methodology section-padding">
+  <div class="methodology-inner">
+    <div class="methodology-header">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-text">{t.desc}</p>
+    </div>
+
+    <!-- Fila 1: 4 tarjetas en horizontal -->
+    <div class="spheres-row">
+      {rowOne.map((sphere) => (
+        <div class="sphere-card">
+          <span class="sphere-number">{sphere.number}</span>
+          <h3 class="sphere-title">{sphere.title}</h3>
+          <p class="sphere-desc">{sphere.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Fila 2: 3 tarjetas centradas del mismo ancho -->
+    <div class="spheres-row row-centered">
+      {rowTwo.map((sphere) => (
+        <div class="sphere-card">
+          <span class="sphere-number">{sphere.number}</span>
+          <h3 class="sphere-title">{sphere.title}</h3>
+          <p class="sphere-desc">{sphere.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="methodology-footer">
+      <p>{t.footer}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .methodology {
+    background-color: var(--color-light);
+  }
+
+  .methodology-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .methodology-header {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+  }
+
+  .section-text {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  /* Ambas filas son flex-direction: row */
+  .spheres-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  /* Fila de 4: cada tarjeta toma 1/4 */
+  .spheres-row .sphere-card {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Fila de 3: misma anchura pero centrada (75% del total) */
+  .row-centered {
+    width: 75%;        /* 3/4 del ancho = mismo ancho por tarjeta que arriba */
+    align-self: center;
+    gap: 1.5rem;
+  }
+
+  .sphere-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 14px;
+    padding: 1.5rem 2rem; /* Bajo en vertical, amplio en horizontal = rectangulares */
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sphere-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+  }
+
+  .sphere-number {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .sphere-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark);
+  }
+
+  .sphere-desc {
+    color: var(--color-gray);
+    font-size: 1rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .methodology-footer {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    max-width: 800px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .spheres-row,
+    .row-centered {
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .spheres-row .sphere-card {
+      flex: 0 0 calc(50% - 0.75rem);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .spheres-row .sphere-card {
+      flex: 0 0 100%;
+    }
+  }
+</style>

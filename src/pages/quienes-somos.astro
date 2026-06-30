@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import AboutHero from '../components/sections/AboutHero.astro';
+import AboutPhilosophy from '../components/sections/AboutPhilosophy.astro';
+import AboutAudience from '../components/sections/AboutAudience.astro';
+import AboutValues from '../components/sections/AboutValues.astro';
+import Cta from '../components/sections/Cta.astro';
+---
+
+<Layout title="Quiénes Somos - Kαiros">
+	<Header />
+	<main>
+		<AboutHero />
+		<AboutPhilosophy />
+		<AboutAudience />
+		<AboutValues />
+		<Cta />
+	</main>
+	<Footer />
+</Layout>

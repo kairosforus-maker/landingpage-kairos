@@ -1,0 +1,120 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].timeForms;
+---
+
+<section class="time-forms section-padding">
+  <div class="time-forms-header">
+    <span class="tag-subtitle">{t.tag}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p class="section-text">{t.desc}</p>
+  </div>
+
+  <div class="cards-grid">
+    {t.cards.map((item, index) => {
+      // Definimos colores de borde y texto específicos según la posición (Aión=Naranja, Chronos=Oscuro, Kairos=Azul)
+      const borderColors = ['var(--color-primary)', 'var(--color-dark)', '#3978ff'];
+      return (
+        <div class="time-card" style={`--card-border: ${borderColors[index]}`}>
+          <h3 class="card-title">{item.title}</h3>
+          <p class="card-subtitle" style={`color: ${borderColors[index]}`}>{item.subtitle}</p>
+          <p class="card-text">{item.desc}</p>
+        </div>
+      );
+    })}
+  </div>
+
+  <div class="time-footer">
+    <p>{t.footer}</p>
+  </div>
+</section>
+
+<style>
+  .time-forms {
+    background-color: var(--color-light); /* Fondo blanco según diseño original */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .time-forms-header {
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .tag-subtitle {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+    color: var(--color-dark);
+  }
+
+  .section-text {
+    font-size: clamp(1.06rem, 2vw, 1.25rem);
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  .cards-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .time-card {
+    flex: 1;
+    min-width: 300px;
+    padding: 3.5rem 2rem;
+    border: 1.5px solid var(--card-border); /* Borde delgado y sutil */
+    border-radius: 12px; /* Menos redondeado que before */
+    text-align: center;
+    background-color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+  }
+
+  .time-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+  }
+
+  .card-subtitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-text {
+    color: var(--color-gray);
+    line-height: 1.6;
+    font-size: 1.125rem;
+  }
+
+  .time-footer {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--color-dark);
+  }
+</style>

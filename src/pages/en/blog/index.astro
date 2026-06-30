@@ -1,0 +1,318 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { createClient } from '@sanity/client';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+
+const sanityClient = createClient({
+  projectId: 'bam2qyc8',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-06-24',
+});
+
+// Fetch all posts from Sanity using GROQ
+const posts = await sanityClient.fetch(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  publishedAt,
+  "excerpt": coalesce(body[0].children[0].text, "No excerpt available."),
+  mainImage {
+    asset->{
+      _id,
+      url
+    }
+  }
+}`);
+---
+
+<Layout title="Blog | Kαiros">
+  <Header />
+  
+  <main class="blog-container">
+    <div class="blog-wrapper">
+      
+      <!-- Hero Section -->
+      <section class="blog-hero">
+        <h1 class="blog-title">Our <span class="accent-text">Blog</span></h1>
+        <p class="blog-subtitle">
+          Reflections, methodologies, and perspectives on strategy and transformation for visionary leaders.
+        </p>
+      </section>
+
+      <!-- Blog Grid -->
+      <section class="blog-grid">
+        {posts.length === 0 ? (
+          <div class="empty-state">
+            <h3>Coming soon...</h3>
+            <p>We are preparing our first articles. Check back soon!</p>
+          </div>
+        ) : (
+          posts.map((post: any) => (
+            <a href={`/en/blog/${post.slug.current}`} class="blog-card">
+              <div class="card-content">
+                
+                {/* Image Placeholder or Actual Image */}
+                <div class="card-image-container">
+                  {post.mainImage?.asset?.url ? (
+                    <img 
+                      src={post.mainImage.asset.url} 
+                      alt={post.title} 
+                      class="card-image"
+                    />
+                  ) : (
+                    <div class="no-image">
+                      <span>No image</span>
+                    </div>
+                  )}
+                  <div class="image-overlay"></div>
+                </div>
+
+                {/* Content */}
+                <div class="card-info">
+                  <div class="card-date">
+                    {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('es-ES', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    }) : 'Recently published'}
+                  </div>
+                  <h3 class="card-title">
+                    {post.title}
+                  </h3>
+                  <p class="card-excerpt">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div class="card-read-more">
+                    Read more 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))
+        )}
+      </section>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  .blog-container {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    background-color: var(--color-dark, #0d0d0d);
+    color: var(--color-light, #ffffff);
+  }
+
+  .blog-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Hero Section */
+  .blog-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .blog-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-light, #fff);
+  }
+
+  .accent-text {
+    color: var(--color-accent, #cfac62);
+  }
+
+  .blog-subtitle {
+    font-size: 1.125rem;
+    color: #a1a1aa;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Grid Layout */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Empty State */
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-light, #fff);
+  }
+
+  .empty-state p {
+    color: #a1a1aa;
+  }
+
+  /* Blog Card */
+  .blog-card {
+    text-decoration: none;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .blog-card:hover .card-content {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(207, 172, 98, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Card Image */
+  .card-image-container {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .blog-card:hover .card-image {
+    transform: scale(1.05);
+  }
+
+  .no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1f2937, #111827);
+  }
+
+  .no-image span {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-family: monospace;
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0.6;
+  }
+
+  /* Card Info */
+  .card-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-date {
+    font-size: 0.75rem;
+    color: var(--color-accent, #cfac62);
+    font-family: monospace;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-light, #fff);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+
+  .blog-card:hover .card-title {
+    color: var(--color-accent, #cfac62);
+  }
+
+  .card-excerpt {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-read-more {
+    display: flex;
+    align-items: center;
+    color: var(--color-accent, #cfac62);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: auto;
+  }
+
+  .arrow-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-card:hover .arrow-icon {
+    transform: translateX(5px);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .blog-container {
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+    
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

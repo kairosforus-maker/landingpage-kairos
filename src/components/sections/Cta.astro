@@ -1,0 +1,74 @@
+---
+import Button from '../ui/Button.astro';
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].cta;
+---
+
+<section class="cta section-padding">
+  <div class="cta-content">
+    <span class="tag-subtitle">{t.tag}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p class="section-text">{t.desc}</p>
+
+    <div class="cta-actions">
+      <!-- Primer botón naranja primary -->
+      <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="primary">
+        {t.btnTalk}
+      </Button>
+      <!-- Segundo botón fondo oscuro texto naranja outline -->
+      <Button href="/blog" variant="custom" class="btn-ghost-orange">
+        {t.btnBlog}
+      </Button>
+    </div>
+
+    <p class="cta-slogan">{t.slogan}</p>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 0.5rem;
+    color: var(--color-white);
+  }
+
+  .section-text {
+    font-size: clamp(1.06rem, 2vw, 1.25rem);
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .cta-slogan {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    margin-top: 2rem;
+  }
+</style>

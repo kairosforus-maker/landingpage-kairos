@@ -1,0 +1,117 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].nav;
+
+// Helper function to build language switcher URL
+const getSwitchUrl = () => {
+  const pathname = Astro.url.pathname;
+  if (lang === 'es') {
+    if (pathname.includes('/quienes-somos')) return '/en/about-us';
+    return '/en' + pathname;
+  }
+  if (pathname.includes('/about-us')) return '/quienes-somos';
+  return pathname.replace(/^\/en/, '') || '/';
+};
+---
+
+<header class="header">
+  <div class="header-container">
+    <a href={lang === 'es' ? '/' : '/en'} class="logo-link">
+      <!-- Changed to logo-isotipo.png to match the original design header -->
+      <img src="/logo-isotipo.png" alt="Kairos Logo" class="logo" />
+    </a>
+    
+    <nav class="nav-links">
+      <a href={lang === 'es' ? '/' : '/en'}>{t.home}</a>
+      <a href={lang === 'es' ? '/quienes-somos' : '/en/about-us'}>{t.about}</a>
+      <a href="/blog">{t.blog}</a>
+    </nav>
+    
+    <div class="lang-switcher">
+      <a href={lang === 'es' ? '#' : getSwitchUrl()} class={`lang-text ${lang === 'es' ? 'active' : ''}`}>ES</a>
+      <span class="lang-divider">/</span>
+      <a href={lang === 'en' ? '#' : getSwitchUrl()} class={`lang-text ${lang === 'en' ? 'active' : ''}`}>EN</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--color-dark);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    height: 40px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .nav-links a {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    opacity: 0.8;
+  }
+
+  /* Premium Language Switcher */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .lang-text {
+    color: #9ca3af !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
+  .lang-text:hover {
+    color: var(--color-light, #fff) !important;
+  }
+
+  .lang-text.active {
+    color: var(--color-accent, #cfac62) !important;
+    pointer-events: none;
+  }
+
+  .lang-divider {
+    color: #4b5563 !important;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+</style>

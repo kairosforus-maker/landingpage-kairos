@@ -1,0 +1,210 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { createClient } from '@sanity/client';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import { PortableText } from 'astro-portabletext';
+
+// ASTRO requiere conocer las rutas dinámicas si se compila como sitio estático
+export async function getStaticPaths() {
+  const sanityClient = createClient({
+    projectId: 'bam2qyc8',
+    dataset: 'production',
+    useCdn: true,
+    apiVersion: '2024-06-24',
+  });
+
+  const posts = await sanityClient.fetch(`*[_type == "post" && defined(slug.current)] {
+    slug
+  }`);
+
+  return posts.map((post: any) => ({
+    params: { slug: post.slug.current },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const sanityClient = createClient({
+  projectId: 'bam2qyc8',
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-06-24',
+});
+
+// Obtener el artículo específico
+const post = await sanityClient.fetch(`*[_type == "post" && slug.current == $slug][0] {
+  title,
+  publishedAt,
+  mainImage {
+    asset->{
+      url
+    }
+  },
+  body
+}`, { slug });
+---
+
+<Layout 
+  title={`${post.title} | Kαiros Blog`} 
+  description={`Read the full article: ${post.title}`}
+  image={post.mainImage?.asset?.url}
+>
+  <Header />
+  <main class="article-container">
+    <article class="article-wrapper">
+      
+      <!-- Article Header -->
+      <header class="article-header">
+        <p class="article-date">
+          {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          }) : 'Recently published'}
+        </p>
+        <h1 class="article-title">{post.title}</h1>
+        
+        {post.mainImage?.asset?.url && (
+          <div class="article-image-wrapper">
+            <img 
+              src={post.mainImage.asset.url} 
+              alt={post.title} 
+              class="article-image"
+            />
+          </div>
+        )}
+      </header>
+
+      <!-- Article Content (Portable Text) -->
+      <div class="article-content">
+        {post.body ? <PortableText value={post.body} /> : <p>No content available.</p>}
+      </div>
+
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article-container {
+    background-color: var(--color-dark, #0d0d0d);
+    color: var(--color-light, #ffffff);
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+  }
+
+  .article-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .article-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .article-date {
+    color: var(--color-accent, #cfac62);
+    font-family: monospace;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-light, #fff);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .article-image-wrapper {
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    margin-bottom: 3rem;
+  }
+
+  .article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Estilos para el texto de Sanity (Portable Text) usando CSS Puro */
+  .article-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #d1d5db;
+  }
+
+  .article-content :global(h2), 
+  .article-content :global(h3), 
+  .article-content :global(h4) {
+    color: var(--color-light, #ffffff);
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .article-content :global(h2) { font-size: 2rem; }
+  .article-content :global(h3) { font-size: 1.5rem; }
+
+  .article-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-content :global(ul), 
+  .article-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.75rem;
+  }
+
+  .article-content :global(strong) {
+    color: white;
+  }
+
+  .article-content :global(a) {
+    color: var(--color-accent, #cfac62);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .article-content :global(a:hover) {
+    opacity: 0.8;
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 4px solid var(--color-accent, #cfac62);
+    padding-left: 1.5rem;
+    margin-left: 0;
+    font-style: italic;
+    color: #9ca3af;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.5rem;
+    border-radius: 0 12px 12px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .article-container {
+      padding-top: 120px;
+    }
+    
+    .article-image-wrapper {
+      height: 250px;
+    }
+  }
+</style>

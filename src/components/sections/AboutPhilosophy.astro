@@ -1,0 +1,117 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].about.philosophy;
+const manifesto = content[lang].about.manifesto;
+---
+
+<section class="about-philosophy section-padding">
+  <div class="philosophy-container">
+    <div class="philosophy-text-col">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-text">{t.desc1}</p>
+      <p class="section-text highlight-text">{t.desc2}</p>
+    </div>
+    <div class="philosophy-image-col">
+      <!-- IMAGE PLACEHOLDER -->
+      <div class="image-placeholder">
+        <span class="placeholder-text">[Imagen sugerida: Una fotografía elegante del equipo trabajando, o una forma abstracta minimalista (ej: un reloj de arena de cristal o esferas conectadas) en tonos oscuros y naranjas.]</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="manifesto-banner">
+    <blockquote>{manifesto}</blockquote>
+  </div>
+</section>
+
+<style>
+  .about-philosophy {
+    background-color: var(--color-white);
+  }
+
+  .philosophy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .philosophy-text-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .philosophy-image-col {
+    flex: 1;
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-dark);
+    line-height: 1.2;
+  }
+
+  .section-text {
+    font-size: 1.125rem;
+    color: var(--color-gray);
+    line-height: 1.7;
+  }
+
+  .highlight-text {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-color: var(--color-gray-light);
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .placeholder-text {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+  }
+
+  .manifesto-banner {
+    max-width: 1000px;
+    margin: 6rem auto 0;
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: var(--color-dark);
+    border-radius: 20px;
+  }
+
+  .manifesto-banner blockquote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--color-white);
+    line-height: 1.4;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    .philosophy-container {
+      flex-direction: column;
+    }
+    .manifesto-banner {
+      margin-top: 4rem;
+    }
+  }
+</style>

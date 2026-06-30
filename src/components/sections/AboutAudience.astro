@@ -1,0 +1,131 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].about.audience;
+---
+
+<section class="about-audience section-padding">
+  <div class="audience-header">
+    <span class="tag-subtitle">{t.tag}</span>
+    <h2 class="section-title">{t.title}</h2>
+  </div>
+
+  <div class="audience-grid">
+    <!-- Leaders Card -->
+    <div class="audience-card glass">
+      <div class="card-image-placeholder">
+        <span class="placeholder-text">[Icono o foto: Un retrato corporativo moderno, o una ilustración abstracta que represente liderazgo personal]</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">{t.leaders.title}</h3>
+        <p class="card-desc">{t.leaders.desc}</p>
+      </div>
+    </div>
+
+    <!-- Organizations Card -->
+    <div class="audience-card glass">
+      <div class="card-image-placeholder">
+        <span class="placeholder-text">[Icono o foto: Una imagen de un equipo interactuando, o gráficos geométricos entrelazados que representen estructura/esferas]</span>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">{t.orgs.title}</h3>
+        <p class="card-desc">{t.orgs.desc}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-audience {
+    background-color: var(--color-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative background element */
+  .about-audience::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 60%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 77, 0, 0.05) 0%, rgba(10, 10, 10, 0) 70%);
+    z-index: 0;
+  }
+
+  .audience-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-white);
+  }
+
+  .audience-grid {
+    display: flex;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .audience-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+  }
+
+  .audience-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 77, 0, 0.3);
+  }
+
+  .card-image-placeholder {
+    height: 240px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .placeholder-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+  }
+
+  .card-content {
+    padding: 3rem 2.5rem;
+  }
+
+  .card-title {
+    color: var(--color-primary);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-desc {
+    color: #a0a0a0;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .audience-grid {
+      flex-direction: column;
+    }
+  }
+</style>

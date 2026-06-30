@@ -1,0 +1,92 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].about.values;
+---
+
+<section class="about-values section-padding">
+  <div class="values-container">
+    <div class="values-header">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+    </div>
+
+    <div class="values-grid">
+      {t.items.map((item, index) => (
+        <div class="value-card">
+          <span class="value-number">0{index + 1}</span>
+          <h3 class="value-title">{item.title}</h3>
+          <p class="value-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-values {
+    background-color: var(--color-light);
+  }
+
+  .values-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .values-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-dark);
+  }
+
+  .values-grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .value-card {
+    flex: 1;
+    min-width: 300px;
+    background-color: var(--color-white);
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--color-gray-light);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-bottom: 3px solid var(--color-primary);
+  }
+
+  .value-number {
+    display: block;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+
+  .value-title {
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+  }
+
+  .value-desc {
+    color: var(--color-gray);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+</style>

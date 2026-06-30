@@ -1,0 +1,93 @@
+---
+import Button from '../ui/Button.astro';
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].hero;
+---
+
+<section class="hero section-padding">
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h1 class="hero-title">{t.title}</h1>
+      <p class="hero-text">{t.desc}</p>
+      
+      <div class="hero-actions">
+        <!-- Primer botón es outline blanco según diseño original -->
+        <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="custom" class="btn-outline-white">
+          {t.btnTalk}
+        </Button>
+        <!-- Segundo botón es primary naranja -->
+        <Button href={lang === 'es' ? '/quienes-somos' : '/en/about-us'} variant="primary">
+          {t.btnExplore}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--color-dark); /* Fondo negro estricto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+  }
+
+  .hero-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tag-subtitle {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    color: var(--color-white); /* Título blanco */
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-text {
+    font-size: clamp(1.06rem, 2vw, 1.25rem);
+    color: #E8E4DF; /* Gris clarito para el texto descriptivo */
+    max-width: 700px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 992px) {
+    .hero-container {
+      flex-direction: column;
+    }
+  }
+</style>

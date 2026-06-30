@@ -1,0 +1,61 @@
+---
+import Button from '../ui/Button.astro';
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].about.hero;
+---
+
+<section class="about-hero section-padding">
+  <div class="about-content">
+    <span class="tag-subtitle">{t.tag}</span>
+    <h1 class="about-title">
+      {t.title}<br />
+      {t.subtitle}
+    </h1>
+    <p class="about-text">{t.desc}</p>
+    
+    <div class="about-action">
+      <Button href={lang === 'es' ? '/#servicios' : '/en/#servicios'} variant="custom" class="btn-ghost-orange">
+        {t.btn}
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-hero {
+    background-color: var(--color-light);
+    display: flex;
+    justify-content: center;
+    min-height: 80vh;
+    align-items: center;
+  }
+
+  .about-content {
+    text-align: center;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .about-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--color-dark);
+    font-weight: 700;
+  }
+
+  .about-text {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: var(--color-gray);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .about-action {
+    margin-top: 1rem;
+  }
+</style>

@@ -1,0 +1,201 @@
+---
+import Button from '../ui/Button.astro';
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].services;
+---
+
+<section class="services section-padding">
+  <div class="services-header">
+    <span class="tag-subtitle">{t.tag}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p class="section-text">{t.desc}</p>
+  </div>
+
+  <div class="services-grid">
+    <!-- Builder Card (White) -->
+    <div class="service-card light-card">
+      <div class="card-number">{t.builder.number}</div>
+      <h3 class="card-title">{t.builder.title}</h3>
+      <p class="card-subtitle">{t.builder.subtitle}</p>
+      <p class="card-text">{t.builder.desc}</p>
+      
+      <div class="tags-container">
+        {t.builder.tags.map(tag => (
+          <span class="tag tag-light">{tag}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Community Card (Dark) -->
+    <div class="service-card dark-card">
+      <div class="card-number">{t.community.number}</div>
+      <h3 class="card-title">{t.community.title}</h3>
+      <p class="card-subtitle">{t.community.subtitle}</p>
+      <p class="card-text">{t.community.desc}</p>
+      
+      <div class="tags-container">
+        {t.community.tags.map(tag => (
+          <span class="tag tag-dark">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón movido fuera de las tarjetas, centrado abajo -->
+  <div class="services-action">
+    <Button href="https://api.whatsapp.com/send?phone=573133024941&text=Hola%20Kairos%2C%20estoy%20buscando%20claridad%20en%20mi%20siguiente%20paso.%20Me%20gustar%C3%ADa%20conversar%20con%20ustedes." external variant="primary">
+      {t.community.btn}
+    </Button>
+  </div>
+</section>
+
+<style>
+  .services {
+    background-color: var(--color-dark); /* Fondo negro de la sección */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .services-header {
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .tag-subtitle {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+  }
+
+  .section-text {
+    font-size: clamp(1.06rem, 2vw, 1.25rem);
+    color: #a0a0a0;
+    line-height: 1.6;
+  }
+
+  .services-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .service-card {
+    flex: 1;
+    min-width: 320px;
+    padding: 3.5rem 2.5rem;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .light-card {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-primary);
+  }
+
+  .dark-card {
+    background-color: #0A0A0A; /* Pure dark like the section background */
+    border: 2px solid var(--color-primary);
+    color: var(--color-light);
+  }
+
+  .card-number {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-primary);
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .light-card .card-title {
+    color: var(--color-dark);
+  }
+  .dark-card .card-title {
+    color: var(--color-white);
+  }
+
+  .card-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+  }
+
+  .card-text {
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+    max-width: 90%;
+  }
+
+  .light-card .card-text {
+    color: #222;
+  }
+  .dark-card .card-text {
+    color: #FFF;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    max-width: 95%;
+  }
+
+  .tag {
+    padding: 0.4rem 1.25rem;
+    border: 1px solid;
+    border-radius: 99px;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  .tag-light {
+    border-color: #333;
+    color: #333;
+  }
+
+  .tag-dark {
+    border-color: #FFF;
+    color: #FFF;
+  }
+
+  .services-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+</style>
