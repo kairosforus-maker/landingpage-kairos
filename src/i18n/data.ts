@@ -90,7 +90,8 @@ export const content = {
         tag: 'QUIÉNES SOMOS',
         title: 'Somos Kαiros.',
         subtitle: 'Una forma distinta de construir.',
-        desc: 'Somos una comunidad global que ayuda a personas y organizaciones a construir propósito. A través de nuestra metodología integramos el Ser y el Hacer para resolver retos reales y así Tener resultados sostenibles.'
+        desc: 'Somos una comunidad global que ayuda a personas y organizaciones a construir propósito. A través de nuestra metodología integramos el Ser y el Hacer para resolver retos reales y así Tener resultados sostenibles.',
+        btn: 'Conoce nuestro enfoque'
       },
       philosophy: {
         tag: 'EL ORIGEN',
