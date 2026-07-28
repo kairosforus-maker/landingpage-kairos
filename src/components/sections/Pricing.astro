@@ -1,0 +1,205 @@
+---
+import Button from '../ui/Button.astro';
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].pricing;
+
+const whatsappHref = 'https://api.whatsapp.com/send?phone=573133024941&text=Hola%20Kairos%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes.';
+---
+
+<section id="precios" class="pricing section-padding">
+  <div class="pricing-inner">
+    <div class="pricing-header">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-text">{t.desc}</p>
+    </div>
+
+    <div class="plans-grid">
+      {t.plans.map((plan) => (
+        <div class:list={["plan-card", plan.featured && "plan-featured"]}>
+          {plan.featured && <span class="plan-badge">{t.recommended}</span>}
+          <h3 class="plan-name">{plan.name}</h3>
+          <div class="plan-price">
+            <span class="price-amount">{plan.price}</span>
+            <span class="price-period">{plan.period}</span>
+          </div>
+          <ul class="plan-features">
+            {plan.features.map((f) => (
+              <li>
+                <span class="check">✓</span>{f}
+              </li>
+            ))}
+          </ul>
+          <Button
+            href={whatsappHref}
+            external
+            variant="custom"
+            class={plan.featured ? "btn-primary plan-btn" : "btn-outline plan-btn"}
+          >
+            {plan.btn}
+          </Button>
+        </div>
+      ))}
+    </div>
+
+    <p class="pricing-note">{t.note}</p>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    background-color: var(--color-light);
+  }
+
+  .pricing-inner {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .pricing-header {
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+  }
+
+  .section-text {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  .plans-grid {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .plan-card {
+    position: relative;
+    flex: 1;
+    min-width: 280px;
+    max-width: 360px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+
+  .plan-featured {
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 12px 40px rgba(255, 77, 0, 0.12);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.4rem 1.1rem;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin-bottom: 2rem;
+  }
+
+  .price-amount {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .price-period {
+    font-size: 1rem;
+    color: var(--color-gray);
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2.5rem;
+    flex-grow: 1;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    color: var(--color-gray);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .check {
+    color: var(--color-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .plan-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pricing-note {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    opacity: 0.8;
+    max-width: 640px;
+  }
+
+  @media (max-width: 900px) {
+    .plans-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+    .plan-card {
+      width: 100%;
+      max-width: 420px;
+    }
+  }
+</style>

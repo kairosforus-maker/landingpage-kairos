@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout title="Aviso legal | Kαiros" description="Aviso legal de Kαiros.">
+	<Header />
+	<main class="legal section-padding">
+		<div class="legal-inner">
+			<h1>Aviso legal</h1>
+			<p class="legal-note">
+				⚠️ Contenido pendiente. Sustituye este texto por el aviso legal real de tu empresa
+				(razón social, NIF/CIF, domicilio, datos de contacto y condiciones de uso).
+				Recomendado revisarlo con un profesional.
+			</p>
+
+			<h2>Titular</h2>
+			<p>Kαiros — [Razón social]. Contacto: weare@comkairos.com</p>
+
+			<h2>Objeto</h2>
+			<p>Las presentes condiciones regulan el uso del sitio web de Kαiros.</p>
+
+			<h2>Propiedad intelectual</h2>
+			<p>Todos los contenidos del sitio son titularidad de Kαiros salvo indicación en contrario.</p>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.legal {
+		background-color: var(--color-light);
+		min-height: 60vh;
+	}
+	.legal-inner {
+		max-width: 780px;
+		margin: 0 auto;
+	}
+	.legal-inner h1 {
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		color: var(--color-dark);
+		margin-bottom: 1.5rem;
+	}
+	.legal-inner h2 {
+		font-size: 1.35rem;
+		color: var(--color-dark);
+		margin: 2rem 0 0.75rem;
+	}
+	.legal-inner p {
+		color: var(--color-gray);
+		line-height: 1.7;
+		margin-bottom: 0.5rem;
+	}
+	.legal-note {
+		background-color: rgba(255, 77, 0, 0.08);
+		border-left: 3px solid var(--color-primary);
+		padding: 1rem 1.25rem;
+		border-radius: 10px;
+		margin-bottom: 2rem;
+		font-size: 0.95rem;
+	}
+</style>

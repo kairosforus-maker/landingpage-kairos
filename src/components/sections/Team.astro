@@ -1,0 +1,146 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].team;
+
+const initials = (name: string) =>
+  name.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+---
+
+<section id="equipo" class="team section-padding">
+  <div class="team-inner">
+    <div class="team-header">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-text">{t.desc}</p>
+    </div>
+
+    <div class="team-grid">
+      {t.members.map((m) => (
+        <div class="member-card">
+          {m.photo
+            ? <img class="member-photo" src={m.photo} alt={m.name} />
+            : <div class="member-avatar">{initials(m.name)}</div>
+          }
+          <h3 class="member-name">{m.name}</h3>
+          <span class="member-role">{m.role}</span>
+          <p class="member-desc">{m.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    background-color: var(--color-light);
+  }
+
+  .team-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .team-header {
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+  }
+
+  .section-text {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  .team-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .member-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .member-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .member-photo,
+  .member-avatar {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+  }
+
+  .member-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), #ff7a3c);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 2.25rem;
+    letter-spacing: 1px;
+  }
+
+  .member-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  .member-role {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .member-desc {
+    color: var(--color-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .team-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+    .member-card {
+      width: 100%;
+      max-width: 420px;
+    }
+  }
+</style>

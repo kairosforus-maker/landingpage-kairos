@@ -1,0 +1,118 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].process;
+---
+
+<section id="proceso" class="process section-padding">
+  <div class="process-inner">
+    <div class="process-header">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-text">{t.desc}</p>
+    </div>
+
+    <div class="steps-grid">
+      {t.steps.map((step) => (
+        <div class="step-card">
+          <div class="step-number">{step.number}</div>
+          <h3 class="step-title">{step.title}</h3>
+          <p class="step-desc">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    background-color: var(--color-dark);
+  }
+
+  .process-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .process-header {
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-white);
+  }
+
+  .section-text {
+    font-size: clamp(1.06rem, 2vw, 1.25rem);
+    color: #a0a0a0;
+    line-height: 1.6;
+  }
+
+  .steps-grid {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .step-card {
+    flex: 1;
+    min-width: 260px;
+    background-color: #0F0F0F;
+    border: 1px solid #1E1E1E;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .step-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .step-number {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    width: 56px;
+    height: 56px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-desc {
+    color: #a0a0a0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .steps-grid {
+      flex-direction: column;
+    }
+  }
+</style>

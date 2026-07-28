@@ -1,0 +1,133 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].faq;
+---
+
+<section id="faq" class="faq section-padding">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="section-text">{t.desc}</p>
+    </div>
+
+    <div class="faq-list">
+      {t.items.map((item) => (
+        <details class="faq-item">
+          <summary>
+            <span>{item.q}</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p class="faq-answer">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background-color: var(--color-light);
+  }
+
+  .faq-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .faq-header {
+    text-align: center;
+    max-width: 720px;
+  }
+
+  .section-title {
+    font-size: clamp(2.18rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+  }
+
+  .section-text {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-gray);
+    line-height: 1.6;
+  }
+
+  .faq-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 14px;
+    padding: 0 1.5rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-primary);
+  }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.35rem 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-dark);
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-primary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .faq-icon::before {
+    top: 8px; left: 0;
+    width: 18px; height: 2px;
+  }
+
+  .faq-icon::after {
+    top: 0; left: 8px;
+    width: 2px; height: 18px;
+  }
+
+  .faq-item[open] .faq-icon::after {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq-answer {
+    color: var(--color-gray);
+    font-size: 1rem;
+    line-height: 1.65;
+    padding: 0 0 1.5rem;
+    max-width: 92%;
+  }
+</style>

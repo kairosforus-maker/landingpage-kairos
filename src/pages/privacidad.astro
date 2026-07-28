@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout title="Política de privacidad | Kαiros" description="Política de privacidad de Kαiros.">
+	<Header />
+	<main class="legal section-padding">
+		<div class="legal-inner">
+			<h1>Política de privacidad</h1>
+			<p class="legal-note">
+				⚠️ Contenido pendiente. Sustituye este texto por tu política de privacidad real
+				(responsable del tratamiento, finalidad, base legal, derechos RGPD, plazo de conservación).
+				Recomendado revisarlo con un profesional.
+			</p>
+
+			<h2>Responsable del tratamiento</h2>
+			<p>Kαiros — [Razón social]. Contacto: weare@comkairos.com</p>
+
+			<h2>Finalidad</h2>
+			<p>Tratamos tus datos para atender tus consultas y prestarte nuestros servicios.</p>
+
+			<h2>Tus derechos</h2>
+			<p>Puedes ejercer tus derechos de acceso, rectificación, supresión y oposición escribiendo a weare@comkairos.com.</p>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.legal {
+		background-color: var(--color-light);
+		min-height: 60vh;
+	}
+	.legal-inner {
+		max-width: 780px;
+		margin: 0 auto;
+	}
+	.legal-inner h1 {
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		color: var(--color-dark);
+		margin-bottom: 1.5rem;
+	}
+	.legal-inner h2 {
+		font-size: 1.35rem;
+		color: var(--color-dark);
+		margin: 2rem 0 0.75rem;
+	}
+	.legal-inner p {
+		color: var(--color-gray);
+		line-height: 1.7;
+		margin-bottom: 0.5rem;
+	}
+	.legal-note {
+		background-color: rgba(255, 77, 0, 0.08);
+		border-left: 3px solid var(--color-primary);
+		padding: 1rem 1.25rem;
+		border-radius: 10px;
+		margin-bottom: 2rem;
+		font-size: 0.95rem;
+	}
+</style>

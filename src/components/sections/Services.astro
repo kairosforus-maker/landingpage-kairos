@@ -4,9 +4,10 @@ import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].services;
+const exampleLabel = lang === 'es' ? 'Ejemplo' : 'Example';
 ---
 
-<section class="services section-padding">
+<section id="servicios" class="services section-padding">
   <div class="services-header">
     <span class="tag-subtitle">{t.tag}</span>
     <h2 class="section-title">{t.title}</h2>
@@ -20,7 +21,12 @@ const t = content[lang].services;
       <h3 class="card-title">{t.builder.title}</h3>
       <p class="card-subtitle">{t.builder.subtitle}</p>
       <p class="card-text">{t.builder.desc}</p>
-      
+
+      <div class="card-example light-example">
+        <span class="example-label">{exampleLabel}</span>
+        <p>{t.builder.example}</p>
+      </div>
+
       <div class="tags-container">
         {t.builder.tags.map(tag => (
           <span class="tag tag-light">{tag}</span>
@@ -34,10 +40,34 @@ const t = content[lang].services;
       <h3 class="card-title">{t.community.title}</h3>
       <p class="card-subtitle">{t.community.subtitle}</p>
       <p class="card-text">{t.community.desc}</p>
-      
+
+      <div class="card-example dark-example">
+        <span class="example-label">{exampleLabel}</span>
+        <p>{t.community.example}</p>
+      </div>
+
       <div class="tags-container">
         {t.community.tags.map(tag => (
           <span class="tag tag-dark">{tag}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Web Card (Light) -->
+    <div class="service-card light-card">
+      <div class="card-number">{t.web.number}</div>
+      <h3 class="card-title">{t.web.title}</h3>
+      <p class="card-subtitle">{t.web.subtitle}</p>
+      <p class="card-text">{t.web.desc}</p>
+
+      <div class="card-example light-example">
+        <span class="example-label">{exampleLabel}</span>
+        <p>{t.web.example}</p>
+      </div>
+
+      <div class="tags-container">
+        {t.web.tags.map(tag => (
+          <span class="tag tag-light">{tag}</span>
         ))}
       </div>
     </div>
@@ -94,7 +124,7 @@ const t = content[lang].services;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1180px;
   }
 
   .service-card {
@@ -155,9 +185,52 @@ const t = content[lang].services;
 
   .card-text {
     line-height: 1.6;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     font-size: 1.05rem;
     max-width: 90%;
+  }
+
+  .card-example {
+    text-align: left;
+    border-radius: 14px;
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 95%;
+    border-left: 3px solid var(--color-primary);
+  }
+
+  .light-example {
+    background-color: #FAF6F2;
+  }
+
+  .dark-example {
+    background-color: rgba(255, 77, 0, 0.07);
+  }
+
+  .example-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .card-example p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  .light-example p {
+    color: #444;
+  }
+
+  .dark-example p {
+    color: #D8D8D8;
   }
 
   .light-card .card-text {

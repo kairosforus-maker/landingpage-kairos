@@ -1,33 +1,140 @@
 ---
-import { getLangFromUrl } from '../../i18n/data';
+import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
+const t = content[lang].footer;
+const home = lang === 'es' ? '/' : '/en';
+const year = new Date().getFullYear();
+
+const whatsappHref = 'https://api.whatsapp.com/send?phone=573133024941';
 ---
 
 <footer class="footer">
   <div class="footer-container">
-    <a href={lang === 'es' ? '/' : '/en'} class="footer-brand">Kαiros</a>
+    <div class="footer-brand-col">
+      <a href={home} class="footer-brand">Kαiros</a>
+      <p class="footer-tagline">{t.tagline}</p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">{t.navTitle}</h4>
+      <ul>
+        {t.links.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">{t.contactTitle}</h4>
+      <ul>
+        <li><a href="mailto:weare@comkairos.com">weare@comkairos.com</a></li>
+        <li><a href={whatsappHref} target="_blank" rel="noopener noreferrer">WhatsApp: +57 313 302 4941</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">{t.legalTitle}</h4>
+      <ul>
+        {t.legalLinks.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {year} Kαiros. {t.rights}</p>
   </div>
 </footer>
 
 <style>
   .footer {
     background-color: var(--color-dark);
-    padding: 1.5rem 3rem;
+    padding: 4rem 3rem 2rem;
     border-top: 1px solid #1a1a1a;
   }
 
   .footer-container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+    gap: 2.5rem;
   }
 
   .footer-brand {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--color-primary);
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-tagline {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .footer-title {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-white);
+    margin-bottom: 1.1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-col a {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-col a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #1a1a1a;
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: #6b6b6b;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 800px) {
+    .footer {
+      padding: 3rem 1.5rem 2rem;
+    }
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

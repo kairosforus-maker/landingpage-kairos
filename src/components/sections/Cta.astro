@@ -6,7 +6,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = content[lang].cta;
 ---
 
-<section class="cta section-padding">
+<section id="contacto" class="cta section-padding">
   <div class="cta-content">
     <span class="tag-subtitle">{t.tag}</span>
     <h2 class="section-title">{t.title}</h2>
@@ -21,6 +21,23 @@ const t = content[lang].cta;
       <Button href="/blog" variant="custom" class="btn-ghost-orange">
         {t.btnBlog}
       </Button>
+    </div>
+
+    <div class="cta-methods">
+      <span class="cta-methods-title">{t.methodsTitle}</span>
+      <div class="cta-methods-list">
+        {t.methods.map((m) => (
+          <a
+            class="cta-method"
+            href={m.href}
+            target={m.type === 'email' ? '_self' : '_blank'}
+            rel="noopener noreferrer"
+          >
+            <span class="cta-method-label">{m.label}</span>
+            <span class="cta-method-value">{m.value}</span>
+          </a>
+        ))}
+      </div>
     </div>
 
     <p class="cta-slogan">{t.slogan}</p>
@@ -63,6 +80,61 @@ const t = content[lang].cta;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 2rem;
+  }
+
+  .cta-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-methods-title {
+    font-size: 0.9rem;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--font-heading);
+  }
+
+  .cta-methods-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cta-method {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    background-color: #0F0F0F;
+    border: 1px solid #1E1E1E;
+    border-radius: 14px;
+    padding: 0.9rem 1.4rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    text-align: left;
+  }
+
+  .cta-method:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .cta-method-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-method-value {
+    color: #E8E4DF;
+    font-size: 1rem;
   }
 
   .cta-slogan {

@@ -4,7 +4,10 @@ import { getLangFromUrl, content } from '../../i18n/data';
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].nav;
 
-// Helper function to build language switcher URL
+const home = lang === 'es' ? '/' : '/en';
+const base = lang === 'es' ? '/' : '/en/';
+
+// Language switcher URL
 const getSwitchUrl = () => {
   const pathname = Astro.url.pathname;
   if (lang === 'es') {
@@ -14,62 +17,117 @@ const getSwitchUrl = () => {
   if (pathname.includes('/about-us')) return '/quienes-somos';
   return pathname.replace(/^\/en/, '') || '/';
 };
+
+const ctaHref = 'https://cal.com/kairos4us/30min';
+
+const navItems = [
+  { label: t.services, href: `${base}#servicios` },
+  { label: t.pricing, href: `${base}#precios` },
+  { label: t.about, href: lang === 'es' ? '/quienes-somos' : '/en/about-us' },
+  { label: t.blog, href: '/blog' },
+  { label: t.contact, href: `${base}#contacto` },
+];
 ---
 
 <header class="header">
   <div class="header-container">
-    <a href={lang === 'es' ? '/' : '/en'} class="logo-link">
-      <!-- Changed to logo-isotipo.png to match the original design header -->
+    <a href={home} class="logo-link">
       <img src="/logo-isotipo.png" alt="Kairos Logo" class="logo" />
     </a>
-    
+
     <nav class="nav-links">
-      <a href={lang === 'es' ? '/' : '/en'}>{t.home}</a>
-      <a href={lang === 'es' ? '/quienes-somos' : '/en/about-us'}>{t.about}</a>
-      <a href="/blog">{t.blog}</a>
+      {navItems.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
     </nav>
-    
-    <div class="lang-switcher">
-      <a href={lang === 'es' ? '#' : getSwitchUrl()} class={`lang-text ${lang === 'es' ? 'active' : ''}`}>ES</a>
-      <span class="lang-divider">/</span>
-      <a href={lang === 'en' ? '#' : getSwitchUrl()} class={`lang-text ${lang === 'en' ? 'active' : ''}`}>EN</a>
+
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href={lang === 'es' ? '#' : getSwitchUrl()} class={`lang-text ${lang === 'es' ? 'active' : ''}`}>ES</a>
+        <span class="lang-divider">/</span>
+        <a href={lang === 'en' ? '#' : getSwitchUrl()} class={`lang-text ${lang === 'en' ? 'active' : ''}`}>EN</a>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
+
+  <!-- Mobile menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    {navItems.map((item) => (
+      <a href={item.href} class="mobile-link">{item.label}</a>
+    ))}
+    <a
+      href={ctaHref}
+      onclick="event.preventDefault();"
+      data-cal-link="kairos4us/30min"
+      data-cal-namespace="30min"
+      data-cal-config='{"layout":"month_view"}'
+      class="mobile-cta"
+    >{t.cta}</a>
+  </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('open');
+    toggle.classList.toggle('is-open', !!open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      toggle?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 <style>
   .header {
     background-color: var(--color-dark);
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
   }
 
   .header-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1.5rem;
+  }
+
+  .logo-link {
+    flex: 1;
   }
 
   .logo {
     height: 40px;
     width: auto;
+    display: block;
   }
 
   .nav-links {
     display: flex;
     gap: 2.5rem;
+    flex: 1;
+    justify-content: center;
   }
 
   .nav-links a {
     color: var(--color-primary);
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: opacity 0.3s ease;
   }
 
@@ -77,7 +135,14 @@ const getSwitchUrl = () => {
     opacity: 0.8;
   }
 
-  /* Premium Language Switcher */
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    flex: 1;
+  }
+
   .lang-switcher {
     display: flex;
     align-items: center;
@@ -96,11 +161,11 @@ const getSwitchUrl = () => {
   }
 
   .lang-text:hover {
-    color: var(--color-light, #fff) !important;
+    color: #fff !important;
   }
 
   .lang-text.active {
-    color: var(--color-accent, #cfac62) !important;
+    color: var(--color-primary) !important;
     pointer-events: none;
   }
 
@@ -109,9 +174,72 @@ const getSwitchUrl = () => {
     font-weight: 400;
   }
 
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
+  /* Hamburger */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 24px;
+    background-color: var(--color-primary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: var(--color-dark);
+    border-top: 1px solid #1a1a1a;
+    padding: 0 2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+    max-height: 500px;
+    padding: 1rem 2rem 1.75rem;
+  }
+
+  .mobile-link {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .mobile-cta {
+    margin-top: 1.25rem;
+    text-align: center;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 99px;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
   }
 </style>
