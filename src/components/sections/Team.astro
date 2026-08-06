@@ -20,7 +20,7 @@ const initials = (name: string) =>
       {t.members.map((m) => (
         <div class="member-card">
           {m.photo
-            ? <img class="member-photo" src={m.photo} alt={m.name} />
+            ? <img class="member-photo" src={m.photo} alt={m.name} style={m.focus ? `object-position:${m.focus}` : undefined} />
             : <div class="member-avatar">{initials(m.name)}</div>
           }
           <h3 class="member-name">{m.name}</h3>

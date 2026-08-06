@@ -17,11 +17,11 @@ export const content = {
       cta: 'Reserva diagnóstico',
     },
     hero: {
-      tag: 'CONSULTORÍA PARA PYMES Y AUTÓNOMOS',
-      title: 'Ordena tu negocio, vende más y crece con estrategia.',
-      desc: 'Ayudamos a autónomos, emprendedores y pymes a organizar su empresa, mejorar la gestión y aumentar la rentabilidad — con un plan claro y acompañamiento real.',
+      tag: 'CONSTRUCTORA DE PROPÓSITO',
+      title: 'Construimos propósito. Construimos futuro.',
+      desc: 'Acompañamos a personas y organizaciones a construir con intención — desde su propósito, no desde la presión.',
       btnTalk: 'Reserva un diagnóstico gratis',
-      btnExplore: 'Ver cómo trabajamos',
+      btnExplore: 'Descubre cómo',
     },
     timeForms: {
       tag: 'TRES FORMAS DE TIEMPO',
@@ -48,39 +48,39 @@ export const content = {
     },
     services: {
       tag: 'QUÉ HACEMOS',
-      title: 'Tres formas de ayudarte a crecer.',
-      desc: 'Ayudamos a profesionales y pequeñas empresas a organizarse, vender más y tomar mejores decisiones.',
-      web: {
-        number: '03',
-        title: 'Diseño & Desarrollo Web',
-        subtitle: 'Para negocios que necesitan presencia digital',
-        desc: 'Diseñamos, desarrollamos y acompañamos la creación de tu página web o plataforma a medida, desde la idea hasta el lanzamiento.',
-        example: 'Necesitas una web que venda, una tienda online o una plataforma para tu negocio. La construimos contigo cuidando diseño, velocidad y resultados.',
-        tags: ['Páginas web', 'Tiendas online', 'Plataformas', 'Acompañamiento'],
-      },
+      title: 'Tres formas de construir con intención.',
+      desc: 'Acompañamos a personas y organizaciones a ordenar su identidad, tomar mejores decisiones y construir con propósito.',
       builder: {
         number: '01',
-        title: 'Marca Personal',
-        subtitle: 'Para profesionales y autónomos',
-        desc: 'Te ayudamos a descubrir qué te hace diferente y a comunicarlo para conseguir más clientes y mejores oportunidades.',
-        example: 'Eres abogado, arquitecto o nutricionista. Te posicionamos como referente para que los clientes te elijan a ti y no a la competencia.',
-        tags: ['Posicionamiento', 'Marca personal', 'Más clientes', 'Autoridad'],
+        title: 'Kαiros Builder',
+        subtitle: 'Marca Personal & Coaching',
+        desc: 'Para personas que quieren dejar de construir desde la presión externa y empezar a hacerlo desde identidad, claridad y propósito.',
+        example: 'Eres profesional, líder o emprendedor y sientes que avanzas sin dirección clara. Te ayudamos a descubrir qué te hace diferente y a comunicarlo con intención.',
+        tags: ['Identidad', 'Marca personal', 'Propósito', 'Liderazgo', 'Coaching'],
       },
       community: {
         number: '02',
-        title: 'Consultoría para Pymes',
-        subtitle: 'Para empresas que quieren ordenarse y crecer',
-        desc: 'Analizamos cómo funciona tu empresa y detectamos qué está frenando su crecimiento. Creamos un plan para ordenar procesos, mejorar la gestión y aumentar la rentabilidad.',
-        example: 'Tienes una empresa que factura, pero todo depende de ti, el equipo está desorganizado y las ventas no crecen. Ordenamos el negocio para que funcione sin depender de ti.',
-        tags: ['Organización', 'Procesos', 'Más ventas', 'Rentabilidad'],
+        title: 'Kαiros Community',
+        subtitle: 'Estrategia & 7 Esferas',
+        desc: 'Para startups y organizaciones que necesitan una arquitectura clara para crecer con intención, ordenar decisiones y alinear estrategia, personas y operación.',
+        example: 'Tu organización crece rápido pero las áreas están desconectadas y todo depende del fundador. Ordenamos el sistema para que crezca sin perder su propósito.',
+        tags: ['Estrategia', 'Equipos', 'Operaciones', 'Tecnología', 'Crecimiento'],
         btn: 'Reserva tu diagnóstico'
+      },
+      web: {
+        number: '03',
+        title: 'Kαiros Digital',
+        subtitle: 'Diseño & Desarrollo Web',
+        desc: 'Diseñamos y construimos plataformas y páginas web con intención — donde identidad, propósito y estrategia se hacen digitales.',
+        example: 'Necesitas una web, tienda online o plataforma que refleje quién eres de verdad. La construimos contigo, cuidando diseño, velocidad y significado.',
+        tags: ['Páginas web', 'Tiendas online', 'Plataformas', 'Acompañamiento'],
       }
     },
     methodology: {
-      tag: 'LAS 7 ÁREAS',
-      title: 'Revisamos las 7 áreas clave de tu empresa.',
-      desc: 'Miramos tu negocio completo para detectar exactamente qué está frenando su crecimiento y por dónde empezar.',
-      footer: 'Tu empresa no crece por una sola cosa. Crece cuando todas las áreas funcionan juntas.',
+      tag: 'METODOLOGÍA',
+      title: 'Las 7 Esferas de Kαiros Community.',
+      desc: 'Un marco para mirar la organización completa: no solo lo que vende, sino cómo piensa, decide, opera y crece — con propósito en el centro.',
+      footer: 'La estrategia no vive en una sola área. Vive en la forma en que todas las áreas se conectan.',
       spheres: [
         { number: '01', title: 'Marketing', desc: 'Te ayudamos a conseguir más clientes.', example: 'Ej: mejorar la web, la publicidad o las redes sociales.' },
         { number: '02', title: 'Personas', desc: 'Organizamos el equipo para que cada persona sepa qué hacer.', example: 'Ej: definir funciones y evitar que todos hagan de todo.' },
@@ -93,23 +93,23 @@ export const content = {
     },
     process: {
       tag: 'CÓMO TRABAJAMOS',
-      title: 'Tu plan en 3 pasos.',
-      desc: 'Simple, claro y con resultados desde el principio.',
+      title: 'Tres pasos, sin misterio.',
+      desc: 'Empezamos como se empiezan las cosas importantes: hablando.',
       steps: [
-        { number: '1', title: 'Analizamos tu negocio', desc: 'Hablamos contigo y detectamos los principales problemas que frenan tu crecimiento.' },
-        { number: '2', title: 'Creamos un plan de acción', desc: 'Definimos qué hacer primero para conseguir resultados rápidos y medibles.' },
-        { number: '3', title: 'Te acompañamos en la ejecución', desc: 'Reuniones periódicas para comprobar que el plan funciona y corregir lo necesario.' },
+        { number: '1', title: 'Nos tomamos un café', desc: 'Antes de cualquier plan, nos sentamos a conocernos. Nos cuentas dónde estás, qué te frena y qué quieres construir — presencial o por videollamada, como prefieras.' },
+        { number: '2', title: 'Diseñamos el camino', desc: 'Con lo que escuchamos, creamos un plan claro: qué priorizar, por dónde empezar y qué resultado esperar en las primeras semanas.' },
+        { number: '3', title: 'Caminamos contigo', desc: 'Nos ponemos manos a la obra a tu lado. Reuniones periódicas para revisar avances, ajustar el rumbo y asegurar que lo construido permanezca.' },
       ]
     },
     pricing: {
       tag: 'ACOMPAÑAMIENTO',
-      title: 'Elige tu nivel de acompañamiento.',
-      desc: 'Tres formas de trabajar con nosotros según tu momento y tus objetivos.',
-      note: 'El precio se ajusta a lo que necesitas. Lo definimos juntos en tu diagnóstico gratuito, sin compromiso.',
+      title: 'Tres formas de caminar contigo.',
+      desc: 'Elige el nivel de acompañamiento que mejor se ajusta a tu momento y a lo que quieres construir.',
+      note: 'Cada camino se diseña a medida. El alcance y la inversión los definimos juntos en tu diagnóstico gratuito.',
       recommended: 'Recomendado',
       plans: [
         {
-          name: 'Start',
+          name: 'Semilla',
           price: 'A medida',
           period: '',
           featured: false,
@@ -117,15 +117,15 @@ export const content = {
           btn: 'Reserva diagnóstico'
         },
         {
-          name: 'Growth',
+          name: 'Raíz',
           price: 'A medida',
           period: '',
           featured: true,
-          features: ['2 sesiones al mes', 'Revisión de las 7 áreas', 'Seguimiento continuo', 'Soporte por WhatsApp'],
+          features: ['2 sesiones al mes', 'Revisión de las 7 esferas', 'Seguimiento continuo', 'Soporte por WhatsApp'],
           btn: 'Reserva diagnóstico'
         },
         {
-          name: 'Executive',
+          name: 'Bosque',
           price: 'A medida',
           period: '',
           featured: false,
@@ -141,25 +141,26 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Marca Personal & Coaching',
-          desc: 'Acompaña a profesionales y autónomos a posicionarse como referentes en su sector.',
-          photo: '' // añade la ruta de la foto, ej: '/team/alberto.jpg'
+          role: 'Kαiros Builder — Marca Personal & Coaching',
+          desc: 'Acompaña a personas y líderes a construir desde identidad, claridad y propósito.',
+          photo: '/foto_alberto.png',
+          focus: 'center bottom'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Consultoría & Estrategia',
-          desc: 'Ayuda a pymes a ordenar procesos, mejorar la gestión y crecer con estrategia.',
-          photo: '' // añade la ruta de la foto, ej: '/team/geovani.jpg'
+          role: 'Kαiros Community — Estrategia & Operación',
+          desc: 'Ayuda a startups y organizaciones a alinear sus 7 esferas y crecer con intención.',
+          photo: '/foto_geovani.png'
         }
       ]
     },
     cta: {
-      tag: 'EMPIEZA HOY',
-      title: 'Da el primer paso para ordenar y hacer crecer tu negocio.',
-      desc: 'Reserva un diagnóstico gratuito. Analizamos tu situación y te decimos por dónde empezar, sin compromiso.',
+      tag: 'EL MOMENTO CORRECTO',
+      title: 'Construye desde el momento correcto.',
+      desc: 'Si estás definiendo tu identidad, tu marca o la próxima etapa de tu organización, hablemos. Diagnóstico gratuito, sin compromiso.',
       btnTalk: 'Reserva tu diagnóstico gratis',
       btnBlog: 'Leer el blog',
-      slogan: 'Kαiros · Estrategia, orden y crecimiento para tu negocio.',
+      slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'O escríbenos directamente',
       methods: [
         { type: 'whatsapp', label: 'WhatsApp', value: '+57 313 302 4941', href: 'https://api.whatsapp.com/send?phone=573133024941&text=Hola%20Kairos%2C%20quiero%20informaci%C3%B3n.' },
@@ -175,11 +176,11 @@ export const content = {
         { q: '¿Hay permanencia o contrato largo?', a: 'No hay permanencia. Trabajamos mes a mes. Sigues con nosotros solo mientras te aporte valor.' },
         { q: '¿En cuánto tiempo veo resultados?', a: 'Depende de tu punto de partida, pero el plan se diseña para conseguir mejoras rápidas y visibles en las primeras semanas.' },
         { q: '¿Trabajáis con empresas pequeñas y autónomos?', a: 'Sí. Es exactamente nuestro enfoque: autónomos, emprendedores y pymes que quieren ordenarse y crecer.' },
-        { q: '¿Cómo son las sesiones?', a: 'Online, por videollamada. Entre sesiones tienes seguimiento y, según el plan, soporte por WhatsApp.' }
+        { q: '¿Cómo son las sesiones?', a: 'Nos gusta empezar tomándonos un café en persona si estamos en la misma ciudad. Cuando no es posible, arrancamos por videollamada. El resto del acompañamiento es online, con seguimiento entre sesiones y, según el plan, soporte por WhatsApp.' }
       ]
     },
     footer: {
-      tagline: 'Estrategia, orden y crecimiento para autónomos y pymes.',
+      tagline: 'Constructora de propósito. Construimos con intención — desde identidad, no desde presión.',
       navTitle: 'Navegación',
       contactTitle: 'Contacto',
       legalTitle: 'Legal',
@@ -199,8 +200,8 @@ export const content = {
       hero: {
         tag: 'QUIÉNES SOMOS',
         title: 'Somos Kαiros.',
-        subtitle: 'Una forma distinta de construir.',
-        desc: 'Somos una consultoría y coaching que ayuda a autónomos y pequeñas empresas a organizarse, tomar mejores decisiones y crecer con estrategia y propósito.',
+        subtitle: 'Una constructora de propósito.',
+        desc: 'Somos una comunidad global que acompaña a personas y organizaciones a construir con propósito. Integramos el Ser y el Hacer para resolver retos reales y generar resultados que permanecen.',
         btn: 'Conoce nuestro enfoque'
       },
       philosophy: {
@@ -214,12 +215,12 @@ export const content = {
         tag: 'A QUIÉNES ACOMPAÑAMOS',
         title: 'Crecimiento con estructura.',
         leaders: {
-          title: 'Profesionales y Autónomos',
-          desc: 'Acompañamos a profesionales que quieren posicionarse como referentes y conseguir más y mejores clientes a través del coaching y la marca personal.'
+          title: 'Líderes y Fundadores',
+          desc: 'Acompañamos a mentes inquietas que necesitan dejar de operar en automático para redescubrir su propósito y liderazgo a través de coaching y desarrollo de marca personal.'
         },
         orgs: {
-          title: 'Pymes y Empresas',
-          desc: 'Guiamos a pequeñas empresas que han crecido pero sienten que todo depende del dueño y las áreas están desconectadas, ayudándolas a ordenarse y crecer con consultoría estratégica y operativa.'
+          title: 'Organizaciones',
+          desc: 'Guiamos a empresas y startups que han crecido rápido pero sienten que sus áreas están desconectadas, ayudándolas a alinear sus esferas a través de estrategia y acompañamiento.'
         }
       },
       values: {
@@ -244,11 +245,11 @@ export const content = {
       cta: 'Book assessment',
     },
     hero: {
-      tag: 'CONSULTING FOR SMALL BUSINESSES & FREELANCERS',
-      title: 'Organize your business, sell more, and grow with strategy.',
-      desc: 'We help freelancers, entrepreneurs, and small businesses organize their company, improve management, and increase profitability — with a clear plan and real support.',
+      tag: 'PURPOSE-DRIVEN STUDIO',
+      title: 'We build purpose. We build futures.',
+      desc: 'We accompany people and organizations to build with intention — from purpose, not from pressure.',
       btnTalk: 'Book a free assessment',
-      btnExplore: 'See how we work',
+      btnExplore: 'Discover how',
     },
     timeForms: {
       tag: 'THREE FORMS OF TIME',
@@ -275,39 +276,39 @@ export const content = {
     },
     services: {
       tag: 'WHAT WE DO',
-      title: 'Three ways to help you grow.',
-      desc: 'We help professionals and small businesses get organized, sell more, and make better decisions.',
-      web: {
-        number: '03',
-        title: 'Web Design & Development',
-        subtitle: 'For businesses that need a digital presence',
-        desc: 'We design, develop, and guide the creation of your custom website or platform, from idea to launch.',
-        example: 'You need a website that sells, an online store, or a platform for your business. We build it with you, caring about design, speed, and results.',
-        tags: ['Websites', 'Online stores', 'Platforms', 'Guidance'],
-      },
+      title: 'Three ways to build with intention.',
+      desc: 'We accompany people and organizations to align their identity, make better decisions, and build with purpose.',
       builder: {
         number: '01',
-        title: 'Personal Brand',
-        subtitle: 'For professionals and freelancers',
-        desc: 'We help you discover what makes you different and communicate it to win more clients and better opportunities.',
-        example: 'You are a lawyer, architect, or nutritionist. We position you as a reference so clients choose you and not the competition.',
-        tags: ['Positioning', 'Personal Brand', 'More Clients', 'Authority'],
+        title: 'Kαiros Builder',
+        subtitle: 'Personal Brand & Coaching',
+        desc: 'For people who want to stop building from external pressure and start doing it from identity, clarity, and purpose.',
+        example: 'You are a professional, leader, or founder who feels you are moving forward without a clear direction. We help you discover what makes you different and communicate it with intention.',
+        tags: ['Identity', 'Personal Brand', 'Purpose', 'Leadership', 'Coaching'],
       },
       community: {
         number: '02',
-        title: 'Consulting for Small Businesses',
-        subtitle: 'For companies that want to get organized and grow',
-        desc: 'We analyze how your company works and detect what is holding back its growth. We create a plan to organize processes, improve management, and increase profitability.',
-        example: 'You run a company that generates revenue, but everything depends on you, the team is disorganized, and sales are not growing. We organize the business so it runs without depending on you.',
-        tags: ['Organization', 'Processes', 'More Sales', 'Profitability'],
+        title: 'Kαiros Community',
+        subtitle: 'Strategy & 7 Spheres',
+        desc: 'For startups and organizations that need a clear architecture to grow with intention, organize decisions, and align strategy, people, and operations.',
+        example: 'Your organization grows fast but the areas are disconnected and everything depends on the founder. We organize the system so it grows without losing its purpose.',
+        tags: ['Strategy', 'Teams', 'Operations', 'Technology', 'Growth'],
         btn: 'Book your assessment'
+      },
+      web: {
+        number: '03',
+        title: 'Kαiros Digital',
+        subtitle: 'Web Design & Development',
+        desc: 'We design and build platforms and websites with intention — where identity, purpose, and strategy become digital.',
+        example: 'You need a website, online store, or platform that truly reflects who you are. We build it with you, caring about design, speed, and meaning.',
+        tags: ['Websites', 'Online stores', 'Platforms', 'Guidance'],
       }
     },
     methodology: {
-      tag: 'THE 7 AREAS',
-      title: 'We review the 7 key areas of your company.',
-      desc: 'We look at your entire business to detect exactly what is holding back its growth and where to start.',
-      footer: 'Your company does not grow because of one thing. It grows when all areas work together.',
+      tag: 'METHODOLOGY',
+      title: 'The 7 Spheres of Kαiros Community.',
+      desc: 'A framework to look at the entire organization: not just what it sells, but how it thinks, decides, operates, and grows — with purpose at the center.',
+      footer: 'Strategy does not live in a single area. It lives in how all areas connect.',
       spheres: [
         { number: '01', title: 'Marketing', desc: 'We help you get more clients.', example: 'E.g.: improving your website, advertising, or social media.' },
         { number: '02', title: 'People', desc: 'We organize the team so everyone knows what to do.', example: 'E.g.: defining roles and avoiding everyone doing everything.' },
@@ -320,23 +321,23 @@ export const content = {
     },
     process: {
       tag: 'HOW WE WORK',
-      title: 'Your plan in 3 steps.',
-      desc: 'Simple, clear, and with results from the start.',
+      title: 'Three steps, no mystery.',
+      desc: 'We start the way important things start: by talking.',
       steps: [
-        { number: '1', title: 'We analyze your business', desc: 'We talk with you and detect the main problems holding back your growth.' },
-        { number: '2', title: 'We create an action plan', desc: 'We define what to do first to get fast, measurable results.' },
-        { number: '3', title: 'We support you in execution', desc: 'Regular meetings to check that the plan works and adjust what is needed.' },
+        { number: '1', title: 'We grab a coffee', desc: 'Before any plan, we sit down to get to know each other. You tell us where you are, what is holding you back, and what you want to build — in person or by video call, whichever you prefer.' },
+        { number: '2', title: 'We design the path', desc: 'With what we heard, we create a clear plan: what to prioritize, where to start, and what results to expect in the first weeks.' },
+        { number: '3', title: 'We walk with you', desc: 'We get to work by your side. Regular meetings to review progress, adjust course, and make sure what we build remains.' },
       ]
     },
     pricing: {
-      tag: 'SUPPORT',
-      title: 'Choose your level of support.',
-      desc: 'Three ways to work with us depending on your moment and goals.',
-      note: 'The price is tailored to what you need. We define it together in your free assessment, no commitment.',
+      tag: 'ACCOMPANIMENT',
+      title: 'Three ways to walk with you.',
+      desc: 'Choose the level of accompaniment that best fits your moment and what you want to build.',
+      note: 'Each path is designed to measure. Scope and investment are defined together in your free assessment.',
       recommended: 'Recommended',
       plans: [
         {
-          name: 'Start',
+          name: 'Seed',
           price: 'Tailored',
           period: '',
           featured: false,
@@ -344,15 +345,15 @@ export const content = {
           btn: 'Book assessment'
         },
         {
-          name: 'Growth',
+          name: 'Root',
           price: 'Tailored',
           period: '',
           featured: true,
-          features: ['2 sessions per month', 'Review of the 7 areas', 'Continuous follow-up', 'WhatsApp support'],
+          features: ['2 sessions per month', 'Review of the 7 spheres', 'Continuous follow-up', 'WhatsApp support'],
           btn: 'Book assessment'
         },
         {
-          name: 'Executive',
+          name: 'Forest',
           price: 'Tailored',
           period: '',
           featured: false,
@@ -368,25 +369,26 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Personal Brand & Coaching',
-          desc: 'Helps professionals and freelancers position themselves as references in their field.',
-          photo: '' // add the photo path, e.g.: '/team/alberto.jpg'
+          role: 'Kαiros Builder — Personal Brand & Coaching',
+          desc: 'Accompanies people and leaders to build from identity, clarity, and purpose.',
+          photo: '/foto_alberto.png',
+          focus: 'center bottom'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Consulting & Strategy',
-          desc: 'Helps small businesses organize processes, improve management, and grow with strategy.',
-          photo: '' // add the photo path, e.g.: '/team/geovani.jpg'
+          role: 'Kαiros Community — Strategy & Operations',
+          desc: 'Helps startups and organizations align their 7 spheres and grow with intention.',
+          photo: '/foto_geovani.png'
         }
       ]
     },
     cta: {
-      tag: 'START TODAY',
-      title: 'Take the first step to organize and grow your business.',
-      desc: 'Book a free assessment. We analyze your situation and tell you where to start, no commitment.',
+      tag: 'THE RIGHT MOMENT',
+      title: 'Build from the right moment.',
+      desc: 'If you are defining your identity, your brand, or the next stage of your organization, let\'s talk. Free assessment, no commitment.',
       btnTalk: 'Book your free assessment',
       btnBlog: 'Read the blog',
-      slogan: 'Kαiros · Strategy, order, and growth for your business.',
+      slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'Or write to us directly',
       methods: [
         { type: 'whatsapp', label: 'WhatsApp', value: '+57 313 302 4941', href: 'https://api.whatsapp.com/send?phone=573133024941&text=Hi%20Kairos%2C%20I%20want%20more%20information.' },
@@ -402,11 +404,11 @@ export const content = {
         { q: 'Is there a lock-in or long contract?', a: 'No lock-in. We work month to month. You stay with us only as long as it adds value.' },
         { q: 'How soon will I see results?', a: 'It depends on your starting point, but the plan is designed to achieve fast, visible improvements in the first few weeks.' },
         { q: 'Do you work with small businesses and freelancers?', a: 'Yes. That is exactly our focus: freelancers, entrepreneurs, and small businesses that want to get organized and grow.' },
-        { q: 'What are the sessions like?', a: 'Online, via video call. Between sessions you get follow-up and, depending on the plan, WhatsApp support.' }
+        { q: 'What are the sessions like?', a: 'We like to start with a coffee in person if we are in the same city. When that is not possible, we start by video call. The rest of the accompaniment is online, with follow-up between sessions and, depending on the plan, WhatsApp support.' }
       ]
     },
     footer: {
-      tagline: 'Strategy, order, and growth for freelancers and small businesses.',
+      tagline: 'Purpose-driven studio. We build with intention — from identity, not from pressure.',
       navTitle: 'Navigation',
       contactTitle: 'Contact',
       legalTitle: 'Legal',
@@ -426,8 +428,8 @@ export const content = {
       hero: {
         tag: 'ABOUT US',
         title: 'We are Kαiros.',
-        subtitle: 'A different way to build.',
-        desc: 'We are a consulting and coaching firm that helps freelancers and small businesses get organized, make better decisions, and grow with strategy and purpose.',
+        subtitle: 'A purpose-driven studio.',
+        desc: 'We are a global community that accompanies people and organizations to build with purpose. We integrate Being and Doing to solve real challenges and generate results that remain.',
         btn: 'Know our approach'
       },
       philosophy: {
@@ -441,12 +443,12 @@ export const content = {
         tag: 'WHO WE ACCOMPANY',
         title: 'Growth with structure.',
         leaders: {
-          title: 'Professionals and Freelancers',
-          desc: 'We accompany professionals who want to position themselves as references and win more and better clients through coaching and personal branding.'
+          title: 'Leaders and Founders',
+          desc: 'We accompany restless minds who need to stop operating on autopilot to rediscover their purpose and leadership through coaching and personal brand development.'
         },
         orgs: {
-          title: 'Small Businesses',
-          desc: 'We guide small companies that have grown but feel everything depends on the owner and their areas are disconnected, helping them get organized and grow through strategic and operational consulting.'
+          title: 'Organizations',
+          desc: 'We guide companies and startups that have grown fast but feel their areas are disconnected, helping them align their spheres through strategy and support.'
         }
       },
       values: {
