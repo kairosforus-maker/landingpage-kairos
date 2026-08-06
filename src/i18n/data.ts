@@ -17,10 +17,10 @@ export const content = {
       cta: 'Reserva diagnóstico',
     },
     hero: {
-      tag: 'CONSTRUCTORA DE PROPÓSITO',
+      tag: 'IDENTIDAD · PROPÓSITO · IMPACTO',
       title: 'Construimos propósito. Construimos futuro.',
       desc: 'Acompañamos a personas y organizaciones a construir con intención — desde su propósito, no desde la presión.',
-      btnTalk: 'Reserva un diagnóstico gratis',
+      btnTalk: 'Reserva un diagnóstico',
       btnExplore: 'Descubre cómo',
     },
     timeForms: {
@@ -105,7 +105,7 @@ export const content = {
       tag: 'ACOMPAÑAMIENTO',
       title: 'Tres formas de caminar contigo.',
       desc: 'Elige el nivel de acompañamiento que mejor se ajusta a tu momento y a lo que quieres construir.',
-      note: 'Cada camino se diseña a medida. El alcance y la inversión los definimos juntos en tu diagnóstico gratuito.',
+      note: 'Cada camino se diseña a medida. El alcance y la inversión los definimos juntos en tu primer diagnóstico, sin compromiso.',
       recommended: 'Recomendado',
       plans: [
         {
@@ -144,21 +144,46 @@ export const content = {
           role: 'Kαiros Builder — Marca Personal & Coaching',
           desc: 'Acompaña a personas y líderes a construir desde identidad, claridad y propósito.',
           photo: '/foto_alberto.png',
-          focus: 'center bottom'
+          focus: 'center bottom',
+          linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Kαiros Community — Estrategia & Operación',
-          desc: 'Ayuda a startups y organizaciones a alinear sus 7 esferas y crecer con intención.',
-          photo: '/foto_geovani.png'
+          role: 'Kαiros Digital — Sistemas & Desarrollo',
+          desc: 'Diseña y construye las plataformas, sistemas y webs que hacen digital cada proyecto.',
+          photo: '/foto_geovani.png',
+          linkedin: 'https://www.linkedin.com/in/geovanipg/'
         }
+      ]
+    },
+    aboutTeam: {
+      tag: 'NUESTRA COMUNIDAD',
+      title: 'Un equipo que construye contigo.',
+      desc: 'Somos una comunidad global. Fundadores, estrategas, diseñadores y aliados que aportan su mirada a cada proyecto.',
+      // Miembros temporales — sustituir por integrantes reales cuando estén listos.
+      members: [
+        {
+          name: 'Alberto Guzmán',
+          role: 'Fundador — Kαiros Builder',
+          desc: 'Marca personal, identidad y coaching. Acompaña a líderes a construir desde propósito.',
+          photo: '/foto_alberto.png',
+          focus: 'center bottom',
+          linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
+        },
+        {
+          name: 'Geovani Pérez',
+          role: 'Kαiros Digital — Sistemas & Desarrollo',
+          desc: 'Sistemas, desarrollo y plataformas web. Convierte cada proyecto en algo digital y funcional.',
+          photo: '/foto_geovani.png',
+          linkedin: 'https://www.linkedin.com/in/geovanipg/'
+        },
       ]
     },
     cta: {
       tag: 'EL MOMENTO CORRECTO',
       title: 'Construye desde el momento correcto.',
-      desc: 'Si estás definiendo tu identidad, tu marca o la próxima etapa de tu organización, hablemos. Diagnóstico gratuito, sin compromiso.',
-      btnTalk: 'Reserva tu diagnóstico gratis',
+      desc: 'Si estás definiendo tu identidad, tu marca o la próxima etapa de tu organización, hablemos. Diagnóstico sin compromiso.',
+      btnTalk: 'Reserva tu diagnóstico',
       btnBlog: 'Leer el blog',
       slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'O escríbenos directamente',
@@ -172,7 +197,7 @@ export const content = {
       title: 'Resolvemos tus dudas.',
       desc: 'Lo que más nos preguntan antes de empezar.',
       items: [
-        { q: '¿El diagnóstico tiene coste?', a: 'No. La primera sesión de diagnóstico es gratuita y sin compromiso. Analizamos tu situación y te decimos por dónde empezar.' },
+        { q: '¿El diagnóstico tiene coste?', a: 'La primera sesión de diagnóstico no tiene coste ni compromiso. Analizamos tu situación y te decimos por dónde empezar.' },
         { q: '¿Hay permanencia o contrato largo?', a: 'No hay permanencia. Trabajamos mes a mes. Sigues con nosotros solo mientras te aporte valor.' },
         { q: '¿En cuánto tiempo veo resultados?', a: 'Depende de tu punto de partida, pero el plan se diseña para conseguir mejoras rápidas y visibles en las primeras semanas.' },
         { q: '¿Trabajáis con empresas pequeñas y autónomos?', a: 'Sí. Es exactamente nuestro enfoque: autónomos, emprendedores y pymes que quieren ordenarse y crecer.' },
@@ -245,10 +270,10 @@ export const content = {
       cta: 'Book assessment',
     },
     hero: {
-      tag: 'PURPOSE-DRIVEN STUDIO',
+      tag: 'IDENTITY · PURPOSE · IMPACT',
       title: 'We build purpose. We build futures.',
       desc: 'We accompany people and organizations to build with intention — from purpose, not from pressure.',
-      btnTalk: 'Book a free assessment',
+      btnTalk: 'Book an assessment',
       btnExplore: 'Discover how',
     },
     timeForms: {
@@ -333,7 +358,7 @@ export const content = {
       tag: 'ACCOMPANIMENT',
       title: 'Three ways to walk with you.',
       desc: 'Choose the level of accompaniment that best fits your moment and what you want to build.',
-      note: 'Each path is designed to measure. Scope and investment are defined together in your free assessment.',
+      note: 'Each path is designed to measure. Scope and investment are defined together in your first assessment, no commitment.',
       recommended: 'Recommended',
       plans: [
         {
@@ -372,21 +397,46 @@ export const content = {
           role: 'Kαiros Builder — Personal Brand & Coaching',
           desc: 'Accompanies people and leaders to build from identity, clarity, and purpose.',
           photo: '/foto_alberto.png',
-          focus: 'center bottom'
+          focus: 'center bottom',
+          linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Kαiros Community — Strategy & Operations',
-          desc: 'Helps startups and organizations align their 7 spheres and grow with intention.',
-          photo: '/foto_geovani.png'
+          role: 'Kαiros Digital — Systems & Development',
+          desc: 'Designs and builds the platforms, systems, and websites that make every project digital.',
+          photo: '/foto_geovani.png',
+          linkedin: 'https://www.linkedin.com/in/geovanipg/'
         }
+      ]
+    },
+    aboutTeam: {
+      tag: 'OUR COMMUNITY',
+      title: 'A team that builds with you.',
+      desc: 'We are a global community. Founders, strategists, designers, and allies who bring their perspective to every project.',
+      // Temporary members — replace with real people when ready.
+      members: [
+        {
+          name: 'Alberto Guzmán',
+          role: 'Founder — Kαiros Builder',
+          desc: 'Personal brand, identity, and coaching. Accompanies leaders to build from purpose.',
+          photo: '/foto_alberto.png',
+          focus: 'center bottom',
+          linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
+        },
+        {
+          name: 'Geovani Pérez',
+          role: 'Kαiros Digital — Systems & Development',
+          desc: 'Systems, development, and web platforms. Turns each project into something digital and functional.',
+          photo: '/foto_geovani.png',
+          linkedin: 'https://www.linkedin.com/in/geovanipg/'
+        },
       ]
     },
     cta: {
       tag: 'THE RIGHT MOMENT',
       title: 'Build from the right moment.',
       desc: 'If you are defining your identity, your brand, or the next stage of your organization, let\'s talk. Free assessment, no commitment.',
-      btnTalk: 'Book your free assessment',
+      btnTalk: 'Book your assessment',
       btnBlog: 'Read the blog',
       slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'Or write to us directly',
@@ -400,7 +450,7 @@ export const content = {
       title: 'We answer your questions.',
       desc: 'What people ask us most before starting.',
       items: [
-        { q: 'Does the assessment cost anything?', a: 'No. The first assessment session is free and with no commitment. We analyze your situation and tell you where to start.' },
+        { q: 'Does the assessment cost anything?', a: 'The first assessment session has no cost and no commitment. We analyze your situation and tell you where to start.' },
         { q: 'Is there a lock-in or long contract?', a: 'No lock-in. We work month to month. You stay with us only as long as it adds value.' },
         { q: 'How soon will I see results?', a: 'It depends on your starting point, but the plan is designed to achieve fast, visible improvements in the first few weeks.' },
         { q: 'Do you work with small businesses and freelancers?', a: 'Yes. That is exactly our focus: freelancers, entrepreneurs, and small businesses that want to get organized and grow.' },

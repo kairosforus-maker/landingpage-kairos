@@ -1,14 +1,22 @@
 ---
 import { getLangFromUrl, content } from '../../i18n/data';
 
-const lang = getLangFromUrl(Astro.url);
-const t = content[lang].team;
+interface Props {
+  variant?: 'team' | 'aboutTeam';
+}
 
-const initials = (name: string) =>
-  name.split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+const { variant = 'team' } = Astro.props as Props;
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang][variant];
+
+const initials = (name: string) => {
+  const parts = name.split(' ').filter(Boolean).slice(0, 2);
+  const chars = parts.map((w) => w[0]).join('').toUpperCase();
+  return chars || '·';
+};
 ---
 
-<section id="equipo" class="team section-padding">
+<section id={variant === 'aboutTeam' ? 'comunidad' : 'equipo'} class="team section-padding">
   <div class="team-inner">
     <div class="team-header">
       <span class="tag-subtitle">{t.tag}</span>
@@ -26,6 +34,20 @@ const initials = (name: string) =>
           <h3 class="member-name">{m.name}</h3>
           <span class="member-role">{m.role}</span>
           <p class="member-desc">{m.desc}</p>
+          {m.linkedin && (
+            <a
+              class="member-linkedin"
+              href={m.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`LinkedIn de ${m.name}`}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          )}
         </div>
       ))}
     </div>
@@ -131,6 +153,33 @@ const initials = (name: string) =>
     color: var(--color-gray);
     font-size: 1rem;
     line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .member-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    border: 1px solid var(--color-gray-light);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+
+  .member-linkedin:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .member-linkedin svg {
+    display: block;
   }
 
   @media (max-width: 768px) {

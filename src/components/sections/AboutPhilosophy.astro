@@ -15,10 +15,13 @@ const manifesto = content[lang].about.manifesto;
       <p class="section-text highlight-text">{t.desc2}</p>
     </div>
     <div class="philosophy-image-col">
-      <!-- IMAGE PLACEHOLDER -->
-      <div class="image-placeholder">
-        <span class="placeholder-text">[Imagen sugerida: Una fotografía elegante del equipo trabajando, o una forma abstracta minimalista (ej: un reloj de arena de cristal o esferas conectadas) en tonos oscuros y naranjas.]</span>
-      </div>
+      <!-- Imagen temporal (Unsplash, CC0). Reemplazar por imagen definitiva de marca. -->
+      <img
+        class="philosophy-image"
+        src="https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=1200&q=80"
+        alt="Reloj de arena — tiempo y propósito"
+        loading="lazy"
+      />
     </div>
   </div>
 
@@ -69,23 +72,12 @@ const manifesto = content[lang].about.manifesto;
     font-weight: 600;
   }
 
-  .image-placeholder {
+  .philosophy-image {
     width: 100%;
     aspect-ratio: 4/3;
-    background-color: var(--color-gray-light);
-    border: 2px dashed #ccc;
+    object-fit: cover;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .placeholder-text {
-    color: var(--color-gray);
-    font-size: 0.9rem;
-    font-family: var(--font-body);
+    display: block;
   }
 
   .manifesto-banner {

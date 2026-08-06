@@ -14,9 +14,13 @@ const t = content[lang].about.audience;
   <div class="audience-grid">
     <!-- Leaders Card -->
     <div class="audience-card glass">
-      <div class="card-image-placeholder">
-        <span class="placeholder-text">[Icono o foto: Un retrato corporativo moderno, o una ilustración abstracta que represente liderazgo personal]</span>
-      </div>
+      <!-- Imagen temporal (Unsplash, CC0) -->
+      <img
+        class="audience-image"
+        src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1000&q=80"
+        alt={t.leaders.title}
+        loading="lazy"
+      />
       <div class="card-content">
         <h3 class="card-title">{t.leaders.title}</h3>
         <p class="card-desc">{t.leaders.desc}</p>
@@ -25,9 +29,13 @@ const t = content[lang].about.audience;
 
     <!-- Organizations Card -->
     <div class="audience-card glass">
-      <div class="card-image-placeholder">
-        <span class="placeholder-text">[Icono o foto: Una imagen de un equipo interactuando, o gráficos geométricos entrelazados que representen estructura/esferas]</span>
-      </div>
+      <!-- Imagen temporal (Unsplash, CC0) -->
+      <img
+        class="audience-image"
+        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80"
+        alt={t.orgs.title}
+        loading="lazy"
+      />
       <div class="card-content">
         <h3 class="card-title">{t.orgs.title}</h3>
         <p class="card-desc">{t.orgs.desc}</p>
@@ -91,20 +99,12 @@ const t = content[lang].about.audience;
     border-color: rgba(255, 77, 0, 0.3);
   }
 
-  .card-image-placeholder {
+  .audience-image {
+    display: block;
+    width: 100%;
     height: 240px;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
+    object-fit: cover;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .placeholder-text {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
   }
 
   .card-content {
