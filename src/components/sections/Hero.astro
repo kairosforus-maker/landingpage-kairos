@@ -12,44 +12,62 @@ const t = content[lang].hero;
       <span class="tag-subtitle">{t.tag}</span>
       <h1 class="hero-title">{t.title}</h1>
       <p class="hero-text">{t.desc}</p>
-      
+
       <div class="hero-actions">
-        <!-- Primer botón es outline blanco según diseño original -->
         <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="custom" class="btn-outline-white">
           {t.btnTalk}
         </Button>
-        <!-- Segundo botón es primary naranja -->
         <Button href="#proceso" variant="primary">
           {t.btnExplore}
         </Button>
       </div>
+    </div>
+
+    <!-- Image area with diagonal clip -->
+    <div class="hero-image-wrapper">
+      <div class="hero-image-diagonal">
+        <!-- TODO: Reemplazar con foto real del equipo o sesión -->
+        <img
+          src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+          alt="Equipo trabajando con propósito"
+          class="hero-image"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-diagonal-line"></div>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    background-color: var(--color-dark); /* Fondo negro estricto */
+    background-color: var(--color-dark);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 75vh;
+    min-height: 80vh;
+    overflow: hidden;
+    position: relative;
   }
 
   .hero-container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 2rem;
+    width: 100%;
+    position: relative;
+    min-height: 520px;
   }
 
   .hero-content {
+    flex: 1 1 58%;
+    max-width: 760px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    z-index: 2;
+    padding-right: 2rem;
   }
 
   .tag-subtitle {
@@ -64,16 +82,19 @@ const t = content[lang].hero;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem); 
-    color: var(--color-white); /* Título blanco */
-    line-height: 1.1;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--color-white);
+    line-height: 1.05;
     margin-bottom: 1.5rem;
+    text-align: left;
+    max-width: 760px;
+    width: 100%;
   }
 
   .hero-text {
     font-size: clamp(1.06rem, 2vw, 1.25rem);
-    color: #E8E4DF; /* Gris clarito para el texto descriptivo */
-    max-width: 700px;
+    color: #E8E4DF;
+    max-width: 480px;
     line-height: 1.6;
     margin-bottom: 2.5rem;
   }
@@ -82,12 +103,80 @@ const t = content[lang].hero;
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
-    justify-content: center;
+  }
+
+  /* Image with diagonal clip */
+  .hero-image-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-image-diagonal {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-diagonal-line {
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(18% 0, 18.5% 0, 0.5% 100%, 0% 100%);
+    background: var(--color-primary);
+    z-index: 2;
   }
 
   @media (max-width: 992px) {
     .hero-container {
       flex-direction: column;
+      min-height: auto;
+    }
+
+    .hero-content {
+      padding-right: 0;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-title {
+      text-align: center;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      margin-top: 3rem;
+    }
+
+    .hero-image-diagonal {
+      clip-path: polygon(0 12%, 100% 0, 100% 100%, 0% 100%);
+      border-radius: 20px;
+    }
+
+    .hero-diagonal-line {
+      clip-path: polygon(0 12%, 100% 0, 100% 0.8%, 0 12.8%);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-image-wrapper {
+      height: 280px;
     }
   }
 </style>

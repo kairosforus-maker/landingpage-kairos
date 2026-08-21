@@ -3,6 +3,21 @@ import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].process;
+
+const stepImages = [
+  {
+    src: '/cafe.webp',
+    alt: 'Conversación informal tomando café',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+    alt: 'Planificación y estrategia',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80',
+    alt: 'Equipo trabajando junto',
+  },
+];
 ---
 
 <section id="proceso" class="process section-padding">
@@ -13,12 +28,29 @@ const t = content[lang].process;
       <p class="section-text">{t.desc}</p>
     </div>
 
-    <div class="steps-grid">
-      {t.steps.map((step) => (
-        <div class="step-card">
-          <div class="step-number">{step.number}</div>
-          <h3 class="step-title">{step.title}</h3>
-          <p class="step-desc">{step.desc}</p>
+    <div class="steps-timeline">
+      {t.steps.map((step, i) => (
+        <div class={`step-row ${i % 2 !== 0 ? 'step-reverse' : ''}`}>
+          <div class="step-image-col">
+            <div class="step-image-wrapper">
+              <img
+                src={stepImages[i].src}
+                alt={stepImages[i].alt}
+                class="step-image"
+                loading="lazy"
+              />
+              <div class="step-number-badge">{step.number}</div>
+            </div>
+          </div>
+          <div class="step-text-col">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.desc}</p>
+          </div>
+          {i < t.steps.length - 1 && (
+            <div class="step-connector">
+              <div class="connector-line"></div>
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -56,63 +88,125 @@ const t = content[lang].process;
     line-height: 1.6;
   }
 
-  .steps-grid {
-    display: flex;
-    gap: 2rem;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .step-card {
-    flex: 1;
-    min-width: 260px;
-    background-color: #0F0F0F;
-    border: 1px solid #1E1E1E;
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
+  .steps-timeline {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    gap: 4rem;
+    width: 100%;
   }
 
-  .step-card:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-4px);
+  .step-row {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
   }
 
-  .step-number {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    width: 56px;
-    height: 56px;
-    border: 2px solid var(--color-primary);
+  .step-row.step-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .step-image-col {
+    flex: 1;
+  }
+
+  .step-image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .step-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .step-image-wrapper:hover .step-image {
+    transform: scale(1.05);
+  }
+
+  .step-number-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
+    background: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-white);
+    box-shadow: 0 4px 16px rgba(255, 77, 0, 0.4);
+  }
+
+  .step-reverse .step-number-badge {
+    left: auto;
+    right: 16px;
+  }
+
+  .step-text-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .step-title {
-    font-size: 1.35rem;
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
     font-weight: 700;
     color: var(--color-white);
-    margin-bottom: 0.75rem;
   }
 
   .step-desc {
     color: #a0a0a0;
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .step-connector {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 4rem;
+    display: none;
+  }
+
+  .connector-line {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-primary), #333);
+  }
+
+  @media (min-width: 769px) {
+    .step-connector {
+      display: block;
+    }
   }
 
   @media (max-width: 768px) {
-    .steps-grid {
+    .step-row,
+    .step-row.step-reverse {
       flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .step-image-wrapper {
+      aspect-ratio: 16/9;
+    }
+
+    .step-reverse .step-number-badge {
+      right: auto;
+      left: 16px;
     }
   }
 </style>
