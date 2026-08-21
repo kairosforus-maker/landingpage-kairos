@@ -387,12 +387,17 @@ const t = content[lang].methodology;
     }
 
     .cell-hero {
-      min-height: 200px;
+      display: none;
     }
 
     .bento-accent {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       align-items: flex-start;
+      padding: 20px 20px 18px;
+    }
+
+    .bento-image-fill {
+      display: none;
     }
   }
 </style>
