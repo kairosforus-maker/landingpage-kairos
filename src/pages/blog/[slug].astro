@@ -46,9 +46,11 @@ const post = await sanityClient.fetch(`*[_type == "post" && slug.current == $slu
 ---
 
 <Layout 
-  title={`${post.title} | Kαiros Blog`} 
+  title={`${post.title} | KAIROS Blog`}
   description={`Lee el artículo completo: ${post.title}`}
   image={post.mainImage?.asset?.url}
+  schemaType="BlogPosting"
+  publishedAt={post.publishedAt}
 >
   <Header />
   <main class="article-container">

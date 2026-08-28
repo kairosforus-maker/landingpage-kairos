@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://kairos4us.com',
+  site: 'https://www.kairos4us.com',
   integrations: [
     react(),
     sitemap({

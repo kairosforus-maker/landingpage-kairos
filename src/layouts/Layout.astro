@@ -8,19 +8,88 @@ interface Props {
 	description?: string;
 	image?: string;
 	url?: string;
+	schemaType?: 'ProfessionalService' | 'Service' | 'WebPage' | 'BlogPosting';
+	publishedAt?: string;
+	robots?: string;
 }
 
 const {
-	title = 'Kαiros | Constructora de propósito',
-	description = 'Coaching, estrategia y desarrollo digital — ayudamos a líderes y organizaciones a construir desde su identidad. Primera conversación sin compromiso.',
+	title = 'KAIROS | Construcción empresarial, estrategia y soluciones digitales',
+	description = 'KAIROS ayuda a empresas y organizaciones a convertir retos empresariales en soluciones mediante estrategia, formación, ejecución y tecnología.',
 	image = '/og-image.png',
-	url = Astro.url.href,
+	url,
+	schemaType = 'WebPage',
+	publishedAt,
+	robots = 'index, follow',
 } = Astro.props;
 
-const siteBase = 'https://kairos4us.com';
+const siteBase = 'https://www.kairos4us.com';
 const pathWithoutLang = Astro.url.pathname.replace(/^\/(en)\/?/, '/');
 const esUrl = `${siteBase}${pathWithoutLang}`;
 const enUrl = `${siteBase}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+const canonicalUrl = url || `${siteBase}${Astro.url.pathname}`;
+const imageUrl = image.startsWith('http') ? image : `${siteBase}${image}`;
+const isSpanish = lang === 'es';
+const schema = schemaType === 'ProfessionalService'
+	? {
+			'@context': 'https://schema.org',
+			'@type': 'ProfessionalService',
+			'@id': `${siteBase}/#organization`,
+			'name': 'KAIROS',
+			'alternateName': 'Kairos',
+			'description': isSpanish
+				? 'Constructora de propósito. Estrategia empresarial, formación, ejecución y soluciones digitales para empresas y organizaciones.'
+				: 'Purpose-driven partner for business strategy, training, execution, and digital solutions.',
+			'url': siteBase,
+			'logo': `${siteBase}/loguito.png`,
+			'image': `${siteBase}/og-image.png`,
+			'email': 'weare@comkairos.com',
+			'telephone': '+573133024941',
+			'address': { '@type': 'PostalAddress', 'addressCountry': 'CO' },
+			'sameAs': [
+				'https://www.linkedin.com/in/albertomarioguzmanestrada/',
+				'https://www.linkedin.com/in/geovanipg/'
+			],
+			'areaServed': { '@type': 'Country', 'name': 'Colombia' },
+			'contactPoint': { '@type': 'ContactPoint', 'telephone': '+573133024941', 'contactType': 'sales', 'availableLanguage': ['Spanish', 'English'] },
+			'inLanguage': isSpanish ? 'es-CO' : 'en'
+		}
+	: schemaType === 'Service'
+		? {
+			'@context': 'https://schema.org',
+			'@type': 'Service',
+			'@id': `${canonicalUrl}#service`,
+			'name': title.split('|')[0].trim(),
+			'description': description,
+			'url': canonicalUrl,
+			'provider': { '@id': `${siteBase}/#organization`, '@type': 'ProfessionalService', 'name': 'KAIROS', 'url': siteBase },
+			'areaServed': { '@type': 'Country', 'name': 'Colombia' },
+			'inLanguage': isSpanish ? 'es-CO' : 'en'
+		}
+	: schemaType === 'BlogPosting'
+		? {
+			'@context': 'https://schema.org',
+			'@type': 'BlogPosting',
+			'@id': `${canonicalUrl}#article`,
+			'headline': title,
+			'description': description,
+			'url': canonicalUrl,
+			'image': imageUrl,
+			'datePublished': publishedAt,
+			'author': { '@type': 'Organization', 'name': 'KAIROS', 'url': siteBase },
+			'publisher': { '@id': `${siteBase}/#organization`, '@type': 'Organization', 'name': 'KAIROS', 'logo': { '@type': 'ImageObject', 'url': `${siteBase}/loguito.png` } },
+			'inLanguage': isSpanish ? 'es-CO' : 'en'
+		}
+		: {
+			'@context': 'https://schema.org',
+			'@type': 'WebPage',
+			'@id': `${canonicalUrl}#webpage`,
+			'name': title,
+			'description': description,
+			'url': canonicalUrl,
+			'inLanguage': isSpanish ? 'es-CO' : 'en',
+			'isPartOf': { '@type': 'WebSite', 'name': 'KAIROS', 'url': siteBase }
+		};
 ---
 
 <!doctype html>
@@ -28,66 +97,40 @@ const enUrl = `${siteBase}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
-		<link rel="icon" type="image/png" href="/loguito.png" />
+		<link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" sizes="16x16 32x32 48x48" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="google-site-verification" content="2pP3gRhMcxz5Sl5XZi17gk5VbY9S6J82IgAxvMVbGTs" />
 		
 		<!-- SEO Basics -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<link rel="canonical" href={url} />
+		<meta name="robots" content={robots} />
+		<link rel="canonical" href={canonicalUrl} />
 		<meta name="theme-color" content="#FF4D00" />
 
 		<!-- Hreflang -->
-		<link rel="alternate" hreflang="es" href={esUrl} />
+		<link rel="alternate" hreflang="es-CO" href={esUrl} />
 		<link rel="alternate" hreflang="en" href={enUrl} />
 		<link rel="alternate" hreflang="x-default" href={esUrl} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={url} />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={`${siteBase}${image}`} />
+		<meta property="og:image" content={imageUrl} />
 		<meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
-		<meta property="og:site_name" content="Kαiros" />
+		<meta property="og:site_name" content="KAIROS" />
 
 		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={url} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={`${siteBase}${image}`} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalUrl} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
 
 		<!-- JSON-LD Structured Data -->
-		<script type="application/ld+json" set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "ProfessionalService",
-			"name": "Kαiros",
-			"alternateName": "Kairos",
-			"description": lang === 'es'
-				? "Constructora de propósito. Coaching, estrategia organizacional y desarrollo digital para líderes y organizaciones."
-				: "Purpose-driven studio. Coaching, organizational strategy, and digital development for leaders and organizations.",
-			"url": siteBase,
-			"logo": `${siteBase}/loguito.png`,
-			"email": "weare@comkairos.com",
-			"telephone": "+573133024941",
-			"address": {
-				"@type": "PostalAddress",
-				"addressCountry": "CO"
-			},
-			"sameAs": [
-				"https://www.linkedin.com/in/albertomarioguzmanestrada/",
-				"https://www.linkedin.com/in/geovanipg/"
-			],
-			"serviceType": ["Coaching", "Estrategia organizacional", "Desarrollo web", "Marca personal"],
-			"areaServed": {
-				"@type": "Country",
-				"name": "Colombia"
-			},
-			"priceRange": "$$",
-			"inLanguage": [lang === 'es' ? 'es-CO' : 'en']
-		})} />
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,29 +185,29 @@ const enUrl = `${siteBase}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`
 		<script>
 		  // Scroll reveal
 		  const observer = new IntersectionObserver((entries) => {
-		    entries.forEach(entry => {
-		      if (entry.isIntersecting) {
-		        entry.target.classList.add('is-visible');
-		        observer.unobserve(entry.target);
-		      }
-		    });
+			entries.forEach(entry => {
+			  if (entry.isIntersecting) {
+				entry.target.classList.add('is-visible');
+				observer.unobserve(entry.target);
+			  }
+			});
 		  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 		  document.querySelectorAll('.anim-fade-up, .anim-fade-in, .anim-slide-left, .anim-slide-right').forEach(el => observer.observe(el));
 
 		  // Back to top
 		  const btn = document.getElementById('backToTop');
-		  btn.addEventListener('click', () => {
-		    window.scrollTo({ top: 0, behavior: 'smooth' });
+		  btn?.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
 		  });
 
 		  // Floating WhatsApp — only appears past the hero / first fold
 		  const wa = document.getElementById('whatsappFloat');
-		  const hero = document.querySelector('.hero');
+		  const hero = document.querySelector<HTMLElement>('.hero');
 		  const getThreshold = () => hero ? hero.offsetHeight - 120 : 600;
 		  const onScroll = () => {
-		    const past = window.scrollY > getThreshold();
-		    btn.classList.toggle('visible', window.scrollY > 600);
-		    if (wa) wa.classList.toggle('visible', past);
+			const past = window.scrollY > getThreshold();
+			btn?.classList.toggle('visible', window.scrollY > 600);
+			if (wa) wa.classList.toggle('visible', past);
 		  };
 		  window.addEventListener('scroll', onScroll, { passive: true });
 		  onScroll();
@@ -172,27 +215,29 @@ const enUrl = `${siteBase}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`
 		  // Cookie banner
 		  const banner = document.getElementById('cookieBanner');
 		  if (!localStorage.getItem('kairos-cookies')) {
-		    setTimeout(() => banner.classList.add('visible'), 1500);
+			setTimeout(() => banner?.classList.add('visible'), 1500);
 		  }
-		  document.getElementById('cookieAccept').addEventListener('click', () => {
-		    localStorage.setItem('kairos-cookies', 'all');
-		    banner.classList.remove('visible');
+		  document.getElementById('cookieAccept')?.addEventListener('click', () => {
+			localStorage.setItem('kairos-cookies', 'all');
+			banner?.classList.remove('visible');
 		  });
-		  document.getElementById('cookieReject').addEventListener('click', () => {
-		    localStorage.setItem('kairos-cookies', 'essential');
-		    banner.classList.remove('visible');
+		  document.getElementById('cookieReject')?.addEventListener('click', () => {
+			localStorage.setItem('kairos-cookies', 'essential');
+			banner?.classList.remove('visible');
 		  });
 		</script>
 
 		<!-- Cal.com Modal Script -->
 		<script>
-		  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = cal.ns[namespace] || api) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+		  type CalApi = ((...args: unknown[]) => void) & { loaded?: boolean; ns?: Record<string, unknown>; q?: unknown[] };
+		  const calWindow = window as Window & { Cal?: CalApi };
+		  (function (C, A, L) { const p = (a: CalApi, ar: IArguments) => { a.q = a.q || []; a.q.push(ar); }; const d = C.document; C.Cal = C.Cal || function (...args: unknown[]) { const cal = C.Cal as CalApi; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (args[0] === L) { const api = function (...apiArgs: unknown[]) { p(api, apiArgs as unknown as IArguments); } as CalApi; const namespace = args[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns![namespace] = cal.ns![namespace] || api) : p(cal, args as unknown as IArguments); return; } p(cal, args as unknown as IArguments); }; })(calWindow, "https://app.cal.com/embed/embed.js", "init");
 		  
 		  // Inicializa el modal
-		  window.Cal("init", "30min", {origin:"https://cal.com"});
+		  calWindow.Cal?.("init", "30min", {origin:"https://cal.com"});
 		  
 		  // Opcional: Personaliza los colores para que combinen con la marca
-		  window.Cal("ui", {"styles":{"branding":{"brandColor":"#FF4D00"}},"hideEventTypeDetails":false,"layout":"month_view"});
+		  calWindow.Cal?.("ui", {"styles":{"branding":{"brandColor":"#FF4D00"}},"hideEventTypeDetails":false,"layout":"month_view"});
 		</script>
 	</body>
 </html>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kairos4us.com/sitemap-index.xml
+Sitemap: https://www.kairos4us.com/sitemap-index.xml
