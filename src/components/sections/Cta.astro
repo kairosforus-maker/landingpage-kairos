@@ -7,7 +7,7 @@ const t = content[lang].cta;
 ---
 
 <section id="contacto" class="cta section-padding">
-  <div class="cta-content">
+  <div class="cta-content anim-fade-up">
     <span class="tag-subtitle">{t.tag}</span>
     <h2 class="section-title">{t.title}</h2>
     <p class="section-text">{t.desc}</p>
@@ -16,10 +16,6 @@ const t = content[lang].cta;
       <!-- Primer botón naranja primary -->
       <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="primary">
         {t.btnTalk}
-      </Button>
-      <!-- Segundo botón fondo oscuro texto naranja outline -->
-      <Button href="/blog" variant="custom" class="btn-ghost-orange">
-        {t.btnBlog}
       </Button>
     </div>
 
@@ -46,7 +42,7 @@ const t = content[lang].cta;
 
 <style>
   .cta {
-    background-color: var(--color-dark);
+    background-color: var(--color-white);
     display: flex;
     justify-content: center;
     border-top: 1px solid #1a1a1a;
@@ -64,12 +60,12 @@ const t = content[lang].cta;
   .section-title {
     font-size: clamp(2.18rem, 4vw, 3rem);
     margin-bottom: 0.5rem;
-    color: var(--color-white);
+    color: var(--color-dark);
   }
 
   .section-text {
     font-size: clamp(1.06rem, 2vw, 1.25rem);
-    color: #a0a0a0;
+    color: var(--color-gray);
     line-height: 1.6;
     margin-bottom: 1rem;
   }
@@ -110,8 +106,8 @@ const t = content[lang].cta;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.15rem;
-    background-color: #0F0F0F;
-    border: 1px solid #1E1E1E;
+    background-color: var(--color-light);
+    border: 1px solid var(--color-gray-light);
     border-radius: 14px;
     padding: 0.9rem 1.4rem;
     transition: border-color 0.3s ease, transform 0.3s ease;
@@ -133,7 +129,7 @@ const t = content[lang].cta;
   }
 
   .cta-method-value {
-    color: #E8E4DF;
+    color: var(--color-dark);
     font-size: 1rem;
   }
 

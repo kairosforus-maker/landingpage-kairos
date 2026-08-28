@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+---
+
+<Layout title="Legal Notice | Kαiros" description="Legal notice and terms of use for the Kαiros website.">
+	<Header />
+	<main class="legal section-padding">
+		<div class="legal-inner">
+			<h1>Legal Notice</h1>
+			<p class="legal-meta">Last updated: August 23, 2026</p>
+
+			<p>This legal notice governs access to and use of the Kαiros website (hereinafter, "the website"). By accessing and browsing this site, you accept the conditions set forth herein. If you do not agree, please do not continue browsing.</p>
+
+			<h2>1. Website owner</h2>
+			<ul>
+				<li><strong>Trade name:</strong> Kαiros</li>
+				<li><strong>Activity:</strong> Coaching, organizational strategy, and digital development.</li>
+				<li><strong>Email:</strong> weare@comkairos.com</li>
+				<li><strong>Phone:</strong> +57 313 302 4941</li>
+				<li><strong>Location:</strong> Colombia</li>
+			</ul>
+
+			<h2>2. Purpose of the website</h2>
+			<p>This website is intended to provide information about Kαiros services, facilitate contact with interested parties, and enable the scheduling of initial conversations. It does not constitute a binding commercial offer nor does it replace the formalization of a service agreement.</p>
+
+			<h2>3. Intellectual and industrial property</h2>
+			<p>All website content — including, without limitation, texts, images, graphic design, logos, icons, trade names, trademarks, and color combinations — is protected by intellectual and industrial property laws in force in Colombia, particularly <strong>Law 23 of 1982</strong> on copyright and <strong>Decision 486 of the Andean Community</strong> on industrial property.</p>
+			<p>The reproduction, distribution, transformation, or public communication of any content on this site is expressly prohibited without the prior written authorization of Kαiros, except in cases permitted by law.</p>
+			<p>The name "Kαiros", its logo, and the names of its service lines (Kαiros Builder, Kαiros Community, Kαiros Digital) are the property of Kαiros. Their unauthorized use constitutes an infringement of intellectual and industrial property rights.</p>
+
+			<h2>4. Terms of use</h2>
+			<p>The user agrees to:</p>
+			<ul>
+				<li>Use the website lawfully, diligently, and in good faith.</li>
+				<li>Not use the content for purposes contrary to the law, morality, or public order.</li>
+				<li>Not attempt to access restricted areas of the website or Kαiros computer systems.</li>
+				<li>Not introduce viruses, malware, or any element that could alter or damage the computer systems of Kαiros or third parties.</li>
+				<li>Not reproduce, distribute, or modify the content of the site without authorization.</li>
+			</ul>
+
+			<h2>5. Limitation of liability</h2>
+
+			<h3>5.1. Informational content</h3>
+			<p>The information contained on this website is purely informational in nature. Kαiros does not guarantee the accuracy, completeness, or permanent currency of all content, and reserves the right to modify, update, or remove it without prior notice.</p>
+
+			<h3>5.2. Service availability</h3>
+			<p>Kαiros does not guarantee uninterrupted availability or the absence of errors in the operation of the website. We strive to keep the site operational, but we are not liable for interruptions, technical failures, or errors that may occur due to causes beyond our control.</p>
+
+			<h3>5.3. Third-party links</h3>
+			<p>This website may contain links to third-party platforms (Cal.com, WhatsApp, LinkedIn, among others). These links are provided solely for informational and convenience purposes. Kαiros does not control and is not responsible for the content, privacy policies, or practices of these external sites.</p>
+
+			<h3>5.4. Service results</h3>
+			<p>Testimonials, examples, and descriptions of results that may appear on the website are illustrative and do not constitute a guarantee of specific results. The outcomes of our engagement depend on multiple factors, including the particular situation of each person or organization and their level of commitment to the process.</p>
+
+			<h2>6. Personal data protection</h2>
+			<p>The processing of personal data is governed by our <a href="/en/privacy">Personal Data Processing Policy</a>, prepared in compliance with Law 1581 of 2012 and Decree 1377 of 2013.</p>
+
+			<h2>7. Applicable law and jurisdiction</h2>
+			<p>This legal notice is governed by the laws of the Republic of Colombia. For the resolution of any dispute arising from access to or use of this website, the parties submit to the jurisdiction of the competent courts of the Republic of Colombia, expressly waiving any other jurisdiction that may apply.</p>
+
+			<h2>8. Modifications</h2>
+			<p>Kαiros reserves the right to modify this legal notice at any time and without prior notice. Modifications will take effect from the moment of their publication on this page. We recommend reviewing this notice periodically.</p>
+
+			<h2>9. Contact</h2>
+			<p>For any inquiry related to this legal notice, you may contact us at:</p>
+			<ul>
+				<li><strong>Email:</strong> weare@comkairos.com</li>
+				<li><strong>WhatsApp:</strong> +57 313 302 4941</li>
+			</ul>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.legal {
+		background-color: var(--color-light);
+		min-height: 60vh;
+	}
+	.legal-inner {
+		max-width: 780px;
+		margin: 0 auto;
+	}
+	.legal-inner h1 {
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		color: var(--color-dark);
+		margin-bottom: 0.5rem;
+	}
+	.legal-meta {
+		color: var(--color-gray);
+		font-size: 0.9rem;
+		margin-bottom: 2rem;
+		opacity: 0.7;
+	}
+	.legal-inner h2 {
+		font-size: 1.35rem;
+		color: var(--color-dark);
+		margin: 2.5rem 0 0.75rem;
+	}
+	.legal-inner h3 {
+		font-size: 1.1rem;
+		color: var(--color-dark);
+		margin: 1.5rem 0 0.5rem;
+	}
+	.legal-inner p {
+		color: var(--color-gray);
+		line-height: 1.7;
+		margin-bottom: 0.75rem;
+	}
+	.legal-inner ul,
+	.legal-inner ol {
+		color: var(--color-gray);
+		line-height: 1.7;
+		margin-bottom: 1rem;
+		padding-left: 1.5rem;
+	}
+	.legal-inner li {
+		margin-bottom: 0.4rem;
+	}
+	.legal-inner strong {
+		color: var(--color-dark);
+	}
+	.legal-inner a {
+		color: var(--color-primary);
+		text-decoration: underline;
+	}
+</style>

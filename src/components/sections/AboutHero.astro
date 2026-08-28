@@ -8,14 +8,14 @@ const t = content[lang].about.hero;
 
 <section class="about-hero section-padding">
   <div class="about-content">
-    <span class="tag-subtitle">{t.tag}</span>
-    <h1 class="about-title">
+    <span class="tag-subtitle hero-anim hero-anim-1">{t.tag}</span>
+    <h1 class="about-title hero-anim hero-anim-2">
       {t.title}<br />
       {t.subtitle}
     </h1>
-    <p class="about-text">{t.desc}</p>
-    
-    <div class="about-action">
+    <p class="about-text hero-anim hero-anim-3">{t.desc}</p>
+
+    <div class="about-action hero-anim hero-anim-4">
       <Button href={lang === 'es' ? '/#servicios' : '/en/#servicios'} variant="custom" class="btn-ghost-orange">
         {t.btn}
       </Button>
@@ -57,5 +57,28 @@ const t = content[lang].about.hero;
 
   .about-action {
     margin-top: 1rem;
+  }
+
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-anim {
+    opacity: 0;
+    animation: heroFadeUp 0.8s ease forwards;
+  }
+
+  .hero-anim-1 { animation-delay: 0.1s; }
+  .hero-anim-2 { animation-delay: 0.25s; }
+  .hero-anim-3 { animation-delay: 0.4s; }
+  .hero-anim-4 { animation-delay: 0.55s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
   }
 </style>

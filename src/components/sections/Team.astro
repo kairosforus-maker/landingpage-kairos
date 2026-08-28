@@ -18,15 +18,15 @@ const initials = (name: string) => {
 
 <section id={variant === 'aboutTeam' ? 'comunidad' : 'equipo'} class="team section-padding">
   <div class="team-inner">
-    <div class="team-header">
+    <div class="team-header anim-fade-up">
       <span class="tag-subtitle">{t.tag}</span>
       <h2 class="section-title">{t.title}</h2>
       <p class="section-text">{t.desc}</p>
     </div>
 
     <div class="team-grid">
-      {t.members.map((m) => (
-        <div class="member-card">
+      {t.members.map((m, i) => (
+        <div class={`member-card anim-fade-up anim-delay-${i + 1}`}>
           {m.photo
             ? <img class="member-photo" src={m.photo} alt={m.name} style={m.focus ? `object-position:${m.focus}` : undefined} />
             : <div class="member-avatar">{initials(m.name)}</div>
@@ -105,7 +105,13 @@ const initials = (name: string) => {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .member-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
   }
 
   .member-card:hover {

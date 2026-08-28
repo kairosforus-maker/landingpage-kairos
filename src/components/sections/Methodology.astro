@@ -7,14 +7,14 @@ const t = content[lang].methodology;
 
 <section class="methodology section-padding">
   <div class="methodology-inner">
-    <div class="methodology-header">
+    <div class="methodology-header anim-fade-up">
       <span class="tag-subtitle">{t.tag}</span>
       <h2 class="section-title">{t.title}</h2>
       <p class="section-text">{t.desc}</p>
     </div>
 
     <div class="bento-grid">
-      <div class="bento-cell cell-marketing bento-card has-media">
+      <div class="bento-cell cell-marketing bento-card has-media anim-fade-up anim-delay-1">
         <div class="bento-card-content">
           <span class="sphere-number">{t.spheres[0].number}</span>
           <h3 class="sphere-title">{t.spheres[0].title}</h3>
@@ -26,25 +26,25 @@ const t = content[lang].methodology;
         </div>
       </div>
 
-      <div class="bento-cell cell-hero">
+      <div class="bento-cell cell-hero anim-fade-up anim-delay-2">
         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Equipo trabajando" loading="lazy" />
       </div>
 
-      <div class="bento-cell cell-personas bento-card">
+      <div class="bento-cell cell-personas bento-card anim-fade-up anim-delay-3">
         <span class="sphere-number">{t.spheres[1].number}</span>
         <h3 class="sphere-title">{t.spheres[1].title}</h3>
         <p class="sphere-desc">{t.spheres[1].desc}</p>
         <p class="sphere-example">{t.spheres[1].example}</p>
       </div>
 
-      <div class="bento-cell cell-liderazgo bento-card bento-dark">
+      <div class="bento-cell cell-liderazgo bento-card bento-dark anim-fade-up anim-delay-3">
         <span class="sphere-number">{t.spheres[2].number}</span>
         <h3 class="sphere-title">{t.spheres[2].title}</h3>
         <p class="sphere-desc">{t.spheres[2].desc}</p>
         <p class="sphere-example">{t.spheres[2].example}</p>
       </div>
 
-      <div class="bento-cell cell-operaciones bento-card has-media">
+      <div class="bento-cell cell-operaciones bento-card has-media anim-fade-up anim-delay-4">
         <div class="bento-card-content">
           <span class="sphere-number">{t.spheres[3].number}</span>
           <h3 class="sphere-title">{t.spheres[3].title}</h3>
@@ -56,7 +56,7 @@ const t = content[lang].methodology;
         </div>
       </div>
 
-      <div class="bento-cell cell-tecnologia bento-card bento-dark has-media">
+      <div class="bento-cell cell-tecnologia bento-card bento-dark has-media anim-fade-up anim-delay-5">
         <div class="bento-card-content">
           <span class="sphere-number">{t.spheres[4].number}</span>
           <h3 class="sphere-title">{t.spheres[4].title}</h3>
@@ -68,7 +68,7 @@ const t = content[lang].methodology;
         </div>
       </div>
 
-      <div class="bento-cell cell-finanzas bento-card has-media">
+      <div class="bento-cell cell-finanzas bento-card has-media anim-fade-up anim-delay-5">
         <div class="bento-card-content">
           <span class="sphere-number">{t.spheres[5].number}</span>
           <h3 class="sphere-title">{t.spheres[5].title}</h3>
@@ -80,7 +80,7 @@ const t = content[lang].methodology;
         </div>
       </div>
 
-      <div class="bento-cell cell-social bento-card bento-accent">
+      <div class="bento-cell cell-social bento-card bento-accent anim-fade-up anim-delay-6">
         <div class="bento-card-content">
           <span class="sphere-number">{t.spheres[6].number}</span>
           <h3 class="sphere-title">{t.spheres[6].title}</h3>
@@ -164,8 +164,14 @@ const t = content[lang].methodology;
     gap: 8px;
     background: var(--color-white);
     border: 1px solid var(--color-gray-light);
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.35s ease, box-shadow 0.35s ease;
     box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  }
+
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: var(--color-primary);
   }
 
   .bento-card:hover {

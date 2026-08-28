@@ -9,19 +9,40 @@ export const content = {
   es: {
     nav: {
       home: 'Inicio',
-      about: 'Quiénes somos',
-      blog: 'Blog',
+      about: 'Nosotros',
       services: 'Servicios',
       pricing: 'Acompañamiento',
       contact: 'Contacto',
-      cta: 'Reserva diagnóstico',
+      cta: 'Hablemos',
     },
     hero: {
-      tag: 'IDENTIDAD · PROPÓSITO · IMPACTO',
-      title: 'Construimos propósito. Construimos futuro.',
-      desc: 'Acompañamos a personas y organizaciones a construir con intención — desde su propósito, no desde la presión.',
-      btnTalk: 'Reserva un diagnóstico',
+      tag: 'IDENTIDAD · ESTRATEGIA · TRANSFORMACIÓN',
+      title: 'Tu identidad es la estrategia.',
+      highlight: 'estrategia.',
+      desc: 'Ayudamos a líderes y organizaciones a descubrir quiénes son, construir una dirección clara y convertir esa identidad en marcas, equipos y sistemas con impacto.',
+      btnTalk: 'Agenda una conversación',
       btnExplore: 'Descubre cómo',
+      btnCta: 'Conoce nuestro enfoque',
+    },
+    manifesto: {
+      tag: 'LO QUE NOS HACE DIFERENTES',
+      title: 'No somos una consultora.',
+      titleAccent: 'Somos constructores.',
+      intro: 'Construimos desde principios, no desde plantillas. Cada organización tiene una realidad única.',
+      notTitle: 'NO CREEMOS EN',
+      believeTitle: 'CREEMOS EN',
+      notItems: [
+        { title: 'Estrategias genéricas', desc: 'Cada organización es única.' },
+        { title: 'Soluciones desconectadas', desc: 'Sin visión de conjunto, no hay dirección.' },
+        { title: 'Resultados rápidos', desc: 'Lo valioso requiere tiempo y dirección.' },
+      ],
+      believeItems: [
+        { title: 'Identidad antes que ejecución', desc: 'Entendemos quién eres para construir lo que realmente te representa.' },
+        { title: 'Construcción con intención', desc: 'Diseñamos, alineamos y ejecutamos con método.' },
+        { title: 'Procesos sostenibles', desc: 'Acompañamos hasta que el impacto permanece.' },
+      ],
+      footer: 'Construimos desde la esencia, con intención y con método.',
+      footerAccent: 'Para organizaciones que quieren trascender.',
     },
     timeForms: {
       tag: 'TRES FORMAS DE TIEMPO',
@@ -48,33 +69,32 @@ export const content = {
     },
     services: {
       tag: 'QUÉ HACEMOS',
-      title: 'Tres formas de construir con intención.',
-      desc: 'Acompañamos a personas y organizaciones a ordenar su identidad, tomar mejores decisiones y construir con propósito.',
+      title: 'Tres formas de construir desde la identidad.',
+      titleHighlight: 'identidad.',
+      desc: 'Tres unidades especializadas que trabajan juntas para generar estrategias, experiencias y presencia con intención.',
+      viewMore: 'Conoce más',
+      cta: 'Agenda una conversación',
       builder: {
         number: '01',
-        title: 'Kαiros Builder',
-        subtitle: 'Marca Personal & Coaching',
-        desc: 'Para personas que quieren dejar de construir desde la presión externa y empezar a hacerlo desde identidad, claridad y propósito.',
-        example: 'Eres profesional, líder o emprendedor y sientes que avanzas sin dirección clara. Te ayudamos a descubrir qué te hace diferente y a comunicarlo con intención.',
-        tags: ['Identidad', 'Marca personal', 'Propósito', 'Liderazgo', 'Coaching'],
+        title: 'Kairos Builder',
+        subtitle: 'Estrategia, construcción organizacional y liderazgo',
+        desc: 'Construimos estrategias, estructuras y capacidades para organizaciones que necesitan claridad, dirección y una forma de avanzar.',
+        tags: ['Estrategia', 'Capacidades', 'Liderazgo', 'Ejecución'],
       },
-      community: {
+      digital: {
         number: '02',
-        title: 'Kαiros Community',
-        subtitle: 'Estrategia & 7 Esferas',
-        desc: 'Para startups y organizaciones que necesitan una arquitectura clara para crecer con intención, ordenar decisiones y alinear estrategia, personas y operación.',
-        example: 'Tu organización crece rápido pero las áreas están desconectadas y todo depende del fundador. Ordenamos el sistema para que crezca sin perder su propósito.',
-        tags: ['Estrategia', 'Equipos', 'Operaciones', 'Tecnología', 'Crecimiento'],
-        btn: 'Reserva tu diagnóstico'
+        title: 'Kairos Digital',
+        subtitle: 'Diseño, desarrollo y soluciones digitales',
+        desc: 'Construimos websites, plataformas y herramientas digitales que resuelven necesidades reales y hacen avanzar tu negocio.',
+        tags: ['Páginas web', 'Tiendas online', 'Plataformas', 'IA'],
       },
-      web: {
+      linkedin: {
         number: '03',
-        title: 'Kαiros Digital',
-        subtitle: 'Diseño & Desarrollo Web',
-        desc: 'Diseñamos y construimos plataformas y páginas web con intención — donde identidad, propósito y estrategia se hacen digitales.',
-        example: 'Necesitas una web, tienda online o plataforma que refleje quién eres de verdad. La construimos contigo, cuidando diseño, velocidad y significado.',
-        tags: ['Páginas web', 'Tiendas online', 'Plataformas', 'Acompañamiento'],
-      }
+        title: 'Kairos LinkedIn',
+        subtitle: 'Reputación Digital & Posicionamiento',
+        desc: 'Convertimos conocimiento y liderazgo en una presencia digital poderosa, auténtica y con intención.',
+        tags: ['LinkedIn', 'Posicionamiento', 'Contenido', 'Networking'],
+      },
     },
     methodology: {
       tag: 'METODOLOGÍA',
@@ -93,19 +113,20 @@ export const content = {
     },
     process: {
       tag: 'CÓMO TRABAJAMOS',
-      title: 'Tres pasos, sin misterio.',
-      desc: 'Empezamos como se empiezan las cosas importantes: hablando.',
+      title: 'Tres pasos para construir algo que permanece.',
+      highlight: 'permanece.',
+      desc: 'Un proceso claro, colaborativo y estratégico. Así es como trabajamos junto a ti.',
       steps: [
-        { number: '1', title: 'Nos tomamos un café', desc: 'Antes de cualquier plan, nos sentamos a conocernos. Nos cuentas dónde estás, qué te frena y qué quieres construir — presencial o por videollamada, como prefieras.' },
-        { number: '2', title: 'Diseñamos el camino', desc: 'Con lo que escuchamos, creamos un plan claro: qué priorizar, por dónde empezar y qué resultado esperar en las primeras semanas.' },
-        { number: '3', title: 'Caminamos contigo', desc: 'Nos ponemos manos a la obra a tu lado. Reuniones periódicas para revisar avances, ajustar el rumbo y asegurar que lo construido permanezca.' },
+        { number: '01', title: 'Nos tomamos un café', desc: 'Antes de cualquier plan, nos escuchamos. Entendemos tu realidad, tus retos y hacia dónde quieres ir.' },
+        { number: '02', title: 'Diseñamos el camino', desc: 'Convertimos claridad en estrategia. Creamos una ruta clara, priorizada y alineada a tus objetivos.' },
+        { number: '03', title: 'Construimos contigo', desc: 'Acompañamos la ejecución paso a paso. Trabajamos a tu lado para convertir ideas en resultados que perduran.' },
       ]
     },
     pricing: {
       tag: 'ACOMPAÑAMIENTO',
       title: 'Tres formas de caminar contigo.',
       desc: 'Elige el nivel de acompañamiento que mejor se ajusta a tu momento y a lo que quieres construir.',
-      note: 'Cada camino se diseña a medida. El alcance y la inversión los definimos juntos en tu primer diagnóstico, sin compromiso.',
+      note: 'Cada camino se diseña a medida. El alcance y la inversión los definimos juntos en tu primera conversación, sin compromiso.',
       recommended: 'Recomendado',
       plans: [
         {
@@ -113,24 +134,24 @@ export const content = {
           price: 'A medida',
           period: '',
           featured: false,
-          features: ['Diagnóstico inicial completo', '1 sesión al mes', 'Plan de acción personalizado'],
-          btn: 'Reserva diagnóstico'
+          features: ['Conversación inicial completa', '1 encuentro al mes', 'Plan de acción personalizado'],
+          btn: 'Hablemos'
         },
         {
           name: 'Raíz',
           price: 'A medida',
           period: '',
           featured: true,
-          features: ['2 sesiones al mes', 'Revisión de las 7 esferas', 'Seguimiento continuo', 'Soporte por WhatsApp'],
-          btn: 'Reserva diagnóstico'
+          features: ['2 encuentros al mes', 'Revisión de las 7 esferas', 'Seguimiento continuo', 'Soporte por WhatsApp'],
+          btn: 'Hablemos'
         },
         {
           name: 'Bosque',
           price: 'A medida',
           period: '',
           featured: false,
-          features: ['1 sesión semanal', 'Acompañamiento estratégico', 'Planificación mensual', 'Prioridad y soporte directo'],
-          btn: 'Reserva diagnóstico'
+          features: ['1 encuentro semanal', 'Acompañamiento estratégico', 'Planificación mensual', 'Prioridad y soporte directo'],
+          btn: 'Hablemos'
         }
       ]
     },
@@ -141,16 +162,16 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Kαiros Builder — Marca Personal & Coaching',
-          desc: 'Acompaña a personas y líderes a construir desde identidad, claridad y propósito.',
+          role: 'Identidad, propósito y liderazgo',
+          desc: 'Acompaña a personas y organizaciones a construir desde quiénes son — con coaching, marca personal y estrategia.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Kαiros Digital — Sistemas & Desarrollo',
-          desc: 'Diseña y construye las plataformas, sistemas y webs que hacen digital cada proyecto.',
+          role: 'Sistemas, tecnología y plataformas',
+          desc: 'Construye los sistemas, herramientas y plataformas digitales que hacen funcionar cada proyecto.',
           photo: '/foto_geovani.png',
           linkedin: 'https://www.linkedin.com/in/geovanipg/'
         }
@@ -159,21 +180,20 @@ export const content = {
     aboutTeam: {
       tag: 'NUESTRA COMUNIDAD',
       title: 'Un equipo que construye contigo.',
-      desc: 'Somos una comunidad global. Fundadores, estrategas, diseñadores y aliados que aportan su mirada a cada proyecto.',
-      // Miembros temporales — sustituir por integrantes reales cuando estén listos.
+      desc: 'Trabajamos directamente contigo. Sin intermediarios, sin juniors. Las mismas personas que diseñan la estrategia son las que la construyen.',
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Fundador — Kαiros Builder',
-          desc: 'Marca personal, identidad y coaching. Acompaña a líderes a construir desde propósito.',
+          role: 'Identidad, propósito y liderazgo',
+          desc: 'Acompaña a personas y organizaciones a construir desde quiénes son — con coaching, marca personal y estrategia.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Kαiros Digital — Sistemas & Desarrollo',
-          desc: 'Sistemas, desarrollo y plataformas web. Convierte cada proyecto en algo digital y funcional.',
+          role: 'Sistemas, tecnología y plataformas',
+          desc: 'Construye los sistemas, herramientas y plataformas digitales que hacen funcionar cada proyecto.',
           photo: '/foto_geovani.png',
           linkedin: 'https://www.linkedin.com/in/geovanipg/'
         },
@@ -182,9 +202,8 @@ export const content = {
     cta: {
       tag: 'EL MOMENTO CORRECTO',
       title: 'Construye desde el momento correcto.',
-      desc: 'Si estás definiendo tu identidad, tu marca o la próxima etapa de tu organización, hablemos. Diagnóstico sin compromiso.',
-      btnTalk: 'Reserva tu diagnóstico',
-      btnBlog: 'Leer el blog',
+      desc: 'Si estás definiendo tu identidad, tu marca o la próxima etapa de tu organización — hablemos. Primera conversación sin compromiso.',
+      btnTalk: 'Agenda una conversación',
       slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'O escríbenos directamente',
       methods: [
@@ -197,12 +216,36 @@ export const content = {
       title: 'Resolvemos tus dudas.',
       desc: 'Lo que más nos preguntan antes de empezar.',
       items: [
-        { q: '¿El diagnóstico tiene coste?', a: 'La primera sesión de diagnóstico no tiene coste ni compromiso. Analizamos tu situación y te decimos por dónde empezar.' },
+        { q: '¿La primera conversación tiene coste?', a: 'No. La primera conversación no tiene coste ni compromiso. Escuchamos tu situación y te decimos por dónde empezar.' },
         { q: '¿Hay permanencia o contrato largo?', a: 'No hay permanencia. Trabajamos mes a mes. Sigues con nosotros solo mientras te aporte valor.' },
         { q: '¿En cuánto tiempo veo resultados?', a: 'Depende de tu punto de partida, pero el plan se diseña para conseguir mejoras rápidas y visibles en las primeras semanas.' },
         { q: '¿Trabajáis con empresas pequeñas y autónomos?', a: 'Sí. Es exactamente nuestro enfoque: autónomos, emprendedores y pymes que quieren ordenarse y crecer.' },
-        { q: '¿Cómo son las sesiones?', a: 'Nos gusta empezar tomándonos un café en persona si estamos en la misma ciudad. Cuando no es posible, arrancamos por videollamada. El resto del acompañamiento es online, con seguimiento entre sesiones y, según el plan, soporte por WhatsApp.' }
+        { q: '¿Cómo son los encuentros?', a: 'Nos gusta empezar tomándonos un café en persona si estamos en la misma ciudad. Cuando no es posible, arrancamos por videollamada. El resto del acompañamiento es online, con seguimiento entre encuentros y, según el plan, soporte por WhatsApp.' }
       ]
+    },
+    testimonials: {
+      tag: 'LO QUE DICEN',
+      title: 'Quienes ya construyen con nosotros.',
+      items: [
+        {
+          quote: 'Kairos me ayudó a entender que el problema no era mi negocio, era que no tenía claro quién era yo como líder. Desde ahí, todo cambió.',
+          name: 'Carolina M.',
+          role: 'Fundadora, estudio creativo',
+          initials: 'CM',
+        },
+        {
+          quote: 'No nos trajeron un plan genérico. Se sentaron con nosotros, entendieron nuestra cultura y construyeron la estrategia desde adentro.',
+          name: 'Andrés R.',
+          role: 'Director de operaciones, pyme tecnológica',
+          initials: 'AR',
+        },
+        {
+          quote: 'La combinación de coaching y tecnología es lo que los hace diferentes. No solo te dicen qué hacer — lo construyen contigo.',
+          name: 'Laura P.',
+          role: 'Consultora independiente',
+          initials: 'LP',
+        },
+      ],
     },
     footer: {
       tagline: 'Constructora de propósito. Construimos con intención — desde identidad, no desde presión.',
@@ -213,8 +256,7 @@ export const content = {
       links: [
         { label: 'Servicios', href: '/#servicios' },
         { label: 'Acompañamiento', href: '/#precios' },
-        { label: 'Quiénes somos', href: '/quienes-somos' },
-        { label: 'Blog', href: '/blog' }
+        { label: 'Quiénes somos', href: '/quienes-somos' }
       ],
       legalLinks: [
         { label: 'Aviso legal', href: '/aviso-legal' },
@@ -262,19 +304,40 @@ export const content = {
   en: {
     nav: {
       home: 'Home',
-      about: 'About Us',
-      blog: 'Blog',
+      about: 'About',
       services: 'Services',
       pricing: 'Support',
       contact: 'Contact',
-      cta: 'Book assessment',
+      cta: "Let's talk",
     },
     hero: {
-      tag: 'IDENTITY · PURPOSE · IMPACT',
-      title: 'We build purpose. We build futures.',
-      desc: 'We accompany people and organizations to build with intention — from purpose, not from pressure.',
-      btnTalk: 'Book an assessment',
+      tag: 'COACHING · STRATEGY · TECHNOLOGY',
+      title: 'Your identity is the strategy.',
+      highlight: 'strategy.',
+      desc: 'We help leaders and organizations build brand, team, and platform — all from who you are, not from pressure.',
+      btnTalk: 'Book a conversation',
       btnExplore: 'Discover how',
+      btnCta: 'Discover our approach',
+    },
+    manifesto: {
+      tag: 'WHAT MAKES US DIFFERENT',
+      title: "We're not a consultancy.",
+      titleAccent: "We're builders.",
+      intro: 'We build from principles, not templates. Every organization has a reality of its own.',
+      notTitle: "WE DON'T BELIEVE IN",
+      believeTitle: 'WE BELIEVE IN',
+      notItems: [
+        { title: 'Generic strategies', desc: 'Every organization is unique.' },
+        { title: 'Disconnected solutions', desc: 'Without a wider view, there is no direction.' },
+        { title: 'Quick results', desc: 'What matters takes time and direction.' },
+      ],
+      believeItems: [
+        { title: 'Identity before execution', desc: 'We understand who you are to build what truly represents you.' },
+        { title: 'Building with intention', desc: 'We design, align, and execute with method.' },
+        { title: 'Sustainable processes', desc: 'We stay until the impact remains.' },
+      ],
+      footer: 'We build from the essence, with intention and method.',
+      footerAccent: 'For organizations that want to transcend.',
     },
     timeForms: {
       tag: 'THREE FORMS OF TIME',
@@ -301,33 +364,32 @@ export const content = {
     },
     services: {
       tag: 'WHAT WE DO',
-      title: 'Three ways to build with intention.',
-      desc: 'We accompany people and organizations to align their identity, make better decisions, and build with purpose.',
+      title: 'Three ways to build from identity.',
+      titleHighlight: 'identity.',
+      desc: 'Three specialized units working together to generate strategies, experiences and presence with intention.',
+      viewMore: 'Learn more',
+      cta: 'Book a conversation',
       builder: {
         number: '01',
-        title: 'Kαiros Builder',
-        subtitle: 'Personal Brand & Coaching',
-        desc: 'For people who want to stop building from external pressure and start doing it from identity, clarity, and purpose.',
-        example: 'You are a professional, leader, or founder who feels you are moving forward without a clear direction. We help you discover what makes you different and communicate it with intention.',
-        tags: ['Identity', 'Personal Brand', 'Purpose', 'Leadership', 'Coaching'],
+        title: 'Kairos Builder',
+        subtitle: 'Strategy, organizational building & leadership',
+        desc: 'We build strategies, structures, and capabilities for organizations that need clarity, direction, and a way forward.',
+        tags: ['Strategy', 'Capabilities', 'Leadership', 'Execution'],
       },
-      community: {
+      digital: {
         number: '02',
-        title: 'Kαiros Community',
-        subtitle: 'Strategy & 7 Spheres',
-        desc: 'For startups and organizations that need a clear architecture to grow with intention, organize decisions, and align strategy, people, and operations.',
-        example: 'Your organization grows fast but the areas are disconnected and everything depends on the founder. We organize the system so it grows without losing its purpose.',
-        tags: ['Strategy', 'Teams', 'Operations', 'Technology', 'Growth'],
-        btn: 'Book your assessment'
+        title: 'Kairos Digital',
+        subtitle: 'Design, development & digital solutions',
+        desc: 'We build websites, platforms, and digital tools that solve real needs and move your business forward.',
+        tags: ['Websites', 'Online stores', 'Platforms', 'AI'],
       },
-      web: {
+      linkedin: {
         number: '03',
-        title: 'Kαiros Digital',
-        subtitle: 'Web Design & Development',
-        desc: 'We design and build platforms and websites with intention — where identity, purpose, and strategy become digital.',
-        example: 'You need a website, online store, or platform that truly reflects who you are. We build it with you, caring about design, speed, and meaning.',
-        tags: ['Websites', 'Online stores', 'Platforms', 'Guidance'],
-      }
+        title: 'Kairos LinkedIn',
+        subtitle: 'Digital Reputation & Positioning',
+        desc: 'We turn knowledge and leadership into a powerful, authentic digital presence with intention.',
+        tags: ['LinkedIn', 'Positioning', 'Content', 'Networking'],
+      },
     },
     methodology: {
       tag: 'METHODOLOGY',
@@ -346,19 +408,20 @@ export const content = {
     },
     process: {
       tag: 'HOW WE WORK',
-      title: 'Three steps, no mystery.',
-      desc: 'We start the way important things start: by talking.',
+      title: 'Three steps to build something that lasts.',
+      highlight: 'lasts.',
+      desc: 'A clear, collaborative, and strategic process. This is how we work alongside you.',
       steps: [
-        { number: '1', title: 'We grab a coffee', desc: 'Before any plan, we sit down to get to know each other. You tell us where you are, what is holding you back, and what you want to build — in person or by video call, whichever you prefer.' },
-        { number: '2', title: 'We design the path', desc: 'With what we heard, we create a clear plan: what to prioritize, where to start, and what results to expect in the first weeks.' },
-        { number: '3', title: 'We walk with you', desc: 'We get to work by your side. Regular meetings to review progress, adjust course, and make sure what we build remains.' },
+        { number: '01', title: 'We grab a coffee', desc: 'Before any plan, we listen. We understand your reality, your challenges, and where you want to go.' },
+        { number: '02', title: 'We design the path', desc: 'We turn clarity into strategy. We create a clear route, prioritized and aligned with your goals.' },
+        { number: '03', title: 'We build with you', desc: 'We accompany execution step by step. We work by your side to turn ideas into results that last.' },
       ]
     },
     pricing: {
       tag: 'ACCOMPANIMENT',
       title: 'Three ways to walk with you.',
       desc: 'Choose the level of accompaniment that best fits your moment and what you want to build.',
-      note: 'Each path is designed to measure. Scope and investment are defined together in your first assessment, no commitment.',
+      note: 'Each path is custom-designed. Scope and investment are defined together in your first conversation, no commitment.',
       recommended: 'Recommended',
       plans: [
         {
@@ -366,24 +429,24 @@ export const content = {
           price: 'Tailored',
           period: '',
           featured: false,
-          features: ['Complete initial assessment', '1 session per month', 'Personalized action plan'],
-          btn: 'Book assessment'
+          features: ['Full initial conversation', '1 meeting per month', 'Personalized action plan'],
+          btn: "Let's talk"
         },
         {
           name: 'Root',
           price: 'Tailored',
           period: '',
           featured: true,
-          features: ['2 sessions per month', 'Review of the 7 spheres', 'Continuous follow-up', 'WhatsApp support'],
-          btn: 'Book assessment'
+          features: ['2 meetings per month', 'Review of the 7 spheres', 'Continuous follow-up', 'WhatsApp support'],
+          btn: "Let's talk"
         },
         {
           name: 'Forest',
           price: 'Tailored',
           period: '',
           featured: false,
-          features: ['1 session per week', 'Strategic support', 'Monthly planning', 'Priority and direct support'],
-          btn: 'Book assessment'
+          features: ['1 meeting per week', 'Strategic support', 'Monthly planning', 'Priority and direct support'],
+          btn: "Let's talk"
         }
       ]
     },
@@ -394,16 +457,16 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Kαiros Builder — Personal Brand & Coaching',
-          desc: 'Accompanies people and leaders to build from identity, clarity, and purpose.',
+          role: 'Identity, purpose & leadership',
+          desc: 'Accompanies people and organizations to build from who they are — through coaching, personal brand, and strategy.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Kαiros Digital — Systems & Development',
-          desc: 'Designs and builds the platforms, systems, and websites that make every project digital.',
+          role: 'Systems, technology & platforms',
+          desc: 'Builds the systems, tools, and digital platforms that make every project work.',
           photo: '/foto_geovani.png',
           linkedin: 'https://www.linkedin.com/in/geovanipg/'
         }
@@ -412,21 +475,20 @@ export const content = {
     aboutTeam: {
       tag: 'OUR COMMUNITY',
       title: 'A team that builds with you.',
-      desc: 'We are a global community. Founders, strategists, designers, and allies who bring their perspective to every project.',
-      // Temporary members — replace with real people when ready.
+      desc: 'You work directly with us. No intermediaries, no juniors. The same people who design the strategy are the ones who build it.',
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Founder — Kαiros Builder',
-          desc: 'Personal brand, identity, and coaching. Accompanies leaders to build from purpose.',
+          role: 'Identity, purpose & leadership',
+          desc: 'Accompanies people and organizations to build from who they are — through coaching, personal brand, and strategy.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
         },
         {
           name: 'Geovani Pérez',
-          role: 'Kαiros Digital — Systems & Development',
-          desc: 'Systems, development, and web platforms. Turns each project into something digital and functional.',
+          role: 'Systems, technology & platforms',
+          desc: 'Builds the systems, tools, and digital platforms that make every project work.',
           photo: '/foto_geovani.png',
           linkedin: 'https://www.linkedin.com/in/geovanipg/'
         },
@@ -435,9 +497,8 @@ export const content = {
     cta: {
       tag: 'THE RIGHT MOMENT',
       title: 'Build from the right moment.',
-      desc: 'If you are defining your identity, your brand, or the next stage of your organization, let\'s talk. Free assessment, no commitment.',
-      btnTalk: 'Book your assessment',
-      btnBlog: 'Read the blog',
+      desc: "If you are defining your identity, your brand, or the next stage of your organization — let's talk. First conversation, no commitment.",
+      btnTalk: 'Book a conversation',
       slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'Or write to us directly',
       methods: [
@@ -450,12 +511,36 @@ export const content = {
       title: 'We answer your questions.',
       desc: 'What people ask us most before starting.',
       items: [
-        { q: 'Does the assessment cost anything?', a: 'The first assessment session has no cost and no commitment. We analyze your situation and tell you where to start.' },
+        { q: 'Does the first conversation cost anything?', a: 'No. The first conversation has no cost and no commitment. We listen to your situation and tell you where to start.' },
         { q: 'Is there a lock-in or long contract?', a: 'No lock-in. We work month to month. You stay with us only as long as it adds value.' },
         { q: 'How soon will I see results?', a: 'It depends on your starting point, but the plan is designed to achieve fast, visible improvements in the first few weeks.' },
         { q: 'Do you work with small businesses and freelancers?', a: 'Yes. That is exactly our focus: freelancers, entrepreneurs, and small businesses that want to get organized and grow.' },
-        { q: 'What are the sessions like?', a: 'We like to start with a coffee in person if we are in the same city. When that is not possible, we start by video call. The rest of the accompaniment is online, with follow-up between sessions and, depending on the plan, WhatsApp support.' }
+        { q: 'What are the meetings like?', a: 'We like to start with a coffee in person if we are in the same city. When that is not possible, we start by video call. The rest of the accompaniment is online, with follow-up between meetings and, depending on the plan, WhatsApp support.' }
       ]
+    },
+    testimonials: {
+      tag: 'WHAT THEY SAY',
+      title: 'Those who already build with us.',
+      items: [
+        {
+          quote: 'Kairos helped me understand that the problem wasn\'t my business — it was that I didn\'t know who I was as a leader. From there, everything changed.',
+          name: 'Carolina M.',
+          role: 'Founder, creative studio',
+          initials: 'CM',
+        },
+        {
+          quote: 'They didn\'t bring a generic plan. They sat with us, understood our culture, and built the strategy from the inside.',
+          name: 'Andrés R.',
+          role: 'Operations director, tech SMB',
+          initials: 'AR',
+        },
+        {
+          quote: 'The combination of coaching and technology is what makes them different. They don\'t just tell you what to do — they build it with you.',
+          name: 'Laura P.',
+          role: 'Independent consultant',
+          initials: 'LP',
+        },
+      ],
     },
     footer: {
       tagline: 'Purpose-driven studio. We build with intention — from identity, not from pressure.',
@@ -466,12 +551,11 @@ export const content = {
       links: [
         { label: 'Services', href: '/en/#servicios' },
         { label: 'Support', href: '/en/#precios' },
-        { label: 'About Us', href: '/en/about-us' },
-        { label: 'Blog', href: '/blog' }
+        { label: 'About Us', href: '/en/about-us' }
       ],
       legalLinks: [
-        { label: 'Legal notice', href: '/aviso-legal' },
-        { label: 'Privacy policy', href: '/privacidad' }
+        { label: 'Legal notice', href: '/en/legal-notice' },
+        { label: 'Privacy policy', href: '/en/privacy' }
       ]
     },
     about: {

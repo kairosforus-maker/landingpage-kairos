@@ -1,0 +1,276 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].manifesto;
+---
+
+<section class="manifesto section-padding">
+  <div class="manifesto-inner">
+    <div class="manifesto-heading anim-fade-up">
+      <span class="tag-subtitle">{t.tag}</span>
+      <span class="heading-rule" aria-hidden="true"></span>
+      <h2 class="manifesto-title">
+        <span class="manifesto-title-line">{t.title}</span>
+        <span class="manifesto-title-accent">{t.titleAccent}</span>
+      </h2>
+      <p class="manifesto-intro">{t.intro}</p>
+    </div>
+
+    <div class="principles anim-fade-up anim-delay-2">
+      <div class="principle-column principle-column--not">
+        <div class="principle-heading">
+          <span class="principle-mark principle-mark--circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="presentation"><path d="M7 7l10 10M17 7L7 17" /></svg>
+          </span>
+          <h3>{t.notTitle}</h3>
+        </div>
+        <div class="principle-list">
+          {t.notItems.map((item: { title: string; desc: string }, i: number) => (
+            <article class={`principle-item anim-fade-up anim-delay-${i + 3}`}>
+              <span class="principle-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation"><path d="M5 5l14 14M19 5L5 19" /></svg>
+              </span>
+              <div>
+                <h4>{item.title}</h4>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="principle-axis" aria-hidden="true">
+        <span class="axis-line"></span>
+        <img class="axis-logo" src="/logo-isotipo.png" alt="" />
+        <span class="axis-line"></span>
+      </div>
+
+      <div class="principle-column principle-column--believe">
+        <div class="principle-heading">
+          <span class="principle-mark principle-mark--circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="presentation"><path d="m5 12 4 4L19 6" /></svg>
+          </span>
+          <h3>{t.believeTitle}</h3>
+        </div>
+        <div class="principle-list">
+          {t.believeItems.map((item: { title: string; desc: string }, i: number) => (
+            <article class={`principle-item anim-fade-up anim-delay-${i + 3}`}>
+              <span class="principle-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation"><path d="m5 12 4 4L19 6" /></svg>
+              </span>
+              <div>
+                <h4>{item.title}</h4>
+                <p>{item.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="manifesto-footer anim-fade-up anim-delay-5">
+      <p>{t.footer}</p>
+      <p class="manifesto-footer-accent">{t.footerAccent}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto {
+    background-color: #0b0b0b;
+    color: var(--color-white);
+  }
+
+  .manifesto-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .manifesto-heading {
+    max-width: 720px;
+    text-align: center;
+  }
+
+  .manifesto .tag-subtitle {
+    color: var(--color-primary);
+    display: block;
+  }
+
+  .heading-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--color-primary);
+    display: block;
+    margin: 1.35rem auto 1.8rem;
+  }
+
+  .manifesto-title {
+    font-size: clamp(2.35rem, 4vw, 3.7rem);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+    color: var(--color-white);
+    text-wrap: balance;
+  }
+
+  .manifesto-title-line,
+  .manifesto-title-accent {
+    display: block;
+  }
+
+  .manifesto-title-accent {
+    color: var(--color-primary);
+  }
+
+  .manifesto-intro {
+    max-width: 55ch;
+    margin: 1.4rem auto 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.75rem);
+    width: 100%;
+    max-width: 1040px;
+    align-items: stretch;
+  }
+
+  .principle-column {
+    min-width: 0;
+  }
+
+  .principle-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    min-height: 52px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  }
+
+  .principle-heading h3 {
+    padding-top: 0.45rem;
+    font-size: 0.83rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .principle-mark {
+    color: var(--color-primary);
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .principle-mark--circle {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .principle-mark svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+  }
+
+  .principle-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .principle-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.25rem 0 1.15rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .principle-item h4 {
+    margin: -0.1rem 0 0.35rem;
+    color: var(--color-white);
+    font-size: clamp(1rem, 1.55vw, 1.18rem);
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .principle-item p {
+    max-width: 38ch;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .principle-axis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .axis-line {
+    width: 1px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .axis-logo {
+    width: 44px;
+    height: auto;
+    display: block;
+    opacity: 0.95;
+  }
+
+  .manifesto-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    padding-top: 1.5rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .manifesto-footer-accent {
+    margin-top: 0.35rem;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 760px) {
+    .manifesto-inner {
+      gap: 3rem;
+    }
+
+    .principles {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .principle-axis {
+      display: none;
+    }
+
+    .principle-column--believe {
+      padding-top: 0.5rem;
+    }
+  }
+</style>

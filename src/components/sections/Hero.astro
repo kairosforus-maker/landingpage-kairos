@@ -4,179 +4,195 @@ import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].hero;
+
+const titleParts = t.title.split(t.highlight);
 ---
 
-<section class="hero section-padding">
-  <div class="hero-container">
+<section class="hero" style={`background-image: url('/backgorund.webp');`}>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
     <div class="hero-content">
-      <span class="tag-subtitle">{t.tag}</span>
-      <h1 class="hero-title">{t.title}</h1>
-      <p class="hero-text">{t.desc}</p>
-
-      <div class="hero-actions">
-        <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="custom" class="btn-outline-white">
+      <span class="hero-tag hero-anim hero-anim-1">{t.tag}</span>
+      <h1 class="hero-title hero-anim hero-anim-2">
+        {titleParts[0]}<span class="hero-hl">{t.highlight}</span>{titleParts[1] || ''}
+      </h1>
+      <p class="hero-desc hero-anim hero-anim-3">{t.desc}</p>
+      <div class="hero-actions hero-anim hero-anim-4">
+        <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="primary">
           {t.btnTalk}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="margin-left:6px;display:inline-block;vertical-align:middle;">
+            <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </Button>
-        <Button href="#proceso" variant="primary">
-          {t.btnExplore}
-        </Button>
+        <button class="btn-secondary" onclick="document.getElementById('proceso')?.scrollIntoView({behavior:'smooth'})">
+          <span class="btn-arrow">→</span> {t.btnCta}
+        </button>
       </div>
-    </div>
-
-    <!-- Image area with diagonal clip -->
-    <div class="hero-image-wrapper">
-      <div class="hero-image-diagonal">
-        <!-- TODO: Reemplazar con foto real del equipo o sesión -->
-        <img
-          src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
-          alt="Equipo trabajando con propósito"
-          class="hero-image"
-          loading="eager"
-        />
-      </div>
-      <div class="hero-diagonal-line"></div>
     </div>
   </div>
+
 </section>
 
 <style>
   .hero {
-    background-color: var(--color-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
   }
 
-  .hero-container {
-    max-width: 1400px;
-    margin: 0 auto;
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.2) 70%, transparent 100%),
+      linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 40%);
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    flex: 1;
     display: flex;
     align-items: center;
+    max-width: 1400px;
     width: 100%;
-    position: relative;
-    min-height: 520px;
+    margin: 0 auto;
+    padding: 6rem 4rem 4rem;
   }
 
   .hero-content {
-    flex: 1 1 58%;
-    max-width: 760px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    z-index: 2;
-    padding-right: 2rem;
+    max-width: 580px;
   }
 
-  .tag-subtitle {
+  .hero-tag {
     font-family: var(--font-heading);
     color: var(--color-primary);
-    font-size: 1.125rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: block;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.75rem, 5vw, 4.25rem);
     color: var(--color-white);
-    line-height: 1.05;
+    line-height: 1.08;
     margin-bottom: 1.5rem;
-    text-align: left;
-    max-width: 760px;
-    width: 100%;
+    font-weight: 700;
   }
 
-  .hero-text {
-    font-size: clamp(1.06rem, 2vw, 1.25rem);
-    color: #E8E4DF;
-    max-width: 480px;
-    line-height: 1.6;
+  .hero-hl {
+    color: var(--color-primary);
+  }
+
+  .hero-desc {
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 460px;
     margin-bottom: 2.5rem;
   }
 
   .hero-actions {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
+    align-items: center;
     flex-wrap: wrap;
   }
 
-  /* Image with diagonal clip */
-  .hero-image-wrapper {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    z-index: 1;
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    padding: 0.8rem 0;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: color 0.3s;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
-  .hero-image-diagonal {
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
-    overflow: hidden;
+  .btn-secondary:hover {
+    color: var(--color-white);
   }
 
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .btn-arrow {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    transition: transform 0.3s;
   }
 
-  .hero-diagonal-line {
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(18% 0, 18.5% 0, 0.5% 100%, 0% 100%);
-    background: var(--color-primary);
-    z-index: 2;
+  .btn-secondary:hover .btn-arrow {
+    transform: translateX(3px);
   }
+
+  /* Animations */
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-anim {
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease forwards;
+  }
+  .hero-anim-1 { animation-delay: 0.1s; }
+  .hero-anim-2 { animation-delay: 0.22s; }
+  .hero-anim-3 { animation-delay: 0.36s; }
+  .hero-anim-4 { animation-delay: 0.5s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim { opacity: 1; animation: none; }
+  }
+
 
   @media (max-width: 992px) {
-    .hero-container {
+    .hero-inner {
+      padding: 6rem 2rem 3rem;
+    }
+
+    .hero-overlay {
+      background:
+        linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.3) 100%);
+    }
+
+    .hero-bar {
+      padding: 1rem 2rem;
+    }
+
+    .hero-bar-inner {
       flex-direction: column;
-      min-height: auto;
-    }
-
-    .hero-content {
-      padding-right: 0;
-      align-items: center;
+      gap: 0.75rem;
       text-align: center;
     }
 
-    .hero-title {
-      text-align: center;
-    }
-
-    .hero-text {
-      text-align: center;
-    }
-
-    .hero-image-wrapper {
-      position: relative;
-      width: 100%;
-      height: 360px;
-      margin-top: 3rem;
-    }
-
-    .hero-image-diagonal {
-      clip-path: polygon(0 12%, 100% 0, 100% 100%, 0% 100%);
-      border-radius: 20px;
-    }
-
-    .hero-diagonal-line {
-      clip-path: polygon(0 12%, 100% 0, 100% 0.8%, 0 12.8%);
-    }
+    .hero-bar-left { justify-content: center; }
   }
 
   @media (max-width: 600px) {
-    .hero-image-wrapper {
-      height: 280px;
+    .hero-inner {
+      padding: 5rem 1.25rem 2.5rem;
+    }
+
+    .hero-bar {
+      padding: 1rem 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 8vw, 3rem);
     }
   }
 </style>

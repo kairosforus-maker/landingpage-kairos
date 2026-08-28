@@ -1,0 +1,149 @@
+---
+import { getLangFromUrl, content } from '../../i18n/data';
+
+const lang = getLangFromUrl(Astro.url);
+const t = content[lang].testimonials;
+---
+
+<section class="testimonials section-padding">
+  <div class="testimonials-inner">
+    <div class="testimonials-header anim-fade-up">
+      <span class="tag-subtitle">{t.tag}</span>
+      <h2 class="section-title">{t.title}</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      {t.items.map((item, i) => (
+        <div class={`testimonial-card anim-fade-up anim-delay-${i + 1}`}>
+          <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+          <blockquote class="testimonial-quote">{item.quote}</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">{item.initials}</div>
+            <div class="testimonial-info">
+              <span class="testimonial-name">{item.name}</span>
+              <span class="testimonial-role">{item.role}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background-color: var(--color-white);
+  }
+
+  .testimonials-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .testimonials-header .section-title {
+    color: var(--color-dark);
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .testimonials-grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .testimonial-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 380px;
+    background: var(--color-light);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 20px;
+    padding: 2.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 77, 0, 0.45);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .testimonial-quote-icon {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.4;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .testimonial-quote {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-dark);
+    font-style: italic;
+    flex: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-gray-light);
+  }
+
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .testimonial-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-name {
+    color: var(--color-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .testimonial-role {
+    color: var(--color-gray);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .testimonial-card {
+      max-width: 100%;
+    }
+  }
+</style>

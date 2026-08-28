@@ -1,333 +1,240 @@
 ---
-import Button from '../ui/Button.astro';
 import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].services;
-const exampleLabel = lang === 'es' ? 'Ejemplo' : 'Example';
 
-const serviceImages = [
-  {
-    src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=800&q=80',
-    alt: 'Sesión de coaching personal',
-    label: lang === 'es' ? 'Sesión 1:1 · Coaching personal' : '1:1 Session · Personal coaching',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80',
-    alt: 'Taller grupal de estrategia',
-    label: lang === 'es' ? 'Taller grupal · Equipos alineados' : 'Group workshop · Aligned teams',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
-    alt: 'Desarrollo web con propósito',
-    label: lang === 'es' ? 'Desarrollo web · Plataformas' : 'Web dev · Platforms',
-  },
-];
+const serviceKeys = ['builder', 'digital', 'linkedin'] as const;
+const prefix = lang === 'es' ? '' : '/en';
+const hrefs = {
+  builder: `${prefix}/servicios/builder`,
+  digital: `${prefix}/servicios/digital`,
+  linkedin: `${prefix}/servicios/linkedin`,
+};
 
-const services = [
-  { data: t.builder, variant: 'light', image: serviceImages[0] },
-  { data: t.community, variant: 'dark', image: serviceImages[1] },
-  { data: t.web, variant: 'light', image: serviceImages[2] },
-];
+const icons = {
+  builder: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="10" height="10" rx="2"/><rect x="15" y="3" width="10" height="10" rx="2"/><rect x="3" y="15" width="10" height="10" rx="2"/></svg>`,
+  digital: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="20" height="18" rx="2.5"/><line x1="4" y1="21" x2="24" y2="21"/><line x1="14" y1="21" x2="14" y2="25"/><line x1="10" y1="25" x2="18" y2="25"/></svg>`,
+  linkedin: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="22" height="22" rx="4"/><text x="9" y="20" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="sans-serif">in</text></svg>`,
+};
+
+const services = serviceKeys.map(key => ({
+  data: t[key],
+  href: hrefs[key],
+  icon: icons[key],
+}));
+
+const titleParts = t.title.split(t.titleHighlight);
 ---
 
-<section id="servicios" class="services section-padding">
-  <div class="services-header">
-    <span class="tag-subtitle">{t.tag}</span>
-    <h2 class="section-title">{t.title}</h2>
-    <p class="section-text">{t.desc}</p>
-  </div>
+<section id="servicios" class="services">
+  <div class="services-inner">
+    <div class="services-header anim-fade-up">
+      <span class="services-tag">{t.tag}</span>
+      <h2 class="services-title">
+        {titleParts[0]}<span class="services-hl">{t.titleHighlight}</span>{titleParts[1] || ''}
+      </h2>
+      <p class="services-desc">{t.desc}</p>
+    </div>
 
-  <div class="services-grid">
-    {services.map((s) => (
-      <div class={`service-card ${s.variant}-card`}>
-        <!-- Image area -->
-        <div class={`card-image-area ${s.variant}-image-area`}>
-          <img
-            src={s.image.src}
-            alt={s.image.alt}
-            class="card-image"
-            loading="lazy"
-          />
-          <span class="card-image-label">{s.image.label}</span>
-        </div>
-        <!-- Organic curve transition -->
-        <div class={`card-curve ${s.variant}-curve`}></div>
-        <!-- Content -->
-        <div class="card-body">
-          <div class="card-number">{s.data.number}</div>
-          <h3 class="card-title">{s.data.title}</h3>
-          <p class="card-subtitle">{s.data.subtitle}</p>
-          <p class="card-text">{s.data.desc}</p>
-
-          <div class={`card-example ${s.variant}-example`}>
-            <span class="example-label">{exampleLabel}</span>
-            <p>{s.data.example}</p>
-          </div>
-
-          <div class="tags-container">
-            {s.data.tags.map(tag => (
-              <span class={`tag tag-${s.variant}`}>{tag}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-
-  <div class="services-action">
-    <Button href="https://api.whatsapp.com/send?phone=573133024941&text=Hola%20Kairos%2C%20estoy%20buscando%20claridad%20en%20mi%20siguiente%20paso.%20Me%20gustar%C3%ADa%20conversar%20con%20ustedes." external variant="primary">
-      {t.community.btn}
-    </Button>
+    <div class="services-grid">
+      {services.map((s, i) => (
+        <a href={s.href} class={`service-block anim-fade-up anim-delay-${i + 1}`}>
+          <div class="service-number">{s.data.number}</div>
+          <div class="service-icon" set:html={s.icon} />
+          <h3 class="service-name">{s.data.title}</h3>
+          <div class="service-divider"></div>
+          <p class="service-text">{s.data.desc}</p>
+          <span class="service-link">
+            {t.viewMore}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
   .services {
-    background-color: var(--color-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4rem;
+    background: #fafafa;
+    padding: 7rem 4rem;
+  }
+
+  .services-inner {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .services-header {
-    text-align: center;
-    max-width: 800px;
+    max-width: 640px;
+    margin-bottom: 5rem;
   }
 
-  .tag-subtitle {
+  .services-tag {
     font-family: var(--font-heading);
     color: var(--color-primary);
-    font-size: 1.125rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     display: block;
   }
 
-  .section-title {
-    font-size: clamp(2.18rem, 4vw, 3rem);
-    margin-bottom: 1.5rem;
-    color: var(--color-white);
-  }
-
-  .section-text {
-    font-size: clamp(1.06rem, 2vw, 1.25rem);
-    color: #a0a0a0;
-    line-height: 1.6;
-  }
-
-  .services-grid {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  .service-card {
-    flex: 1;
-    min-width: 320px;
-    border-radius: 24px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: none;
-    border: 2px solid transparent;
-  }
-
-  .service-card:hover {
-    transform: none;
-  }
-
-  .light-card {
-    background-color: var(--color-white);
-  }
-
-  .dark-card {
-    background-color: #0A0A0A;
-    color: var(--color-light);
-  }
-
-  /* Image area */
-  .card-image-area {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-  }
-
-  .card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-
-  .service-card:hover .card-image {
-    transform: none;
-  }
-
-  .card-image-label {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(8px);
-    color: var(--color-white);
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 6px 14px;
-    border-radius: 99px;
-  }
-
-  /* Organic curve */
-  .card-curve {
-    height: 32px;
-    margin-top: -32px;
-    position: relative;
-    z-index: 1;
-    border-radius: 32px 32px 0 0;
-  }
-
-  .light-curve {
-    background: var(--color-white);
-  }
-
-  .dark-curve {
-    background: #0A0A0A;
-  }
-
-  /* Card body */
-  .card-body {
-    padding: 1rem 2.5rem 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex: 1;
-  }
-
-  .card-number {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--color-primary);
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-title {
-    font-size: 2.25rem;
+  .services-title {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    color: var(--color-dark, #0a0a0a);
+    line-height: 1.12;
+    margin-bottom: 1.25rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
   }
 
-  .light-card .card-title {
-    color: var(--color-dark);
-  }
-  .dark-card .card-title {
-    color: var(--color-white);
-  }
-
-  .card-subtitle {
-    font-size: 1rem;
-    font-weight: 400;
+  .services-hl {
     color: var(--color-primary);
-    margin-bottom: 2rem;
   }
 
-  .card-text {
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+  .services-desc {
     font-size: 1.05rem;
-    max-width: 90%;
+    color: #666;
+    line-height: 1.65;
+    max-width: 520px;
   }
 
-  .card-example {
-    text-align: left;
-    border-radius: 14px;
-    padding: 1.1rem 1.35rem;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 95%;
-    border-left: 3px solid var(--color-primary);
+  /* Grid — 3 columns editorial */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid #e0e0e0;
   }
 
-  .light-example {
-    background-color: #FAF6F2;
+  .service-block {
+    padding: 3rem 2.5rem 3rem 0;
+    border-right: 1px solid #e0e0e0;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: background 0.3s;
   }
 
-  .dark-example {
-    background-color: rgba(255, 77, 0, 0.07);
+  .service-block:last-child {
+    border-right: none;
+    padding-right: 0;
   }
 
-  .example-label {
-    display: block;
+  .service-block:first-child {
+    padding-left: 0;
+  }
+
+  .service-block:nth-child(2) {
+    padding-left: 2.5rem;
+  }
+
+  .service-block:nth-child(3) {
+    padding-left: 2.5rem;
+  }
+
+  .service-number {
     font-family: var(--font-heading);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 300;
     color: var(--color-primary);
-    margin-bottom: 0.4rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
   }
 
-  .card-example p {
-    font-size: 0.98rem;
-    line-height: 1.55;
-    font-style: italic;
+  .service-icon {
+    color: var(--color-primary);
+    margin-bottom: 1.25rem;
+    opacity: 0.8;
   }
 
-  .light-example p {
-    color: #444;
+  .service-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-dark, #0a0a0a);
+    margin-bottom: 0;
+    line-height: 1.2;
   }
 
-  .dark-example p {
-    color: #D8D8D8;
+  .service-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--color-primary);
+    margin: 1rem 0;
+    opacity: 0.7;
+    transition: width 0.3s;
   }
 
-  .light-card .card-text {
-    color: #222;
-  }
-  .dark-card .card-text {
-    color: #FFF;
+  .service-block:hover .service-divider {
+    width: 48px;
   }
 
-  .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    max-width: 95%;
-  }
-
-  .tag {
-    padding: 0.4rem 1.25rem;
-    border: 1px solid;
-    border-radius: 99px;
+  .service-text {
     font-size: 0.95rem;
-    font-weight: 400;
+    color: #666;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    flex: 1;
   }
 
-  .tag-light {
-    border-color: #333;
-    color: #333;
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+    margin-top: auto;
   }
 
-  .tag-dark {
-    border-color: #FFF;
-    color: #FFF;
+  .service-link svg {
+    transition: transform 0.3s;
   }
 
-  .services-action {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+  .service-block:hover .service-link svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 900px) {
+    .services {
+      padding: 5rem 2rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-block {
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 2.5rem 0;
+    }
+
+    .service-block:last-child {
+      border-bottom: none;
+    }
+
+    .service-block:nth-child(2),
+    .service-block:nth-child(3) {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .services {
+      padding: 4rem 1.25rem;
+    }
+
+    .services-header {
+      margin-bottom: 3rem;
+    }
   }
 </style>

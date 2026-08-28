@@ -8,13 +8,13 @@ const manifesto = content[lang].about.manifesto;
 
 <section class="about-philosophy section-padding">
   <div class="philosophy-container">
-    <div class="philosophy-text-col">
+    <div class="philosophy-text-col anim-slide-left">
       <span class="tag-subtitle">{t.tag}</span>
       <h2 class="section-title">{t.title}</h2>
       <p class="section-text">{t.desc1}</p>
       <p class="section-text highlight-text">{t.desc2}</p>
     </div>
-    <div class="philosophy-image-col">
+    <div class="philosophy-image-col anim-slide-right">
       <!-- Imagen temporal (Unsplash, CC0). Reemplazar por imagen definitiva de marca. -->
       <img
         class="philosophy-image"
@@ -25,7 +25,7 @@ const manifesto = content[lang].about.manifesto;
     </div>
   </div>
 
-  <div class="manifesto-banner">
+  <div class="manifesto-banner anim-fade-up">
     <blockquote>{manifesto}</blockquote>
   </div>
 </section>
