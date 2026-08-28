@@ -603,4 +603,280 @@ const schema = schemaType === 'ProfessionalService'
 			transition: none;
 		}
 	}
+
+	/* ── Responsive foundation ── */
+	@media (max-width: 900px) {
+		body .hero-inner,
+		body .services,
+		body .section-padding {
+			padding-left: clamp(1.25rem, 4vw, 2rem);
+			padding-right: clamp(1.25rem, 4vw, 2rem);
+		}
+
+		body .hero {
+			min-height: 100svh;
+		}
+
+		body .hero-content,
+		body .hero-desc,
+		body .services-header,
+		body .process-header,
+		body .faq-header,
+		body .cta-inner {
+			max-width: 100%;
+		}
+
+		body .plans-grid,
+		body .testimonials-grid {
+			width: 100%;
+		}
+
+		body .testimonial-card {
+			min-width: 0;
+			width: 100%;
+		}
+
+		body .cta-methods-list {
+			width: 100%;
+		}
+
+		body .cta-method {
+			flex: 1 1 220px;
+		}
+
+		/* Service heroes: stack content before the visual and avoid clipped grids. */
+		body .builder-hero-grid,
+		body .digital-hero-grid,
+		body .ln-hero-grid {
+			grid-template-columns: minmax(0, 1fr);
+			gap: clamp(2rem, 6vw, 3.5rem);
+		}
+
+		body .builder-hero,
+		body .digital-hero,
+		body .ln-hero {
+			min-height: auto;
+		}
+
+		body .builder-hero-grid,
+		body .digital-hero-grid,
+		body .ln-hero-grid {
+			padding-top: 5.5rem;
+			padding-bottom: 4rem;
+		}
+
+		body .digital-globe-stage {
+			min-height: clamp(360px, 62vw, 430px);
+		}
+
+		body .globe-stage-planet {
+			min-height: clamp(285px, 48vw, 350px);
+		}
+
+		body .globe-stage-planet canvas {
+			width: min(470px, 100%) !important;
+			height: auto !important;
+			aspect-ratio: 1 / 1;
+		}
+
+		body .ln-offer-grid,
+		body .ln-plans,
+		body .ln-who-grid,
+		body .ln-hero-grid,
+		body .builder-section-intro,
+		body .builder-system-head,
+		body .builder-process-head,
+		body .builder-areas-head {
+			min-width: 0;
+		}
+	}
+
+	@media (max-width: 600px) {
+		body .hero-inner {
+			padding-top: 5.25rem;
+			padding-bottom: 3rem;
+		}
+
+		body .hero-title {
+			font-size: clamp(2.25rem, 11vw, 3.25rem);
+			line-height: 1.04;
+			text-wrap: balance;
+		}
+
+		body .hero-actions,
+		body .cta-actions,
+		body .digital-actions,
+		body .builder-actions {
+			align-items: stretch;
+			flex-direction: column;
+			width: 100%;
+		}
+
+		body .hero-actions > *,
+		body .cta-actions > *,
+		body .digital-actions > *,
+		body .builder-actions > * {
+			width: 100%;
+			max-width: 100%;
+			justify-content: center;
+			text-align: center;
+		}
+
+		body .btn-secondary,
+		body .digital-text-link {
+			justify-content: center;
+		}
+
+		body .services,
+		body .section-padding {
+			padding-top: 4.25rem;
+			padding-bottom: 4.25rem;
+		}
+
+		body .services-title,
+		body .section-title,
+		body .faq .section-title,
+		body .cta .section-title {
+			font-size: clamp(2rem, 10vw, 2.75rem);
+			text-wrap: balance;
+		}
+
+		body .service-block {
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+		}
+
+		body .steps-row::before {
+			left: 1.25rem;
+		}
+
+		body .step-content {
+			padding-left: 4rem;
+		}
+
+		body .plan-card {
+			max-width: none;
+			padding: 2rem 1.35rem;
+		}
+
+		body .plan-features li,
+		body .faq-item summary,
+		body .faq-answer {
+			font-size: .95rem;
+		}
+
+		body .faq-item {
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+
+		body .testimonial-card {
+			padding: 2rem 1.25rem 1.5rem;
+		}
+
+		body .digital-wrap,
+		body .builder-wrap,
+		body .ln-wrap {
+			padding-left: 1.25rem;
+			padding-right: 1.25rem;
+		}
+
+		body .digital-hero-grid,
+		body .builder-hero-grid,
+		body .ln-hero-grid {
+			padding-top: 4.75rem;
+			padding-bottom: 3rem;
+		}
+
+		body .digital-hero-title,
+		body .builder-hero-title,
+		body .ln-hero h1 {
+			font-size: clamp(2.35rem, 11vw, 3.6rem);
+			max-width: 100%;
+			text-wrap: balance;
+			overflow-wrap: break-word;
+		}
+
+		body .builder-hero-copy,
+		body .digital-hero-grid > *,
+		body .ln-hero-grid > * {
+			min-width: 0;
+		}
+
+		body .digital-globe-stage {
+			min-height: 350px;
+			padding: .9rem;
+		}
+
+		body .globe-stage-top,
+		body .globe-stage-foot {
+			font-size: .55rem;
+			letter-spacing: .08em;
+		}
+
+		body .globe-stage-planet {
+			min-height: 285px;
+			margin: 0;
+		}
+
+		body .globe-stage-foot {
+			right: .9rem;
+			bottom: .9rem;
+			left: .9rem;
+			padding-top: .75rem;
+		}
+
+		body .digital-section-head,
+		body .builder-section-intro,
+		body .builder-system-head,
+		body .builder-process-head,
+		body .builder-areas-head {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1.75rem;
+		}
+
+		body .digital-timeline {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.75rem 1rem;
+		}
+
+		body .offer-row,
+		body .area-row {
+			grid-template-columns: 32px minmax(0, 1fr) 20px;
+			gap: .75rem;
+		}
+
+		body .offer-row h3,
+		body .area-row h3 {
+			font-size: 1.08rem;
+		}
+
+		body .offer-row p,
+		body .area-row p {
+			font-size: .82rem;
+		}
+
+		body .ln-route,
+		body .builder-timeline {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		body .bar-row {
+			grid-template-columns: minmax(0, 1fr) 72px;
+		}
+
+		body .bar-lab {
+			grid-column: 1 / -1;
+			text-align: left;
+		}
+
+		body .data-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		body .ln-route-copy p,
+		body .timeline-step p {
+			max-width: none;
+		}
+	}
 </style>

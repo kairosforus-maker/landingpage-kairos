@@ -1,5 +1,5 @@
 import { cn } from '../../lib/utils';
-import { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 
 interface GlobeProps {
@@ -222,5 +222,13 @@ export function Component({
     rotation.current.x = Math.max(-1, Math.min(1, drag.current.x + (event.clientY - drag.current.startY) * 0.005));
   };
 
-  return <canvas ref={canvasRef} className={cn('interactive-globe-canvas', className)} style={{ width: size, height: size }} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={() => { drag.current.active = false; }} aria-label="Globo interactivo de soluciones digitales Kairos" />;
+  return React.createElement('canvas', {
+    ref: canvasRef,
+    className: cn('interactive-globe-canvas', className),
+    style: { width: size, height: size },
+    onPointerDown,
+    onPointerMove,
+    onPointerUp: () => { drag.current.active = false; },
+    'aria-label': 'Globo interactivo de soluciones digitales Kairos',
+  });
 }
