@@ -16,11 +16,11 @@ export const content = {
       cta: 'Hablemos',
     },
     hero: {
-      tag: 'IDENTIDAD · ESTRATEGIA · TRANSFORMACIÓN',
+      tag: 'IDENTIDAD · PROPOSITO · ESTRATEGIA',
       title: 'Tu identidad es la estrategia.',
       highlight: 'estrategia.',
       desc: 'Ayudamos a líderes y organizaciones a descubrir quiénes son, construir una dirección clara y convertir esa identidad en marcas, equipos y sistemas con impacto.',
-      btnTalk: 'Agenda una conversación',
+      btnTalk: 'Conversemos',
       btnExplore: 'Descubre cómo',
       btnCta: 'Conoce nuestro enfoque',
     },
@@ -197,13 +197,20 @@ export const content = {
           photo: '/foto_geovani.png',
           linkedin: 'https://www.linkedin.com/in/geovanipg/'
         },
+        {
+          name: 'Fernando Barrera',
+          role: 'Marketing, brand y reputación digital',
+          desc: 'Convierte experiencia, criterio y conocimiento del mercado en posicionamiento y presencia digital.',
+          photo: '/foto_fernando.jpeg',
+          linkedin: 'https://www.linkedin.com/in/fernandobarrerahe/'
+        },
       ]
     },
     cta: {
       tag: 'EL MOMENTO CORRECTO',
       title: 'Construye desde el momento correcto.',
       desc: 'Si estás definiendo tu identidad, tu marca o la próxima etapa de tu organización — hablemos. Primera conversación sin compromiso.',
-      btnTalk: 'Agenda una conversación',
+      btnTalk: 'Conversemos',
       slogan: 'Kαiros · The right moment, built with intention.',
       methodsTitle: 'O escríbenos directamente',
       methods: [
@@ -291,12 +298,13 @@ export const content = {
         }
       },
       values: {
-        tag: 'NUESTROS PILARES',
-        title: 'Cómo construimos.',
+        tag: 'NUESTRA FILOSOFÍA',
+        title: 'Ser → Hacer → Tener',
+        desc: 'Primero trabajamos en las personas. Después construimos con herramientas. Finalmente buscamos resultados de impacto.',
         items: [
-          { title: 'Intención antes que velocidad', desc: 'Las mejores estrategias toman tiempo para madurar. Preferimos dar pasos firmes.' },
-          { title: 'Sistemas, no silos', desc: 'La estrategia no vive en un área aislada; vive en cómo todo se conecta.' },
-          { title: 'Impacto que permanece', desc: 'Lo que construimos hoy debe tener un sentido profundo que trascienda el instante.' }
+          { title: 'SER', meta: 'Coaching · Propósito · Identidad · Liderazgo · Mentalidad · Capacidades', desc: 'Primero las personas. Sin claridad y liderazgo, ninguna herramienta funciona.' },
+          { title: 'HACER', meta: 'Estrategia · Herramientas · Proyectos · Procesos · Ejecución', desc: 'Llevamos esas capacidades a la acción, con método y manos a la obra.' },
+          { title: 'TENER', meta: 'Impacto · Reputación · Crecimiento · Indicadores · Capacidad instalada', desc: 'Buscamos resultados medibles que se sostienen dentro de la organización.' }
         ]
       }
     }
@@ -311,7 +319,7 @@ export const content = {
       cta: "Let's talk",
     },
     hero: {
-      tag: 'COACHING · STRATEGY · TECHNOLOGY',
+      tag: 'IDENTITY · STRATEGY · TECHNOLOGY',
       title: 'Your identity is the strategy.',
       highlight: 'strategy.',
       desc: 'We help leaders and organizations build brand, team, and platform — all from who you are, not from pressure.',
@@ -492,6 +500,13 @@ export const content = {
           photo: '/foto_geovani.png',
           linkedin: 'https://www.linkedin.com/in/geovanipg/'
         },
+        {
+          name: 'Fernando Barrera',
+          role: 'Marketing, brand & digital reputation',
+          desc: 'Turns experience, judgment, and market knowledge into positioning and digital presence.',
+          photo: '/foto_fernando.jpeg',
+          linkedin: 'https://www.linkedin.com/in/fernandobarrerahe/'
+        },
       ]
     },
     cta: {
@@ -586,12 +601,13 @@ export const content = {
         }
       },
       values: {
-        tag: 'OUR PILLARS',
-        title: 'How we build.',
+        tag: 'OUR PHILOSOPHY',
+        title: 'Be → Do → Have',
+        desc: 'We start with people. Then we build with tools. Finally, we pursue results that create impact.',
         items: [
-          { title: 'Intention before speed', desc: 'The best strategies take time to mature. We prefer taking solid steps.' },
-          { title: 'Systems, not silos', desc: 'Strategy does not live in an isolated area; it lives in how everything connects.' },
-          { title: 'Impact that remains', desc: 'What we build today must have a deep meaning that transcends the moment.' }
+          { title: 'BE', meta: 'Coaching · Purpose · Identity · Leadership · Mindset · Capabilities', desc: 'People first. Without clarity and leadership, no tool can work.' },
+          { title: 'DO', meta: 'Strategy · Tools · Projects · Processes · Execution', desc: 'We turn those capabilities into action, with method and hands-on work.' },
+          { title: 'HAVE', meta: 'Impact · Reputation · Growth · Indicators · Installed capacity', desc: 'We pursue measurable results that remain within the organization.' }
         ]
       }
     }

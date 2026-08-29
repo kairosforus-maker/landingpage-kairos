@@ -3,7 +3,6 @@ import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].about.philosophy;
-const manifesto = content[lang].about.manifesto;
 ---
 
 <section class="about-philosophy section-padding">
@@ -23,10 +22,6 @@ const manifesto = content[lang].about.manifesto;
         loading="lazy"
       />
     </div>
-  </div>
-
-  <div class="manifesto-banner anim-fade-up">
-    <blockquote>{manifesto}</blockquote>
   </div>
 </section>
 
@@ -80,30 +75,9 @@ const manifesto = content[lang].about.manifesto;
     display: block;
   }
 
-  .manifesto-banner {
-    max-width: 1000px;
-    margin: 6rem auto 0;
-    text-align: center;
-    padding: 4rem 2rem;
-    background-color: var(--color-dark);
-    border-radius: 20px;
-  }
-
-  .manifesto-banner blockquote {
-    font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    color: var(--color-white);
-    line-height: 1.4;
-    font-weight: 500;
-    font-style: italic;
-  }
-
   @media (max-width: 900px) {
     .philosophy-container {
       flex-direction: column;
-    }
-    .manifesto-banner {
-      margin-top: 4rem;
     }
   }
 </style>

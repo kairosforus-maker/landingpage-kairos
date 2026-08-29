@@ -111,9 +111,12 @@ import Button from '../../components/ui/Button.astro';
     <!-- CTA -->
     <section class="ln-cta section-padding">
       <div class="ln-wrap anim-fade-up" style="text-align:center">
-        <h2 class="ln-cta-title">Empieza por saber hacia dónde vas.</h2>
-        <p class="ln-cta-desc">Una conversación breve para entender tu situación y recomendarte el punto de partida correcto.</p>
-        <Button href="https://api.whatsapp.com/send?phone=573133024941&text=Hola%20Kairos%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20LinkedIn." external variant="primary">Solicitar diagnóstico</Button>
+        <h2 class="ln-cta-title">¿Tienes un reto?</h2>
+        <p class="ln-cta-desc">Cuéntanos qué quieres construir. Leemos cada mensaje y respondemos con una primera lectura, no con una plantilla.</p>
+        <div class="ln-cta-actions">
+          <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="primary">Cuéntanos qué quieres construir</Button>
+          <a class="ln-cta-secondary" href="https://api.whatsapp.com/send?phone=573133024941&text=Hola%20Kairos%2C%20quiero%20contarles%20mi%20reto." target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -772,6 +775,9 @@ import Button from '../../components/ui/Button.astro';
     font-size: 1.1rem;
     line-height: 1.6;
   }
+  .ln-cta-actions { display: flex; justify-content: center; align-items: center; gap: .9rem; flex-wrap: wrap; }
+  .ln-cta-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .8rem 1.25rem; border: 1px solid var(--color-gray-light); border-radius: 99px; color: var(--color-dark); font-family: var(--font-heading); font-size: .82rem; font-weight: 600; text-decoration: none; transition: border-color .25s ease, background-color .25s ease, color .25s ease; }
+  .ln-cta-secondary:hover { border-color: var(--color-dark); background: var(--color-dark); color: var(--color-white); }
 
   /* ---- RESPONSIVE ---- */
   @media (max-width: 920px) {
@@ -844,5 +850,9 @@ import Button from '../../components/ui/Button.astro';
   @media (max-width: 860px) {
     .ln-route-line::before { background: linear-gradient(var(--color-primary), rgba(255,77,0,.25)); }
     .ln-route-marker { box-shadow: 0 0 0 6px var(--color-white); }
+  }
+  @media (max-width: 600px) {
+    .ln-cta-actions { flex-direction: column; align-items: stretch; }
+    .ln-cta-actions > * { width: 100%; }
   }
 </style>

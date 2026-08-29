@@ -10,6 +10,7 @@ const t = content[lang].about.values;
     <div class="values-header anim-fade-up">
       <span class="tag-subtitle">{t.tag}</span>
       <h2 class="section-title">{t.title}</h2>
+      {'desc' in t && <p class="values-intro">{t.desc}</p>}
     </div>
 
     <div class="values-grid">
@@ -17,6 +18,7 @@ const t = content[lang].about.values;
         <div class={`value-card anim-fade-up anim-delay-${index + 1}`}>
           <span class="value-number">0{index + 1}</span>
           <h3 class="value-title">{item.title}</h3>
+          {'meta' in item && <p class="value-meta">{item.meta}</p>}
           <p class="value-desc">{item.desc}</p>
         </div>
       ))}
@@ -42,6 +44,14 @@ const t = content[lang].about.values;
   .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
     color: var(--color-dark);
+  }
+
+  .values-intro {
+    max-width: 620px;
+    margin: 1rem auto 0;
+    color: var(--color-gray);
+    font-size: 1.125rem;
+    line-height: 1.6;
   }
 
   .values-grid {
@@ -82,6 +92,15 @@ const t = content[lang].about.values;
     font-size: 1.5rem;
     color: var(--color-dark);
     margin-bottom: 1rem;
+  }
+
+  .value-meta {
+    margin: -0.25rem 0 1rem;
+    color: var(--color-gray);
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    letter-spacing: 0.03em;
   }
 
   .value-desc {

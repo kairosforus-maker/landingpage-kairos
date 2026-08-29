@@ -111,9 +111,12 @@ import Button from '../../../components/ui/Button.astro';
     <!-- CTA -->
     <section class="ln-cta section-padding">
       <div class="ln-wrap anim-fade-up" style="text-align:center">
-        <h2 class="ln-cta-title">Start by knowing where you're headed.</h2>
-        <p class="ln-cta-desc">A short conversation to understand your situation and recommend the right starting point.</p>
-        <Button href="https://api.whatsapp.com/send?phone=573133024941&text=Hi%20Kairos%2C%20I%27d%20like%20to%20request%20a%20LinkedIn%20diagnosis." external variant="primary">Request diagnosis</Button>
+        <h2 class="ln-cta-title">Do you have a challenge?</h2>
+        <p class="ln-cta-desc">Tell us what you want to build. We read every message and respond with an initial perspective, not a template.</p>
+        <div class="ln-cta-actions">
+          <Button href="https://cal.com/kairos4us/30min" onclick="event.preventDefault();" data-cal-link="kairos4us/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' variant="primary">Tell us what you want to build</Button>
+          <a class="ln-cta-secondary" href="https://api.whatsapp.com/send?phone=573133024941&text=Hi%20Kairos%2C%20I%27d%20like%20to%20tell%20you%20about%20my%20challenge." target="_blank" rel="noopener noreferrer">Write to us on WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -263,6 +266,9 @@ import Button from '../../../components/ui/Button.astro';
   .ln-cta { background: var(--color-white); }
   .ln-cta-title { font-family: 'Bricolage Grotesque', var(--font-heading), system-ui, sans-serif; font-size: clamp(1.8rem, 5vw, 3.2rem); font-weight: 800; max-width: 18ch; margin: 0 auto 1.4rem; color: var(--color-dark); line-height: 1.02; letter-spacing: -0.02em; }
   .ln-cta-desc { color: var(--color-gray); max-width: 46ch; margin: 0 auto 2.25rem; font-size: 1.1rem; line-height: 1.6; }
+  .ln-cta-actions { display: flex; justify-content: center; align-items: center; gap: .9rem; flex-wrap: wrap; }
+  .ln-cta-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .8rem 1.25rem; border: 1px solid var(--color-gray-light); border-radius: 99px; color: var(--color-dark); font-family: var(--font-heading); font-size: .82rem; font-weight: 600; text-decoration: none; transition: border-color .25s ease, background-color .25s ease, color .25s ease; }
+  .ln-cta-secondary:hover { border-color: var(--color-dark); background: var(--color-dark); color: var(--color-white); }
 
   @media (max-width: 920px) { .data-grid { grid-template-columns: repeat(2, 1fr); } .ln-quotes { grid-template-columns: 1fr; } }
   @media (max-width: 860px) { .ln-hero-grid, .ln-who-grid { grid-template-columns: 1fr; gap: 2.5rem; } .ln-plans { grid-template-columns: 1fr; } .bar-row { grid-template-columns: 120px 1fr 84px; gap: 0.6rem; } .bar-lab { font-size: 0.7rem; } .ln-offer-grid { grid-template-columns: 1fr; } .ln-plans-simple { grid-template-columns: 1fr; } .ln-method-heading { display: block; } .ln-method-note { margin-top: -0.5rem; } .ln-route { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 2.5rem; padding-left: .15rem; } .ln-route-line { top: 0; bottom: 0; left: 22px; right: auto; width: 1px; height: 100%; overflow: visible; } .ln-route-line .route-track, .ln-route-line .route-progress { display: none; } .ln-route-line::before { content: ""; position: absolute; inset: 0; width: 1px; background: linear-gradient(var(--color-primary), rgba(255,77,0,.25)); } .ln-route-line .route-pulse { display: none; } .ln-route-step { display: grid; grid-template-columns: 44px 1fr; gap: 1.2rem; } .ln-route-copy { padding-top: .1rem; } .ln-route-marker { box-shadow: 0 0 0 6px var(--color-dark); } }
@@ -307,4 +313,5 @@ import Button from '../../../components/ui/Button.astro';
     .ln-route-line::before { background: linear-gradient(var(--color-primary), rgba(255,77,0,.25)); }
     .ln-route-marker { box-shadow: 0 0 0 6px var(--color-white); }
   }
+  @media (max-width: 600px) { .ln-cta-actions { flex-direction: column; align-items: stretch; } .ln-cta-actions > * { width: 100%; } }
 </style>
