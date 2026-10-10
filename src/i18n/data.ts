@@ -254,7 +254,7 @@ export const content = {
       rights: 'Todos los derechos reservados.',
       links: [
         { label: 'Servicios', href: '/#servicios' },
-        { label: 'Acompañamiento', href: '/#precios' },
+        { label: 'Contacto', href: '/#contacto' },
         { label: 'Quiénes somos', href: '/quienes-somos' }
       ],
       legalLinks: [
@@ -549,7 +549,7 @@ export const content = {
       rights: 'All rights reserved.',
       links: [
         { label: 'Services', href: '/en/#servicios' },
-        { label: 'Support', href: '/en/#precios' },
+        { label: 'Contact', href: '/en/#contacto' },
         { label: 'About Us', href: '/en/about-us' }
       ],
       legalLinks: [

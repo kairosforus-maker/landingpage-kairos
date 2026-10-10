@@ -27,7 +27,7 @@ const posts = await sanityClient.fetch(`*[_type == "post" && defined(slug.curren
 }`);
 ---
 
-<Layout title="Blog | KAIROS" description="Ideas sobre estrategia, liderazgo, construcción organizacional y soluciones digitales para avanzar con dirección.">
+<Layout title="Blog | KAIROS" description="Ideas sobre estrategia, liderazgo, construcción organizacional y soluciones digitales para avanzar con dirección." includeAlternates={false}>
   <Header />
   
   <main class="blog-container">

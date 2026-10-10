@@ -11,6 +11,8 @@ interface Props {
 	schemaType?: 'ProfessionalService' | 'Service' | 'WebPage' | 'BlogPosting';
 	publishedAt?: string;
 	robots?: string;
+	includeVideo?: boolean;
+	includeAlternates?: boolean;
 }
 
 const {
@@ -21,17 +23,41 @@ const {
 	schemaType = 'WebPage',
 	publishedAt,
 	robots = 'index, follow',
+	includeVideo = false,
+	includeAlternates = true,
 } = Astro.props;
 
 const siteBase = 'https://www.kairos4us.com';
-const pathWithoutLang = Astro.url.pathname.replace(/^\/(en)\/?/, '/');
-const esUrl = `${siteBase}${pathWithoutLang}`;
-const enUrl = `${siteBase}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
-const canonicalUrl = url || `${siteBase}${Astro.url.pathname}`;
+const normalizedPath = Astro.url.pathname === '/'
+	? '/'
+	: `/${Astro.url.pathname.replace(/^\/+|\/+$/g, '')}/`;
+const routePath = normalizedPath.replace(/\/$/, '') || '/';
+const routePairs: Record<string, { es: string; en: string }> = {
+	'/': { es: '/', en: '/en/' },
+	'/en': { es: '/', en: '/en/' },
+	'/quienes-somos': { es: '/quienes-somos/', en: '/en/about-us/' },
+	'/en/about-us': { es: '/quienes-somos/', en: '/en/about-us/' },
+	'/aviso-legal': { es: '/aviso-legal/', en: '/en/legal-notice/' },
+	'/en/legal-notice': { es: '/aviso-legal/', en: '/en/legal-notice/' },
+	'/privacidad': { es: '/privacidad/', en: '/en/privacy/' },
+	'/en/privacy': { es: '/privacidad/', en: '/en/privacy/' },
+};
+const blogPath = routePath.startsWith('/en/blog/')
+	? { es: routePath.replace(/^\/en/, '') + '/', en: normalizedPath }
+	: routePath.startsWith('/blog/')
+		? { es: normalizedPath, en: `/en${normalizedPath}` }
+		: null;
+const localizedPaths = routePairs[routePath] || blogPath || {
+	es: routePath.startsWith('/en/') ? `${routePath.replace(/^\/en/, '')}/` : normalizedPath,
+	en: routePath.startsWith('/en/') ? normalizedPath : `/en${normalizedPath}`,
+};
+const esUrl = `${siteBase}${localizedPaths.es}`;
+const enUrl = `${siteBase}${localizedPaths.en}`;
+const canonicalUrl = url || `${siteBase}${normalizedPath}`;
 const imageUrl = image.startsWith('http') ? image : `${siteBase}${image}`;
 const isSpanish = lang === 'es';
-const schema = schemaType === 'ProfessionalService'
-	? {
+
+const organization = {
 			'@context': 'https://schema.org',
 			'@type': 'ProfessionalService',
 			'@id': `${siteBase}/#organization`,
@@ -52,7 +78,26 @@ const schema = schemaType === 'ProfessionalService'
 			],
 			'areaServed': { '@type': 'Country', 'name': 'Colombia' },
 			'contactPoint': { '@type': 'ContactPoint', 'telephone': '+573133024941', 'contactType': 'sales', 'availableLanguage': ['Spanish', 'English'] },
+			'knowsAbout': ['business strategy', 'organizational transformation', 'leadership development', 'digital solutions', 'professional positioning'],
 			'inLanguage': isSpanish ? 'es-CO' : 'en'
+		};
+const website = {
+		'@type': 'WebSite',
+		'@id': `${siteBase}/#website`,
+		'name': 'KAIROS',
+		'url': siteBase,
+		'publisher': { '@id': `${siteBase}/#organization` },
+		'inLanguage': ['es-CO', 'en'],
+	};
+const schemaNode = schemaType === 'ProfessionalService'
+	? {
+			'@type': 'WebPage',
+			'@id': `${canonicalUrl}#webpage`,
+			'name': title,
+			'description': description,
+			'url': canonicalUrl,
+			'inLanguage': isSpanish ? 'es-CO' : 'en',
+			'isPartOf': { '@id': `${siteBase}/#website` },
 		}
 	: schemaType === 'Service'
 		? {
@@ -62,9 +107,10 @@ const schema = schemaType === 'ProfessionalService'
 			'name': title.split('|')[0].trim(),
 			'description': description,
 			'url': canonicalUrl,
-			'provider': { '@id': `${siteBase}/#organization`, '@type': 'ProfessionalService', 'name': 'KAIROS', 'url': siteBase },
+			'provider': { '@id': `${siteBase}/#organization` },
 			'areaServed': { '@type': 'Country', 'name': 'Colombia' },
-			'inLanguage': isSpanish ? 'es-CO' : 'en'
+			'inLanguage': isSpanish ? 'es-CO' : 'en',
+			'isPartOf': { '@id': `${siteBase}/#website` },
 		}
 	: schemaType === 'BlogPosting'
 		? {
@@ -76,9 +122,10 @@ const schema = schemaType === 'ProfessionalService'
 			'url': canonicalUrl,
 			'image': imageUrl,
 			'datePublished': publishedAt,
-			'author': { '@type': 'Organization', 'name': 'KAIROS', 'url': siteBase },
+			'author': { '@id': `${siteBase}/#organization` },
 			'publisher': { '@id': `${siteBase}/#organization`, '@type': 'Organization', 'name': 'KAIROS', 'logo': { '@type': 'ImageObject', 'url': `${siteBase}/loguito.png` } },
-			'inLanguage': isSpanish ? 'es-CO' : 'en'
+			'inLanguage': isSpanish ? 'es-CO' : 'en',
+			'isPartOf': { '@id': `${siteBase}/#website` },
 		}
 		: {
 			'@context': 'https://schema.org',
@@ -88,8 +135,28 @@ const schema = schemaType === 'ProfessionalService'
 			'description': description,
 			'url': canonicalUrl,
 			'inLanguage': isSpanish ? 'es-CO' : 'en',
-			'isPartOf': { '@type': 'WebSite', 'name': 'KAIROS', 'url': siteBase }
+			'isPartOf': { '@id': `${siteBase}/#website` }
 		};
+if (includeVideo) {
+	(schemaNode as Record<string, unknown>).video = { '@id': `${canonicalUrl}#video` };
+}
+const videoSchema = includeVideo ? {
+	'@type': 'VideoObject',
+	'@id': `${canonicalUrl}#video`,
+	'name': isSpanish ? 'KAIROS en acción' : 'KAIROS in action',
+	'description': isSpanish
+		? 'Sesión de formación de KAIROS: enseñar, acompañar y construir juntos.'
+		: 'A KAIROS training session: teaching, accompanying, and building together.',
+	'thumbnailUrl': [`${siteBase}/video/poster-d.webp`, `${siteBase}/video/poster-m.webp`],
+	'contentUrl': `${siteBase}/video/kairos-en-accion-d.mp4`,
+	'duration': 'PT28S',
+	'inLanguage': isSpanish ? 'es-CO' : 'en',
+	'isPartOf': { '@id': `${canonicalUrl}#webpage` },
+} : null;
+const schema = {
+	'@context': 'https://schema.org',
+	'@graph': [organization, website, schemaNode, ...(videoSchema ? [videoSchema] : [])],
+};
 ---
 
 <!doctype html>
@@ -108,10 +175,12 @@ const schema = schemaType === 'ProfessionalService'
 		<link rel="canonical" href={canonicalUrl} />
 		<meta name="theme-color" content="#FF4D00" />
 
-		<!-- Hreflang -->
-		<link rel="alternate" hreflang="es-CO" href={esUrl} />
-		<link rel="alternate" hreflang="en" href={enUrl} />
-		<link rel="alternate" hreflang="x-default" href={esUrl} />
+		{includeAlternates && <>
+			<!-- Hreflang -->
+			<link rel="alternate" hreflang="es-CO" href={esUrl} />
+			<link rel="alternate" hreflang="en" href={enUrl} />
+			<link rel="alternate" hreflang="x-default" href={esUrl} />
+		</>}
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -119,7 +188,9 @@ const schema = schemaType === 'ProfessionalService'
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:alt" content={`${title} — KAIROS`} />
 		<meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
+		{includeAlternates && <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_CO'} />}
 		<meta property="og:site_name" content="KAIROS" />
 
 		<!-- Twitter -->

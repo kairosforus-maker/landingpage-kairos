@@ -51,6 +51,7 @@ const post = await sanityClient.fetch(`*[_type == "post" && slug.current == $slu
   image={post.mainImage?.asset?.url}
   schemaType="BlogPosting"
   publishedAt={post.publishedAt}
+  includeAlternates={false}
 >
   <Header />
   <main class="article-container">

@@ -10,6 +10,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) => !page.includes('/en/blog'),
       i18n: {
         defaultLocale: 'es',
         locales: { es: 'es-CO', en: 'en' },
