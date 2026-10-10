@@ -231,27 +231,19 @@ export const content = {
       ]
     },
     testimonials: {
-      tag: 'LO QUE DICEN',
-      title: 'Quienes ya construyen con nosotros.',
-      items: [
-        {
-          quote: 'Kairos me ayudó a entender que el problema no era mi negocio, era que no tenía claro quién era yo como líder. Desde ahí, todo cambió.',
-          name: 'Carolina M.',
-          role: 'Fundadora, estudio creativo',
-          initials: 'CM',
-        },
-        {
-          quote: 'No nos trajeron un plan genérico. Se sentaron con nosotros, entendieron nuestra cultura y construyeron la estrategia desde adentro.',
-          name: 'Andrés R.',
-          role: 'Director de operaciones, pyme tecnológica',
-          initials: 'AR',
-        },
-        {
-          quote: 'La combinación de coaching y tecnología es lo que los hace diferentes. No solo te dicen qué hacer — lo construyen contigo.',
-          name: 'Laura P.',
-          role: 'Consultora independiente',
-          initials: 'LP',
-        },
+      tag: 'KAIROS EN ACCIÓN',
+      title: 'Construimos haciendo.',
+      description: 'No solo diseñamos estrategias. Enseñamos, acompañamos y construimos contigo.',
+      closing: 'Identidad · Estrategia · Construcción',
+      videoLabel: 'Video: KAIROS en acción. Una sesión de formación con estudiantes: enseñar, acompañar y construir juntos.',
+      play: 'Reproducir video',
+      pause: 'Pausar video',
+      soundOn: 'Activar sonido',
+      soundOff: 'Silenciar',
+      chapters: [
+        { n: '01', title: 'Entender y enseñar.', start: 0 },
+        { n: '02', title: 'Acompañar el proceso.', start: 9.7 },
+        { n: '03', title: 'Construir algo que permanece.', start: 18.7 },
       ],
     },
     footer: {
@@ -534,27 +526,19 @@ export const content = {
       ]
     },
     testimonials: {
-      tag: 'WHAT THEY SAY',
-      title: 'Those who already build with us.',
-      items: [
-        {
-          quote: 'Kairos helped me understand that the problem wasn\'t my business — it was that I didn\'t know who I was as a leader. From there, everything changed.',
-          name: 'Carolina M.',
-          role: 'Founder, creative studio',
-          initials: 'CM',
-        },
-        {
-          quote: 'They didn\'t bring a generic plan. They sat with us, understood our culture, and built the strategy from the inside.',
-          name: 'Andrés R.',
-          role: 'Operations director, tech SMB',
-          initials: 'AR',
-        },
-        {
-          quote: 'The combination of coaching and technology is what makes them different. They don\'t just tell you what to do — they build it with you.',
-          name: 'Laura P.',
-          role: 'Independent consultant',
-          initials: 'LP',
-        },
+      tag: 'KAIROS IN ACTION',
+      title: 'We build by doing.',
+      description: 'We don’t just design strategies. We teach, we accompany, and we build with you.',
+      closing: 'Identity · Strategy · Construction',
+      videoLabel: 'Video: KAIROS in action. A training session with students: teaching, accompanying and building together.',
+      play: 'Play video',
+      pause: 'Pause video',
+      soundOn: 'Turn sound on',
+      soundOff: 'Mute',
+      chapters: [
+        { n: '01', title: 'Understand and teach.', start: 0 },
+        { n: '02', title: 'Accompany the process.', start: 9.7 },
+        { n: '03', title: 'Build something that lasts.', start: 18.7 },
       ],
     },
     footer: {

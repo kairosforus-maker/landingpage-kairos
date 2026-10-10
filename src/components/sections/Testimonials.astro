@@ -3,147 +3,453 @@ import { getLangFromUrl, content } from '../../i18n/data';
 
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].testimonials;
+const DURATION = 29.5;
 ---
 
-<section class="testimonials section-padding">
-  <div class="testimonials-inner">
-    <div class="testimonials-header anim-fade-up">
-      <span class="tag-subtitle">{t.tag}</span>
-      <h2 class="section-title">{t.title}</h2>
+<section class="kia section-padding" id="kairos-en-accion" aria-labelledby="kia-title">
+  <div class="kia-inner">
+    <header class="kia-header">
+      <div class="kia-heading anim-fade-up">
+        <span class="tag-subtitle kia-tag">
+          <span class="kia-tag-rule" aria-hidden="true"></span>{t.tag}
+        </span>
+        <h2 class="kia-title" id="kia-title">{t.title}</h2>
+      </div>
+      <p class="kia-text anim-fade-up anim-delay-2">{t.description}</p>
+    </header>
+
+    <div
+      class="kia-player anim-fade-up anim-delay-3"
+      data-kia
+      data-src-desktop="/video/kairos-en-accion-d.mp4"
+      data-src-mobile="/video/kairos-en-accion-m.mp4"
+      data-duration={DURATION}
+      data-label-play={t.play}
+      data-label-pause={t.pause}
+      data-label-sound-on={t.soundOn}
+      data-label-sound-off={t.soundOff}
+    >
+      <picture class="kia-poster" aria-hidden="true">
+        <source media="(max-width: 768px)" srcset="/video/poster-m.webp" type="image/webp" />
+        <source srcset="/video/poster-d.webp" type="image/webp" />
+        <img src="/video/poster-d.jpg" alt="" loading="lazy" decoding="async" width="1920" height="1080" />
+      </picture>
+
+      <video
+        class="kia-video"
+        muted
+        playsinline
+        loop
+        preload="none"
+        aria-label={t.videoLabel}
+      ></video>
+
+      <div class="kia-overlay">
+        <div class="kia-controls">
+          <button type="button" class="kia-btn" data-kia-toggle aria-label={t.pause}>
+            <svg class="kia-ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
+            <svg class="kia-ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" /></svg>
+          </button>
+          <button type="button" class="kia-btn" data-kia-sound aria-label={t.soundOn} aria-pressed="false">
+            <svg class="kia-ico-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4zM16 9.5l5 5M21 9.5l-5 5" /></svg>
+            <svg class="kia-ico-sound" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4zM16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="kia-start" data-kia-start aria-label={t.play}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" /></svg>
+      </button>
     </div>
 
-    <div class="testimonials-grid">
-      {t.items.map((item, i) => (
-        <div class={`testimonial-card anim-fade-up anim-delay-${i + 1}`}>
-          <div class="testimonial-quote-icon" aria-hidden="true">"</div>
-          <blockquote class="testimonial-quote">{item.quote}</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">{item.initials}</div>
-            <div class="testimonial-info">
-              <span class="testimonial-name">{item.name}</span>
-              <span class="testimonial-role">{item.role}</span>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <ol class="kia-chapters anim-fade-up anim-delay-4">
+      {t.chapters.map((c, i) => {
+        const end = i < t.chapters.length - 1 ? t.chapters[i + 1].start : DURATION;
+        return (
+          <li>
+            <button type="button" class="kia-chapter" data-kia-chapter={i} data-start={c.start} data-end={end}>
+              <span class="kia-chapter-bar" aria-hidden="true"><span class="kia-chapter-fill"></span></span>
+              <span class="kia-chapter-num">{c.n}</span>
+              <span class="kia-chapter-title">{c.title}</span>
+            </button>
+          </li>
+        );
+      })}
+    </ol>
   </div>
 </section>
 
-<style>
-  .testimonials {
-    background-color: var(--color-white);
+<script>
+  function initKia(root: HTMLElement) {
+    const video = root.querySelector<HTMLVideoElement>('.kia-video')!;
+    const toggle = root.querySelector<HTMLButtonElement>('[data-kia-toggle]')!;
+    const sound = root.querySelector<HTMLButtonElement>('[data-kia-sound]')!;
+    const start = root.querySelector<HTMLButtonElement>('[data-kia-start]')!;
+    const section = root.closest('section')!;
+    const chapters = Array.from(section.querySelectorAll<HTMLButtonElement>('[data-kia-chapter]'));
+    const labels = root.dataset;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobileMq = window.matchMedia('(max-width: 768px)');
+
+    let loaded = false;
+    let userPaused = reduceMotion;
+    let inView = false;
+    let raf = 0;
+
+    const pickSrc = () => (mobileMq.matches ? labels.srcMobile! : labels.srcDesktop!);
+
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      video.src = pickSrc();
+      video.preload = 'auto';
+      video.load();
+    }
+
+    mobileMq.addEventListener('change', () => {
+      if (!loaded) return;
+      const time = video.currentTime;
+      const wasPlaying = !video.paused;
+      video.src = pickSrc();
+      video.load();
+      video.addEventListener('loadedmetadata', () => {
+        video.currentTime = time;
+        if (wasPlaying) video.play().catch(() => {});
+      }, { once: true });
+    });
+
+    function setActive(time: number) {
+      let idx = 0;
+      chapters.forEach((c, i) => { if (time >= Number(c.dataset.start)) idx = i; });
+      chapters.forEach((c, i) => {
+        const s = Number(c.dataset.start), e = Number(c.dataset.end);
+        const p = Math.min(1, Math.max(0, (time - s) / (e - s)));
+        c.style.setProperty('--p', String(p));
+        c.classList.toggle('is-active', i === idx);
+      });
+    }
+
+    const tick = () => { setActive(video.currentTime); raf = requestAnimationFrame(tick); };
+
+    function syncUi() {
+      const playing = !video.paused;
+      root.classList.toggle('is-playing', playing);
+      toggle.setAttribute('aria-label', playing ? labels.labelPause! : labels.labelPlay!);
+    }
+
+    function play() {
+      load();
+      root.classList.add('is-started');
+      video.play().catch(() => { root.classList.remove('is-started'); });
+    }
+
+    video.addEventListener('play', () => { cancelAnimationFrame(raf); tick(); syncUi(); });
+    video.addEventListener('pause', () => { cancelAnimationFrame(raf); syncUi(); });
+    video.addEventListener('seeked', () => setActive(video.currentTime));
+
+    toggle.addEventListener('click', () => {
+      if (video.paused) { userPaused = false; play(); }
+      else { userPaused = true; video.pause(); }
+    });
+
+    start.addEventListener('click', () => { userPaused = false; play(); });
+
+    sound.addEventListener('click', () => {
+      video.muted = !video.muted;
+      sound.setAttribute('aria-pressed', String(!video.muted));
+      sound.setAttribute('aria-label', video.muted ? labels.labelSoundOn! : labels.labelSoundOff!);
+      root.classList.toggle('is-sound', !video.muted);
+      if (video.paused) { userPaused = false; play(); }
+    });
+
+    chapters.forEach((c) => c.addEventListener('click', () => {
+      load();
+      const go = () => { video.currentTime = Number(c.dataset.start) + 0.05; setActive(video.currentTime); };
+      if (video.readyState >= 1) go(); else video.addEventListener('loadedmetadata', go, { once: true });
+      userPaused = false;
+      play();
+    }));
+
+    // Load a bit before it enters, autoplay only while visible.
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) load(); });
+    }, { rootMargin: '400px 0px' }).observe(root);
+
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        inView = e.isIntersecting;
+        if (inView && !userPaused) play();
+        else if (!inView && !video.paused) video.pause();
+      });
+    }, { threshold: 0.45 }).observe(root);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else if (inView && !userPaused) play();
+    });
+
+    setActive(0);
   }
 
-  .testimonials-inner {
-    max-width: 1200px;
+  document.querySelectorAll<HTMLElement>('[data-kia]').forEach(initKia);
+</script>
+
+<style>
+  .kia {
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    overflow: hidden;
+  }
+
+  .kia-inner {
+    max-width: 1280px;
     margin: 0 auto;
   }
 
-  .testimonials-header {
-    text-align: center;
-    margin-bottom: 4rem;
+  /* ── Header: editorial two-column ── */
+  .kia-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    align-items: end;
+    gap: 2rem 4rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
-  .testimonials-header .section-title {
-    color: var(--color-dark);
-    font-size: clamp(2rem, 4vw, 3rem);
-  }
-
-  .testimonials-grid {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .testimonial-card {
-    flex: 1;
-    min-width: 300px;
-    max-width: 380px;
-    background: var(--color-light);
-    border: 1px solid var(--color-gray-light);
-    border-radius: 20px;
-    padding: 2.5rem 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    position: relative;
-    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-  }
-
-  .testimonial-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 77, 0, 0.45);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .testimonial-quote-icon {
-    font-family: var(--font-heading);
-    font-size: 4rem;
-    line-height: 1;
-    color: var(--color-primary);
-    opacity: 0.4;
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-  }
-
-  .testimonial-quote {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--color-dark);
-    font-style: italic;
-    flex: 1;
-  }
-
-  .testimonial-author {
+  .kia-tag {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-gray-light);
+    gap: 0.85rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 1.4rem;
   }
 
-  .testimonial-avatar {
+  .kia-tag-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--color-primary);
+  }
+
+  .kia-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 6.4vw, 5.8rem);
+    font-weight: 700;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+    color: var(--color-dark);
+    text-wrap: balance;
+  }
+
+  .kia-text {
+    max-width: 30ch;
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-gray);
+    padding-bottom: 0.5rem;
+    border-left: 1px solid var(--color-primary);
+    padding-left: 1.4rem;
+  }
+
+  /* ── Player ── */
+  .kia-player {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--color-dark);
+    isolation: isolate;
+    color: var(--color-white);
+    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.45);
+  }
+
+  .kia-poster,
+  .kia-poster img,
+  .kia-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .kia-video { z-index: 1; opacity: 0; transition: opacity 0.8s ease; }
+  .kia-player.is-started .kia-video { opacity: 1; }
+
+  .kia-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(1.25rem, 2.6vw, 2.25rem);
+    pointer-events: none;
+  }
+
+  .kia-controls {
+    position: absolute;
+    right: clamp(1.25rem, 2.6vw, 2.25rem);
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: flex;
+    gap: 0.5rem;
+    pointer-events: auto;
+  }
+
+  .kia-player:hover .kia-controls,
+  .kia-player:focus-within .kia-controls,
+  .kia-player:not(.is-playing).is-started .kia-controls { opacity: 1; }
+
+  .kia-btn {
     width: 44px;
     height: 44px;
+    display: grid;
+    place-items: center;
     border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(10, 10, 10, 0.25);
+    backdrop-filter: blur(6px);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .kia-btn:hover,
+  .kia-player.is-sound [data-kia-sound] {
     background: var(--color-primary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-color: var(--color-primary);
+  }
+
+  .kia-btn:focus-visible,
+  .kia-start:focus-visible,
+  .kia-chapter:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .kia-btn svg,
+  .kia-start svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .kia-ico-play,
+  .kia-ico-sound { display: none; }
+  .kia-player:not(.is-playing) .kia-ico-pause { display: none; }
+  .kia-player:not(.is-playing) .kia-ico-play { display: block; }
+  .kia-player.is-sound .kia-ico-muted { display: none; }
+  .kia-player.is-sound .kia-ico-sound { display: block; }
+
+  .kia-start {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+    width: 84px;
+    height: 84px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: rgba(10, 10, 10, 0.3);
+    backdrop-filter: blur(6px);
+    color: var(--color-white);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .kia-start svg { width: 26px; height: 26px; fill: currentColor; stroke: none; margin-left: 4px; }
+  .kia-start:hover { background: var(--color-primary); border-color: var(--color-primary); transform: translate(-50%, -50%) scale(1.05); }
+  .kia-player.is-started .kia-start { opacity: 0; pointer-events: none; }
+
+  /* ── Chapter index ── */
+  .kia-chapters {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .kia-chapter {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.9rem 0.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+  }
+
+  .kia-chapter-bar {
+    grid-column: 1 / -1;
+    position: relative;
+    height: 2px;
+    background: var(--color-gray-light);
+    overflow: hidden;
+  }
+
+  .kia-chapter-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    transform-origin: left;
+    transform: scaleX(var(--p, 0));
+  }
+
+  .kia-chapter-num {
     font-family: var(--font-heading);
+    font-size: 0.78rem;
     font-weight: 700;
-    font-size: 0.85rem;
-    flex-shrink: 0;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    padding-top: 0.2rem;
   }
 
-  .testimonial-info {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .testimonial-name {
-    color: var(--color-dark);
+  .kia-chapter-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
     font-weight: 600;
-    font-size: 0.95rem;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: #9a958f;
+    transition: color 0.4s ease;
   }
 
-  .testimonial-role {
-    color: var(--color-gray);
-    font-size: 0.85rem;
+  .kia-chapter.is-active .kia-chapter-title,
+  .kia-chapter:hover .kia-chapter-title { color: var(--color-dark); }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    .kia-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .kia-text { max-width: 36ch; }
   }
 
   @media (max-width: 768px) {
-    .testimonials-grid {
-      flex-direction: column;
-      align-items: center;
-    }
+    .kia-player { aspect-ratio: 4 / 5; border-radius: 12px; }
+    .kia-overlay { padding: 1.1rem; }
+    .kia-controls { right: 0.9rem; opacity: 1; }
+    .kia-player:not(.is-started) .kia-controls { opacity: 0; pointer-events: none; }
+    .kia-btn { width: 40px; height: 40px; }
+    .kia-start { width: 72px; height: 72px; }
+    .kia-chapters { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem; }
+    .kia-chapter { grid-template-columns: 2.2rem 1fr; gap: 0.6rem 0.5rem; }
+  }
 
-    .testimonial-card {
-      max-width: 100%;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .kia-video { transition: none; }
   }
 </style>
