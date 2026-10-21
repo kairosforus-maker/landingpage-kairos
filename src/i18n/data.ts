@@ -162,8 +162,8 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Identidad, propósito y liderazgo',
-          desc: 'Acompaña a personas y organizaciones a construir desde quiénes son — con coaching, marca personal y estrategia.',
+          role: 'Identidad, propósito, liderazgo y formación',
+          desc: 'Acompaña a personas y organizaciones a construir desde quiénes son — con coaching, estrategia y Kairos Academy: charlas, workshops y masterclasses para convertir conocimiento en acción.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
@@ -184,8 +184,8 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Identidad, propósito y liderazgo',
-          desc: 'Acompaña a personas y organizaciones a construir desde quiénes son — con coaching, marca personal y estrategia.',
+          role: 'Identidad, propósito, liderazgo y formación',
+          desc: 'Acompaña a personas y organizaciones a construir desde quiénes son — con coaching, estrategia y Kairos Academy: charlas, workshops y masterclasses para convertir conocimiento en acción.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
@@ -457,8 +457,8 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Identity, purpose & leadership',
-          desc: 'Accompanies people and organizations to build from who they are — through coaching, personal brand, and strategy.',
+          role: 'Identity, purpose, leadership & training',
+          desc: 'Accompanies people and organizations to build from who they are — through coaching, strategy, and Kairos Academy: talks, workshops, and masterclasses that turn knowledge into action.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
@@ -479,8 +479,8 @@ export const content = {
       members: [
         {
           name: 'Alberto Guzmán',
-          role: 'Identity, purpose & leadership',
-          desc: 'Accompanies people and organizations to build from who they are — through coaching, personal brand, and strategy.',
+          role: 'Identity, purpose, leadership & training',
+          desc: 'Accompanies people and organizations to build from who they are — through coaching, strategy, and Kairos Academy: talks, workshops, and masterclasses that turn knowledge into action.',
           photo: '/foto_alberto.png',
           focus: 'center bottom',
           linkedin: 'https://www.linkedin.com/in/albertomarioguzmanestrada/'
