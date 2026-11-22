@@ -69,9 +69,9 @@ export const content = {
     },
     services: {
       tag: 'QUÉ HACEMOS',
-      title: 'Tres formas de construir desde la identidad.',
+      title: 'Cuatro formas de construir desde la identidad.',
       titleHighlight: 'identidad.',
-      desc: 'Tres unidades especializadas que trabajan juntas para generar estrategias, experiencias y presencia con intención.',
+      desc: 'Cuatro líneas que trabajan juntas para convertir identidad, conocimiento y estrategia en construcción con intención.',
       viewMore: 'Conoce más',
       cta: 'Agenda una conversación',
       builder: {
@@ -94,6 +94,13 @@ export const content = {
         subtitle: 'Reputación Digital & Posicionamiento',
         desc: 'Convertimos conocimiento y liderazgo en una presencia digital poderosa, auténtica y con intención.',
         tags: ['LinkedIn', 'Posicionamiento', 'Contenido', 'Networking'],
+      },
+      academy: {
+        number: '04',
+        title: 'Kairos Academy',
+        subtitle: 'Talleres, capacitación y masterclasses',
+        desc: 'Talleres, capacitaciones y masterclasses a la medida, para que el conocimiento se quede en tu organización.',
+        tags: ['Talleres', 'Capacitación', 'Masterclasses', 'Capacidades'],
       },
     },
     methodology: {
@@ -364,9 +371,9 @@ export const content = {
     },
     services: {
       tag: 'WHAT WE DO',
-      title: 'Three ways to build from identity.',
+      title: 'Four ways to build from identity.',
       titleHighlight: 'identity.',
-      desc: 'Three specialized units working together to generate strategies, experiences and presence with intention.',
+      desc: 'Four lines working together to turn identity, knowledge and strategy into intentional construction.',
       viewMore: 'Learn more',
       cta: 'Book a conversation',
       builder: {
@@ -389,6 +396,13 @@ export const content = {
         subtitle: 'Digital Reputation & Positioning',
         desc: 'We turn knowledge and leadership into a powerful, authentic digital presence with intention.',
         tags: ['LinkedIn', 'Positioning', 'Content', 'Networking'],
+      },
+      academy: {
+        number: '04',
+        title: 'Kairos Academy',
+        subtitle: 'Tailored workshops, training & masterclasses',
+        desc: 'Tailored workshops, training programs and masterclasses, so knowledge stays in your organization.',
+        tags: ['Workshops', 'Training', 'Masterclasses', 'Capabilities'],
       },
     },
     methodology: {

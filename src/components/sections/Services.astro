@@ -4,18 +4,20 @@ import { getLangFromUrl, content } from '../../i18n/data';
 const lang = getLangFromUrl(Astro.url);
 const t = content[lang].services;
 
-const serviceKeys = ['builder', 'digital', 'linkedin'] as const;
+const serviceKeys = ['builder', 'digital', 'linkedin', 'academy'] as const;
 const prefix = lang === 'es' ? '' : '/en';
 const hrefs = {
   builder: `${prefix}/servicios/builder`,
   digital: `${prefix}/servicios/digital`,
   linkedin: `${prefix}/servicios/linkedin`,
+  academy: `${prefix}/servicios/academy`,
 };
 
 const icons = {
   builder: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="10" height="10" rx="2"/><rect x="15" y="3" width="10" height="10" rx="2"/><rect x="3" y="15" width="10" height="10" rx="2"/></svg>`,
   digital: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="20" height="18" rx="2.5"/><line x1="4" y1="21" x2="24" y2="21"/><line x1="14" y1="21" x2="14" y2="25"/><line x1="10" y1="25" x2="18" y2="25"/></svg>`,
   linkedin: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="22" height="22" rx="4"/><text x="9" y="20" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="sans-serif">in</text></svg>`,
+  academy: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5 14 4l10 4.5-10 4.5L4 8.5Z"/><path d="M7 10.5V16c2.2 2 4.55 3 7 3s4.8-1 7-3v-5.5M24 9v7"/><path d="M24 16.5v3"/></svg>`,
 };
 
 const services = serviceKeys.map(key => ({
@@ -103,10 +105,10 @@ const titleParts = t.title.split(t.titleHighlight);
     max-width: 520px;
   }
 
-  /* Grid — 3 columns editorial */
+  /* Grid — 4 lines, one shared system */
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border-top: 1px solid #e0e0e0;
   }
@@ -134,7 +136,8 @@ const titleParts = t.title.split(t.titleHighlight);
     padding-left: 2.5rem;
   }
 
-  .service-block:nth-child(3) {
+  .service-block:nth-child(3),
+  .service-block:nth-child(4) {
     padding-left: 2.5rem;
   }
 
@@ -223,7 +226,8 @@ const titleParts = t.title.split(t.titleHighlight);
     }
 
     .service-block:nth-child(2),
-    .service-block:nth-child(3) {
+    .service-block:nth-child(3),
+    .service-block:nth-child(4) {
       padding-left: 0;
     }
   }
